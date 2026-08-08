@@ -127,7 +127,7 @@ explicitly-labeled substitute for the JEPA-family paradigm slot.
 | Category | Source | License |
 |---|---|---|
 | Music | FMA-small | CC-BY family |
-| Speech | Multilingual LibriSpeech (English) | CC-BY-4.0 |
-| Bird sounds | BirdSet, HSN eval config | CC-BY-4.0 / CC0 |
+| Speech | LibriSpeech ASR (English) | CC-BY-4.0 |
+| Bird sounds | ESC-50 (chirping_birds/crow classes) | CC-BY-NC-3.0 |
 | Ship/vessel | DS3500 (ShipsEar-derived) | CC-BY |
 | City/urban noise | UrbanSound8K (HF mirror) | CC-BY-NC-4.0 (verify against original) |

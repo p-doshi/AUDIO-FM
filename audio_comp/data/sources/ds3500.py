@@ -27,7 +27,10 @@ class Ds3500Source(BaseDatasetSource):
     def iter_clips(self, seed: int, segment_seconds: Optional[float] = None) -> Iterator[Clip]:
         from datasets import load_dataset
 
-        ds = load_dataset("peng7554/DS3500", split="train")
+        # verification_mode="no_checks": this repo's embedded split metadata
+        # (expected 4446 examples) doesn't match the actual data (4474) —
+        # a mismatch on the dataset's own end, not fixable from our side.
+        ds = load_dataset("peng7554/DS3500", split="train", verification_mode="no_checks")
         indices = list(range(len(ds)))
         random.Random(seed).shuffle(indices)
         for i in indices:

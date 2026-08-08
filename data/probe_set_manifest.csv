@@ -1,0 +1,101 @@
+clip_id,category,source_dataset,license,path,sample_rate,duration_sec
+fma_small/093710,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__093710.wav,44100,30.003
+fma_small/052380,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__052380.wav,44100,30.003
+fma_small/093918,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__093918.wav,44100,29.977
+fma_small/072612,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__072612.wav,44100,29.977
+fma_small/000676,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__000676.wav,44100,29.977
+fma_small/137419,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__137419.wav,44100,29.977
+fma_small/108837,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__108837.wav,44100,29.977
+fma_small/096169,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__096169.wav,44100,29.977
+fma_small/037911,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__037911.wav,44100,29.977
+fma_small/087106,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__087106.wav,44100,30.003
+fma_small/138068,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__138068.wav,44100,30.003
+fma_small/108418,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__108418.wav,44100,29.977
+fma_small/087100,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__087100.wav,44100,30.003
+fma_small/019459,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__019459.wav,44100,30.003
+fma_small/124477,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__124477.wav,44100,29.977
+fma_small/134931,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__134931.wav,44100,30.003
+fma_small/082231,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__082231.wav,44100,29.977
+fma_small/026465,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__026465.wav,44100,30.003
+fma_small/109448,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__109448.wav,44100,30.003
+fma_small/138317,music,fma_small,"CC-BY family (per-track, see fma_metadata/tracks.csv)",probe_set/music/fma_small__138317.wav,44100,30.003
+librispeech_en/1320-122617-0011,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__1320-122617-0011.wav,16000,5.0
+librispeech_en/1995-1826-0023,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__1995-1826-0023.wav,16000,5.0
+librispeech_en/8230-279154-0037,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__8230-279154-0037.wav,16000,5.0
+librispeech_en/7127-75947-0007,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__7127-75947-0007.wav,16000,5.0
+librispeech_en/1284-1180-0029,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__1284-1180-0029.wav,16000,5.0
+librispeech_en/1320-122617-0007,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__1320-122617-0007.wav,16000,5.0
+librispeech_en/7176-92135-0036,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__7176-92135-0036.wav,16000,5.0
+librispeech_en/1320-122617-0016,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__1320-122617-0016.wav,16000,5.0
+librispeech_en/8455-210777-0003,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__8455-210777-0003.wav,16000,5.0
+librispeech_en/1995-1836-0000,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__1995-1836-0000.wav,16000,5.0
+librispeech_en/1995-1826-0011,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__1995-1826-0011.wav,16000,5.0
+librispeech_en/7176-88083-0010,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__7176-88083-0010.wav,16000,5.0
+librispeech_en/2961-960-0016,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__2961-960-0016.wav,16000,5.0
+librispeech_en/1320-122612-0008,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__1320-122612-0008.wav,16000,5.0
+librispeech_en/1284-1180-0010,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__1284-1180-0010.wav,16000,5.0
+librispeech_en/7127-75947-0024,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__7127-75947-0024.wav,16000,5.0
+librispeech_en/2961-960-0003,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__2961-960-0003.wav,16000,5.0
+librispeech_en/1995-1837-0004,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__1995-1837-0004.wav,16000,5.0
+librispeech_en/8230-279154-0026,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__8230-279154-0026.wav,16000,5.0
+librispeech_en/3575-170457-0033,speech,librispeech_en,CC-BY-4.0,probe_set/speech/librispeech_en__3575-170457-0033.wav,16000,5.0
+esc50_birds/4-138344-A-9.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__4-138344-A-9.wav.wav,44100,5.0
+esc50_birds/4-223127-A-14.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__4-223127-A-14.wav.wav,44100,5.0
+esc50_birds/2-108767-C-9.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__2-108767-C-9.wav.wav,44100,5.0
+esc50_birds/4-145081-A-9.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__4-145081-A-9.wav.wav,44100,5.0
+esc50_birds/2-72547-C-14.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__2-72547-C-14.wav.wav,44100,5.0
+esc50_birds/4-173865-A-9.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__4-173865-A-9.wav.wav,44100,5.0
+esc50_birds/1-46040-A-14.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__1-46040-A-14.wav.wav,44100,5.0
+esc50_birds/3-156581-B-14.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__3-156581-B-14.wav.wav,44100,5.0
+esc50_birds/4-182795-A-14.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__4-182795-A-14.wav.wav,44100,5.0
+esc50_birds/3-129264-A-9.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__3-129264-A-9.wav.wav,44100,5.0
+esc50_birds/1-96950-B-9.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__1-96950-B-9.wav.wav,44100,5.0
+esc50_birds/5-242711-A-9.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__5-242711-A-9.wav.wav,44100,5.0
+esc50_birds/4-187769-B-14.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__4-187769-B-14.wav.wav,44100,5.0
+esc50_birds/3-127890-C-9.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__3-127890-C-9.wav.wav,44100,5.0
+esc50_birds/3-155579-A-14.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__3-155579-A-14.wav.wav,44100,5.0
+esc50_birds/4-223125-A-14.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__4-223125-A-14.wav.wav,44100,5.0
+esc50_birds/2-109231-B-9.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__2-109231-B-9.wav.wav,44100,5.0
+esc50_birds/4-173865-B-9.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__4-173865-B-9.wav.wav,44100,5.0
+esc50_birds/5-243459-A-14.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__5-243459-A-14.wav.wav,44100,5.0
+esc50_birds/1-103298-A-9.wav,bird_sounds,esc50_birds,CC-BY-NC-3.0 (canonical ESC-50 license — verify against mirror),probe_set/bird_sounds/esc50_birds__1-103298-A-9.wav.wav,44100,5.0
+ds3500/821,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__821.wav,16000,5.0
+ds3500/3278,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__3278.wav,16000,5.0
+ds3500/557,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__557.wav,16000,5.0
+ds3500/3197,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__3197.wav,16000,5.0
+ds3500/791,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__791.wav,16000,5.0
+ds3500/3902,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__3902.wav,16000,5.0
+ds3500/3859,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__3859.wav,16000,5.0
+ds3500/805,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__805.wav,16000,5.0
+ds3500/4000,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__4000.wav,16000,5.0
+ds3500/194,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__194.wav,16000,5.0
+ds3500/1168,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__1168.wav,16000,5.0
+ds3500/573,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__573.wav,16000,5.0
+ds3500/4091,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__4091.wav,16000,5.0
+ds3500/3284,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__3284.wav,16000,5.0
+ds3500/3782,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__3782.wav,16000,5.0
+ds3500/371,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__371.wav,16000,5.0
+ds3500/841,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__841.wav,16000,5.0
+ds3500/1915,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__1915.wav,16000,5.0
+ds3500/666,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__666.wav,16000,5.0
+ds3500/148,ship_vessel,ds3500,CC-BY,probe_set/ship_vessel/ds3500__148.wav,16000,5.0
+urbansound8k/334,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__334.wav,44100,4.0
+urbansound8k/4728,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__4728.wav,44100,0.798
+urbansound8k/2916,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__2916.wav,96000,4.0
+urbansound8k/4224,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__4224.wav,44100,4.0
+urbansound8k/2384,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__2384.wav,44100,4.0
+urbansound8k/2078,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__2078.wav,44100,4.0
+urbansound8k/6709,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__6709.wav,44100,4.0
+urbansound8k/620,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__620.wav,44100,4.0
+urbansound8k/440,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__440.wav,44100,4.0
+urbansound8k/5889,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__5889.wav,44100,1.17
+urbansound8k/2658,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__2658.wav,48000,4.0
+urbansound8k/8636,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__8636.wav,44100,4.0
+urbansound8k/7935,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__7935.wav,44100,0.478
+urbansound8k/8268,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__8268.wav,24000,4.0
+urbansound8k/6809,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__6809.wav,44100,4.0
+urbansound8k/5772,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__5772.wav,48000,4.0
+urbansound8k/5246,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__5246.wav,48000,4.0
+urbansound8k/5513,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__5513.wav,48000,4.0
+urbansound8k/4278,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__4278.wav,48000,2.357
+urbansound8k/193,city_noise,urbansound8k,CC-BY-NC-4.0 (per mirror — verify against original),probe_set/city_noise/urbansound8k__193.wav,48000,2.527
