@@ -24,6 +24,14 @@ cd "$HOME/audio_comp"
 # fast — route the cache to $SCRATCH instead of the ~/.cache/huggingface default.
 export HF_HOME="${SCRATCH:-$HOME/scratch}/hf_cache"
 
+# hubert/mert loading intermittently deadlocked (futex_do_wait, near-zero
+# CPU, non-deterministic — sometimes 3.6s, sometimes the full 1hr timeout)
+# — the classic Rust-thread-pool-after-fork hang from tokenizers/hf_xet.
+# These env vars serialize/disable those thread pools to avoid the race.
+export TOKENIZERS_PARALLELISM=false
+export HF_HUB_DISABLE_XET=1
+export RAYON_NUM_THREADS=1
+
 OUT_DIR="${SCRATCH:-$HOME/scratch}/audio_comp/embeddings"
 mkdir -p "$OUT_DIR"
 
