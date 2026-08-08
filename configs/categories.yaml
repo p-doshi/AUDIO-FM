@@ -15,10 +15,10 @@ categories:
   music:
     source: fma_small
   speech:
-    source: mls_english
+    source: librispeech_en
     segment_seconds: 5.0
   bird_sounds:
-    source: birdset_eval
+    source: esc50_birds
   ship_vessel:
     source: ds3500
   city_noise:

@@ -7,6 +7,7 @@ dependencies = [
     "transformers",
     "huggingface_hub",
     "datasets",
+    "torchcodec",  # datasets>=5 needs this to decode streamed Audio columns
     "librosa",
     "soundfile",
     "scipy",
