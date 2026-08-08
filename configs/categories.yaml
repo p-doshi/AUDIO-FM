@@ -1,0 +1,25 @@
+# Probe-set category definitions. Execution order follows the project's
+# stated rollout: validate on in-distribution data (music/speech, what most
+# teacher models were trained on) before generalizing to bird/ship/city
+# sounds. All five are defined here from day one so the framework already
+# models the full target taxonomy — order below is documentation only, not
+# an execution gate.
+#
+# Scaling up later: bump n_per_category (globally or per-category) and
+# re-run `python -m audio_comp.data.build_probe_set` with the same seed.
+
+seed: 42
+n_per_category: 20
+
+categories:
+  music:
+    source: fma_small
+  speech:
+    source: mls_english
+    segment_seconds: 5.0
+  bird_sounds:
+    source: birdset_eval
+  ship_vessel:
+    source: ds3500
+  city_noise:
+    source: urbansound8k

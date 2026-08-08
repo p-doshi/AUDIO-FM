@@ -1,0 +1,20 @@
+# Kickoff model set for Phase 1. Names must match a @register_model(...)
+# name in audio_comp/models/. See each adapter module's docstring for the
+# HF id, paradigm, and license behind each entry.
+#
+# `audio_jepa` and `beats` are registered (so the framework already models
+# them) but deliberately left out of the active run below — both need
+# custom loader integration beyond a config entry; see their adapter
+# modules' docstrings for the exact remaining work.
+
+active_models:
+  - clap
+  - mert
+  - hubert
+  - wav2vec2
+  - music2vec
+  - musicfm
+
+deferred_models:
+  - audio_jepa
+  - beats
