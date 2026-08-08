@@ -1,15 +1,32 @@
-"""music2vec — JEPA-family (BYOL-style online distillation) music model."""
+"""music2vec — JEPA-family (BYOL-style online distillation) music model.
+
+Upstream m-a-p/music2vec-v1's published config.json has `vocab_size` set to
+a filesystem path (an artifact of the original author's local machine,
+leaked into the published config) instead of an int — irrelevant to this
+architecture's actual feature-extraction use, but `transformers`' now-strict
+config field validation rejects it outright where older versions silently
+ignored the type mismatch. Worked around by copying the snapshot to a
+mutable local dir and patching just that field before loading.
+"""
 from __future__ import annotations
 
+import json
+import os
+import shutil
+from pathlib import Path
 from typing import Sequence
 
 import numpy as np
 import torch
+from huggingface_hub import snapshot_download
 from transformers import AutoModel, Wav2Vec2FeatureExtractor
 
 from .base import BaseAudioEncoder, ModelInfo
 from .registry import register_model
 from ._util import mean_pool, resample
+
+EXTERNAL_DIR = Path(os.environ.get("AUDIO_COMP_EXTERNAL", os.path.expanduser("~/audio_comp_external")))
+PATCHED_DIR = EXTERNAL_DIR / "music2vec-v1-patched"
 
 
 @register_model("music2vec")
@@ -24,7 +41,19 @@ class Music2VecEncoder(BaseAudioEncoder):
 
     def load(self) -> None:
         self._extractor = Wav2Vec2FeatureExtractor.from_pretrained(self.info.hf_id)
-        self._model = AutoModel.from_pretrained(self.info.hf_id).to(self.device).eval()
+
+        if not PATCHED_DIR.exists():
+            snapshot_dir = snapshot_download(self.info.hf_id)
+            shutil.copytree(snapshot_dir, PATCHED_DIR)
+            config_path = PATCHED_DIR / "config.json"
+            with open(config_path) as f:
+                config = json.load(f)
+            if not isinstance(config.get("vocab_size"), int):
+                config["vocab_size"] = 32  # unused by this architecture; any int satisfies validation
+                with open(config_path, "w") as f:
+                    json.dump(config, f)
+
+        self._model = AutoModel.from_pretrained(str(PATCHED_DIR)).to(self.device).eval()
 
     def embed_batch(self, waveforms: Sequence[np.ndarray], sample_rate: int) -> np.ndarray:
         resampled = [resample(w, sample_rate, self.info.expected_sample_rate) for w in waveforms]
