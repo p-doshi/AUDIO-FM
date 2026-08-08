@@ -20,6 +20,10 @@ source "$HOME/audio-comp-venv/bin/activate"
 
 cd "$HOME/audio_comp"
 
+# $HOME's quota is small (48GB) and HF checkpoint/dataset downloads add up
+# fast — route the cache to $SCRATCH instead of the ~/.cache/huggingface default.
+export HF_HOME="${SCRATCH:-$HOME/scratch}/hf_cache"
+
 OUT_DIR="${SCRATCH:-$HOME/scratch}/audio_comp/embeddings"
 mkdir -p "$OUT_DIR"
 
