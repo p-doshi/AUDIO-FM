@@ -1,0 +1,29 @@
+[project]
+name = "audio_comp"
+version = "0.1.0"
+description = "Cross-model audio representation geometry and JEPA relational distillation"
+requires-python = ">=3.11"
+dependencies = [
+    "transformers",
+    "huggingface_hub",
+    "datasets",
+    "librosa",
+    "soundfile",
+    "scipy",
+    "scikit-learn",
+    "scikit-dimension",  # imported as `skdim`
+    "einops",
+    "pyyaml",
+    "matplotlib",
+    "pytest",
+]
+# torch / torchaudio / torchvision are installed separately from the Compute
+# Canada wheelhouse (`pip install --no-index torch torchaudio torchvision`),
+# not listed here — see README.md's environment setup section.
+
+[tool.setuptools.packages.find]
+include = ["audio_comp*"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
