@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --account=def-spadon_gpu
-#SBATCH --gres=gpu:1
+#SBATCH --gres=gpu:nvidia_h100_80gb_hbm3_1g.10gb:1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=32G
 #SBATCH --time=01:00:00
