@@ -28,10 +28,14 @@ class ClapEncoder(BaseAudioEncoder):
 
     def embed_batch(self, waveforms: Sequence[np.ndarray], sample_rate: int) -> np.ndarray:
         resampled = [resample(w, sample_rate, self.info.expected_sample_rate) for w in waveforms]
+        # `audios=` was renamed to `audio=` in newer transformers versions;
+        # the old kwarg now raises instead of warning.
         inputs = self._processor(
-            audios=resampled, sampling_rate=self.info.expected_sample_rate, return_tensors="pt"
+            audio=resampled, sampling_rate=self.info.expected_sample_rate, return_tensors="pt"
         )
         inputs = {k: v.to(self.device) for k, v in inputs.items()}
         with torch.no_grad():
-            embeds = self._model.get_audio_features(**inputs)
-        return embeds.cpu().numpy()
+            # newer transformers returns a BaseModelOutputWithPooling, not a
+            # raw tensor; the projected+normalized embedding is pooler_output
+            outputs = self._model.get_audio_features(**inputs)
+        return outputs.pooler_output.cpu().numpy()
