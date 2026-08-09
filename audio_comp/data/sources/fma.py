@@ -43,7 +43,12 @@ class FmaSmallSource(BaseDatasetSource):
         rng = random.Random(seed)
         rng.shuffle(mp3_paths)
         for path in mp3_paths:
-            waveform, sr = librosa.load(path, sr=None, mono=True)
+            try:
+                waveform, sr = librosa.load(path, sr=None, mono=True)
+            except Exception:
+                # fma_small ships with a handful of known-corrupted mp3s
+                # (documented upstream, e.g. 099134.mp3) — skip and move on
+                continue
             yield Clip(
                 clip_id=f"fma_small/{path.stem}",
                 waveform=waveform,
