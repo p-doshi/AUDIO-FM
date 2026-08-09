@@ -228,9 +228,17 @@ class AudioJepaEncoder(BaseAudioEncoder):
         self._model = encoder.to(self.device).eval()
 
     def embed_batch(self, waveforms: Sequence[np.ndarray], sample_rate: int) -> np.ndarray:
+        min_samples = self.info.expected_sample_rate * CLIP_LENGTH_S
         specs = []
         for waveform in waveforms:
             resampled = resample(waveform, sample_rate, self.info.expected_sample_rate)
+            if len(resampled) < min_samples:
+                # kaldi.fbank's fixed ~98ms analysis window needs the input
+                # at least that long; some probe-set clips (e.g. brief
+                # UrbanSound8K events) are shorter. Pad to the model's
+                # designed 10s input rather than relying on fbank to cope
+                # with arbitrary short waveforms.
+                resampled = np.pad(resampled, (0, min_samples - len(resampled)))
             wav_tensor = torch.from_numpy(resampled).float().unsqueeze(0)  # (1, n_samples)
             specs.append(_compute_mel_spec(wav_tensor))  # (1, T, F)
         batch = torch.stack(specs).to(self.device)  # (B, 1, T, F)
