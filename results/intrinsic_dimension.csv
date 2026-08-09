@@ -1,0 +1,7 @@
+model,twonn_intrinsic_dimension
+clap,6.762
+hubert,9.176
+mert,6.792
+music2vec,13.825
+musicfm,11.858
+wav2vec2,4.431
