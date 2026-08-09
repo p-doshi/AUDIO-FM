@@ -16,4 +16,13 @@ else
     echo "xares repo already present at $REPO_DIR, skipping clone"
 fi
 
-echo "xares task definitions ready at $REPO_DIR/src/tasks/ (set AUDIO_COMP_EXTERNAL=$EXTERNAL_DIR if not using the default)"
+# xares_eval/tasks is a symlink to the cloned repo's task definitions.
+# It has to live inside xares_eval/ (not just be referenced by absolute
+# path) because xares.run's attr_from_py_path() does a real import_module()
+# on the path with "/" replaced by "." — an absolute path becomes an
+# invalid leading-dot relative-import name. Not committed to git (machine-
+# specific target), hence this symlink step instead of a checked-in path.
+REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ln -sfn "$REPO_DIR/src/tasks" "$REPO_ROOT/xares_eval/tasks"
+
+echo "xares task definitions ready at $REPO_ROOT/xares_eval/tasks/ (set AUDIO_COMP_EXTERNAL=$EXTERNAL_DIR if not using the default)"

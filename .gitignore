@@ -26,6 +26,13 @@ checkpoints/
 slurm-*.out
 scripts/slurm/logs/
 
+# X-ARES eval (Stage 1) — task defs symlink is machine-specific (points at
+# $AUDIO_COMP_EXTERNAL), recreated by scripts/setup_xares.sh; env/ is
+# X-ARES's own working dir (Zenodo downloads, encoded embeddings, MLP
+# checkpoints) which lives on $SCRATCH via xares_env, never under the repo
+xares_eval/tasks
+env/
+
 # os/editor
 .DS_Store
 .ipynb_checkpoints/
