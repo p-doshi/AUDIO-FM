@@ -20,6 +20,29 @@ heads), 10s/32kHz mono input, (256, 128) log-mel spectrogram -> (128, 768)
 output embedding. This is real integration work, not a config tweak — wire
 it up as a fast-follow once the pipeline is validated on the HF-native
 models.
+
+Compute/undertraining confound to account for once this is wired up and
+compared: this checkpoint is trained on meaningfully less compute than the
+other active teachers — 100k steps (~14h on 4 V100s, 5,338h of AudioSet)
+vs. wav2vec2/data2vec's 400k steps on larger batches. The paper's own
+results show it substantially underperforming both baselines on several
+linear-probe tasks (e.g. Speech Commands V1: 0.152 vs. data2vec's 0.927).
+If this model comes back RSA-isolated from the other five, that's
+confounded between "JEPA-paradigm geometry is genuinely different" (what
+this project wants to test) and "this checkpoint is comparatively
+undertrained" (unrelated to the paradigm question) — RSA alone can't
+distinguish them. Run `audio_comp/pipelines/inspect_geometry.py` on it the
+same way music2vec's isolation was disambiguated (see the 2026-08-09
+journal entry): specifically check TwoNN intrinsic dimension and
+within-category clustering tightness. The paper states its objective
+favors embedding cohesion over linear separability (strong kNN, weak
+linear probe on the same tasks) — that predicts a *low* intrinsic
+dimension and/or unusually tight within-category clustering relative to
+the other five, the opposite direction from music2vec (which had the
+*highest* ID of the six active models). A low-ID/high-cohesion result
+would be real, paper-grounded evidence for paradigm-driven geometry
+differences; without that check, an isolated RSA number alone can't
+distinguish paradigm from undertraining.
 """
 from __future__ import annotations
 
