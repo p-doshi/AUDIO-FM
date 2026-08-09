@@ -4,8 +4,8 @@ Full load+embed smoke tests hit the network (HF checkpoint downloads,
 several GB for the larger models) so they're opt-in via
 RUN_MODEL_SMOKE_TESTS=1. The always-on tests just check every registered
 adapter follows the BaseAudioEncoder contract, and that the deliberately
-deferred models (audio_jepa, beats — see their module docstrings) fail
-loudly with NotImplementedError rather than silently producing garbage.
+deferred models (beats — see its module docstring) fail loudly with
+NotImplementedError rather than silently producing garbage.
 """
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ import pytest
 from audio_comp.models import MODEL_REGISTRY
 from audio_comp.models.base import BaseAudioEncoder
 
-DEFERRED_MODELS = {"audio_jepa", "beats"}
+DEFERRED_MODELS = {"beats"}
 
 
 def test_registry_contains_expected_models():
