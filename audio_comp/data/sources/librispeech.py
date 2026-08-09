@@ -39,8 +39,12 @@ class LibriSpeechSource(BaseDatasetSource):
 
         segment_seconds = segment_seconds or DEFAULT_SEGMENT_SECONDS
         rng = random.Random(seed)
-        ds = load_dataset("openslr/librispeech_asr", "clean", split="test", streaming=True)
-        ds = ds.shuffle(seed=seed, buffer_size=1000)
+        # train.100 (28,539 utterances) rather than test (2,620) — this is a
+        # probe set, not a train/test split of anything, and test alone gets
+        # uncomfortably close to running out once short utterances are
+        # filtered and the target scales into the thousands.
+        ds = load_dataset("openslr/librispeech_asr", "clean", split="train.100", streaming=True)
+        ds = ds.shuffle(seed=seed, buffer_size=2000)
         for example in ds:
             audio = example["audio"]
             waveform = np.asarray(audio["array"], dtype=np.float32)

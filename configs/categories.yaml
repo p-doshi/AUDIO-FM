@@ -9,7 +9,7 @@
 # re-run `python -m audio_comp.data.build_probe_set` with the same seed.
 
 seed: 42
-n_per_category: 20
+n_per_category: 2000
 
 categories:
   music:
@@ -18,7 +18,7 @@ categories:
     source: librispeech_en
     segment_seconds: 5.0
   bird_sounds:
-    source: esc50_birds
+    source: xeno_canto_birds
   ship_vessel:
     source: ds3500
   city_noise:
