@@ -32,6 +32,9 @@ scripts/slurm/logs/
 # checkpoints) which lives on $SCRATCH via xares_env, never under the repo
 xares_eval/tasks
 env/
+# xares's download_hf_model_to_local() downloads to CWD by default with no
+# override — its Qwen2 dependency for the LibriSpeech-ASR task lands here
+/Qwen/
 
 # os/editor
 .DS_Store

@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --account=def-spadon_gpu
-#SBATCH --gres=gpu:nvidia_h100_80gb_hbm3_1g.10gb:1
+#SBATCH --gres=gpu:nvidia_h100_80gb_hbm3_2g.20gb:1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=32G
 #SBATCH --time=04:00:00
@@ -23,6 +23,7 @@ export HF_HOME="${SCRATCH:-$HOME/scratch}/hf_cache"
 export TOKENIZERS_PARALLELISM=false
 export HF_HUB_DISABLE_XET=1
 export RAYON_NUM_THREADS=1
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 # attr_from_py_path() (inside xares.run) does a real import_module() on
 # the encoder/task path with "/" replaced by "." — it only works for
