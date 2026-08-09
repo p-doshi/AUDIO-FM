@@ -113,7 +113,7 @@ bash scripts/download_fma_small.sh
 | MERT (`m-a-p/MERT-v1-330M`) | Masked modeling (music) | CC-BY-NC-4.0 | active |
 | HuBERT (`facebook/hubert-large-ll60k`) | Masked modeling (speech) | Apache-2.0 | active |
 | wav2vec 2.0 (`facebook/wav2vec2-large-lv60`) | Masked modeling (speech) | Apache-2.0 | active |
-| music2vec (`m-a-p/music2vec-v1`) | JEPA-family (music) | CC-BY-NC-4.0 | active |
+| music2vec (`m-a-p/music2vec-v1`) | data2vec-family, not JEPA (music) | CC-BY-NC-4.0 | active |
 | MusicFM (`minzwon/MusicFM`) | Masked modeling (BEST-RQ, music) | MIT | active, needs `scripts/setup_musicfm.sh` |
 | Audio-JEPA (`ltuncay/Audio-JEPA`) | JEPA-family (general; **not** the original A-JEPA — see module docstring) | MIT | deferred, needs Hydra-config loader work |
 | BEATs | Masked modeling (general audio) | unverified for weights | deferred, no native HF path |
@@ -121,6 +121,16 @@ bash scripts/download_fma_small.sh
 The original paper's A-JEPA (Fei, Fan, Huang, arXiv 2311.15830) has no
 public checkpoint anywhere — `ltuncay/Audio-JEPA` is used as an
 explicitly-labeled substitute for the JEPA-family paradigm slot.
+
+**Correction (2026-08-09):** music2vec was originally labeled JEPA-family
+here and in CLAUDE.md; it's actually data2vec-family — no separate
+predictor network (the architectural line that actually defines JEPA), just
+a student encoder predicting an EMA teacher's representations directly. See
+the correction note in `CLAUDE.md` and `audio_comp/models/music2vec.py`'s
+docstring for the full detail. Practical effect: there are currently zero
+working JEPA-family models in the active comparison — `audio_jepa` will be
+the first once it's wired up, not a second point to compare against
+music2vec.
 
 ## Current probe-set categories (pilot: 20 clips/category)
 
