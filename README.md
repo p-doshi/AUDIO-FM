@@ -96,9 +96,10 @@ downloaded checkpoints, and extracted embeddings — set `AUDIO_COMP_DATA_ROOT`
 and `AUDIO_COMP_EXTERNAL` env vars to override the defaults
 (`~/audio_comp_data` and `~/audio_comp_external`).
 
-`musicfm` needs one extra one-time step before it'll load:
+`musicfm` and `audio_jepa` each need one extra one-time step before they'll load:
 ```bash
 bash scripts/setup_musicfm.sh
+bash scripts/setup_audio_jepa.sh
 ```
 and `music` category clips need:
 ```bash
@@ -115,7 +116,7 @@ bash scripts/download_fma_small.sh
 | wav2vec 2.0 (`facebook/wav2vec2-large-lv60`) | Masked modeling (speech) | Apache-2.0 | active |
 | music2vec (`m-a-p/music2vec-v1`) | data2vec-family, not JEPA (music) | CC-BY-NC-4.0 | active |
 | MusicFM (`minzwon/MusicFM`) | Masked modeling (BEST-RQ, music) | MIT | active, needs `scripts/setup_musicfm.sh` |
-| Audio-JEPA (`ltuncay/Audio-JEPA`) | JEPA-family (general; **not** the original A-JEPA — see module docstring) | MIT | deferred, needs Hydra-config loader work |
+| Audio-JEPA (`ltuncay/Audio-JEPA`) | JEPA-family (general; **not** the original A-JEPA — see module docstring) | MIT | active, needs `scripts/setup_audio_jepa.sh` |
 | BEATs | Masked modeling (general audio) | unverified for weights | deferred, no native HF path |
 
 The original paper's A-JEPA (Fei, Fan, Huang, arXiv 2311.15830) has no

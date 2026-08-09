@@ -2,10 +2,11 @@
 # name in audio_comp/models/. See each adapter module's docstring for the
 # HF id, paradigm, and license behind each entry.
 #
-# `audio_jepa` and `beats` are registered (so the framework already models
-# them) but deliberately left out of the active run below — both need
-# custom loader integration beyond a config entry; see their adapter
-# modules' docstrings for the exact remaining work.
+# `beats` is registered (so the framework already models it) but left out
+# of the active run below — needs custom loader integration beyond a
+# config entry; see its adapter module's docstring for the remaining work.
+# `audio_jepa` was in the same boat until 2026-08-09, when its loader got
+# wired up against the model's own author-provided inference_example.py.
 
 active_models:
   - clap
@@ -14,7 +15,7 @@ active_models:
   - wav2vec2
   - music2vec
   - musicfm
+  - audio_jepa
 
 deferred_models:
-  - audio_jepa
   - beats
