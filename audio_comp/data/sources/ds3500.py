@@ -8,10 +8,9 @@ from __future__ import annotations
 import random
 from typing import Iterator, Optional
 
-import numpy as np
-
 from ..base import BaseDatasetSource, Clip, DatasetInfo
 from ..registry import register_dataset
+from ._util import iter_hf_audio_clips
 
 
 @register_dataset("ds3500")
@@ -33,16 +32,6 @@ class Ds3500Source(BaseDatasetSource):
         ds = load_dataset("peng7554/DS3500", split="train", verification_mode="no_checks")
         indices = list(range(len(ds)))
         random.Random(seed).shuffle(indices)
-        for i in indices:
-            example = ds[i]
-            audio = example["audio"]
-            waveform = np.asarray(audio["array"], dtype=np.float32)
-            sr = audio["sampling_rate"]
-            yield Clip(
-                clip_id=f"ds3500/{i}",
-                waveform=waveform,
-                sample_rate=sr,
-                source_dataset=self.info.name,
-                category=self.info.category,
-                duration_sec=len(waveform) / sr,
-            )
+        yield from iter_hf_audio_clips(
+            ds, indices, lambda i: f"ds3500/{i}", self.info.category, self.info.name
+        )

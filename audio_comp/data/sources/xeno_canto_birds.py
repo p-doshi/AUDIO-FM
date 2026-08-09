@@ -16,10 +16,9 @@ from __future__ import annotations
 import random
 from typing import Iterator, Optional
 
-import numpy as np
-
 from ..base import BaseDatasetSource, Clip, DatasetInfo
 from ..registry import register_dataset
+from ._util import iter_hf_audio_clips
 
 
 @register_dataset("xeno_canto_birds")
@@ -38,16 +37,6 @@ class XenoCantoBirdsSource(BaseDatasetSource):
         ds = load_dataset("tglcourse/5s_birdcall_samples_top20", split="train")
         indices = list(range(len(ds)))
         random.Random(seed).shuffle(indices)
-        for i in indices:
-            example = ds[i]
-            audio = example["audio"]
-            waveform = np.asarray(audio["array"], dtype=np.float32)
-            sr = audio["sampling_rate"]
-            yield Clip(
-                clip_id=f"xeno_canto_birds/{i}",
-                waveform=waveform,
-                sample_rate=sr,
-                source_dataset=self.info.name,
-                category=self.info.category,
-                duration_sec=len(waveform) / sr,
-            )
+        yield from iter_hf_audio_clips(
+            ds, indices, lambda i: f"xeno_canto_birds/{i}", self.info.category, self.info.name
+        )
