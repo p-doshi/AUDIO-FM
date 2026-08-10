@@ -1,0 +1,4 @@
+model,task,mlp_score,knn_score,private
+hubert,Free Music Archive Small,0.481735,0.243151,False
+hubert,LibriSpeech-100h,0.855371,0.0,False
+hubert,UrbanSound 8k,0.681657,0.321992,False
