@@ -16,9 +16,13 @@ set -euo pipefail
 : "${MODEL:?Set MODEL, e.g. sbatch --export=MODEL=clap scripts/slurm/extract_embeddings.sbatch}"
 
 module load python/3.11 cuda/12.6 gcc arrow/25.0.0
-source "$HOME/audio-comp-venv/bin/activate"
+source "${SCRATCH:-$HOME/scratch}/audio-comp-venv/bin/activate"
 
 cd "$HOME/audio_comp"
+# audio_comp isn't pip-installed (see 2026-08-10 journal entry: $HOME had a
+# storage incident that made `pip install -e .`'s wheel build for our own
+# package unreliable) — PYTHONPATH instead, same as xares_eval already was.
+export PYTHONPATH="$HOME/audio_comp:${PYTHONPATH:-}"
 
 # $HOME's quota is small (48GB) and HF checkpoint/dataset downloads add up
 # fast — route the cache to $SCRATCH instead of the ~/.cache/huggingface default.

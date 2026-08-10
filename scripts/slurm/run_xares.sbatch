@@ -17,7 +17,7 @@ set -euo pipefail
 : "${MODEL:?Set MODEL, e.g. sbatch --export=MODEL=hubert scripts/slurm/run_xares.sbatch}"
 
 module load python/3.11 cuda/12.6 gcc arrow/25.0.0
-source "$HOME/audio-comp-venv/bin/activate"
+source "${SCRATCH:-$HOME/scratch}/audio-comp-venv/bin/activate"
 
 export HF_HOME="${SCRATCH:-$HOME/scratch}/hf_cache"
 export TOKENIZERS_PARALLELISM=false
@@ -31,6 +31,7 @@ export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 # CWD must be the repo root (not $SCRATCH; env_root is redirected there
 # via xares_eval/tasks_scratch/ instead — see those files' docstrings).
 cd "$HOME/audio_comp"
+export PYTHONPATH="$HOME/audio_comp:${PYTHONPATH:-}"
 export XARES_ENV_ROOT="${SCRATCH:-$HOME/scratch}/audio_comp/xares_env/env"
 mkdir -p "$XARES_ENV_ROOT"
 
