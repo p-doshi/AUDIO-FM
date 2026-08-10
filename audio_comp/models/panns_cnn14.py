@@ -68,9 +68,19 @@ class PANNsCnn14Encoder(BaseAudioEncoder):
         self._model.load_state_dict(checkpoint["model"])
         self._model = self._model.to(self.device).eval()
 
+    # Cnn14's 5 stages of (2,2) time-pooling collapse the logmel time axis
+    # to 0 for very short clips -- empirically tested 2026-08-10 (probe-set
+    # extraction crashed on real UrbanSound8K-derived clips as short as
+    # 60ms, same category of issue as the audio_jepa kaldi.fbank short-clip
+    # lesson): fails up to 300ms, first reliably safe at 400ms. 1.0s is a
+    # comfortable safety margin, not a value tied to any model design
+    # constant (unlike audio_jepa's fixed 10s training window).
+    MIN_SAFE_SAMPLES_S = 1.0
+
     def embed_batch(self, waveforms: Sequence[np.ndarray], sample_rate: int) -> np.ndarray:
         resampled = [resample(w, sample_rate, self.info.expected_sample_rate) for w in waveforms]
-        max_len = max(len(w) for w in resampled)
+        min_samples = int(self.info.expected_sample_rate * self.MIN_SAFE_SAMPLES_S)
+        max_len = max(min_samples, max(len(w) for w in resampled))
         batch = np.stack([np.pad(w, (0, max_len - len(w))) for w in resampled]).astype(np.float32)
         wav = torch.from_numpy(batch).to(self.device)
         with torch.no_grad():
