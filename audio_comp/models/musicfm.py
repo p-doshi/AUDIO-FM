@@ -33,6 +33,7 @@ class MusicFMEncoder(BaseAudioEncoder):
         paradigm="masked modeling (BEST-RQ, music)",
         license="MIT",
         expected_sample_rate=24000,
+        checkpoint_status="official_open_weights",
     )
 
     # Layer 7 of 12 is the upstream README's recommended general-purpose

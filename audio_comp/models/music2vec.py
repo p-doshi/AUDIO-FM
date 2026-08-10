@@ -51,6 +51,7 @@ class Music2VecEncoder(BaseAudioEncoder):
         paradigm="data2vec-family (self-distillation, EMA-updated teacher; music)",
         license="CC-BY-NC-4.0",
         expected_sample_rate=16000,
+        checkpoint_status="official_open_weights",
     )
 
     def load(self) -> None:
