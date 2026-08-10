@@ -34,3 +34,5 @@ mert,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.249558,0.067786,True
 music2vec,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.121018,0.048686,True
 musicfm,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.247242,0.112687,True
 wav2vec2,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.049288,0.034654,True
+panns_cnn14,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.308439,0.133588,True
+bird_mae,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.345088,0.182585,True

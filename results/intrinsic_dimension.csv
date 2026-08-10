@@ -1,8 +1,10 @@
 model,twonn_intrinsic_dimension
 audio_jepa,10.821
+bird_mae,14.348
 clap,12.314
 hubert,17.286
 mert,11.525
 music2vec,21.523
 musicfm,15.410
+panns_cnn14,12.524
 wav2vec2,11.493
