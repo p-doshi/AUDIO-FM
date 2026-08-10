@@ -83,7 +83,8 @@ python -m venv "$SCRATCH/audio-comp-venv"   # $HOME, not just quota-limited but 
 source "$SCRATCH/audio-comp-venv/bin/activate"
 pip install --no-index torch torchaudio torchvision   # Compute Canada wheelhouse
 pip install transformers huggingface_hub datasets torchcodec librosa soundfile \
-    scipy scikit-learn scikit-dimension einops pyyaml matplotlib pytest "xares[examples]"
+    scipy scikit-learn scikit-dimension einops pyyaml matplotlib pytest "xares[examples]" \
+    panns_inference torchlibrosa   # panns_cnn14 adapter; --no-deps not required, doesn't touch torch
 export PYTHONPATH="$HOME/audio_comp:${PYTHONPATH:-}"   # audio_comp/xares_eval aren't pip-installed,
                                                           # just importable via PYTHONPATH — see below
 huggingface-cli login                                   # caches your HF token; never paste it into chat
@@ -112,10 +113,11 @@ downloaded checkpoints, and extracted embeddings — set `AUDIO_COMP_DATA_ROOT`
 and `AUDIO_COMP_EXTERNAL` env vars to override the defaults
 (`~/audio_comp_data` and `~/audio_comp_external`).
 
-`musicfm` and `audio_jepa` each need one extra one-time step before they'll load:
+`musicfm`, `audio_jepa`, and `panns_cnn14` each need one extra one-time step before they'll load:
 ```bash
 bash scripts/setup_musicfm.sh
 bash scripts/setup_audio_jepa.sh
+bash scripts/setup_panns.sh
 ```
 and `music` category clips need:
 ```bash
@@ -124,16 +126,23 @@ bash scripts/download_fma_small.sh
 
 ## Current kickoff model set
 
-| Model | Paradigm | License | Status |
-|---|---|---|---|
-| CLAP (`laion/larger_clap_general`) | Contrastive (audio-text) | Apache-2.0 | active |
-| MERT (`m-a-p/MERT-v1-330M`) | Masked modeling (music) | CC-BY-NC-4.0 | active |
-| HuBERT (`facebook/hubert-large-ll60k`) | Masked modeling (speech) | Apache-2.0 | active |
-| wav2vec 2.0 (`facebook/wav2vec2-large-lv60`) | Masked modeling (speech) | Apache-2.0 | active |
-| music2vec (`m-a-p/music2vec-v1`) | data2vec-family, not JEPA (music) | CC-BY-NC-4.0 | active |
-| MusicFM (`minzwon/MusicFM`) | Masked modeling (BEST-RQ, music) | MIT | active, needs `scripts/setup_musicfm.sh` |
-| Audio-JEPA (`ltuncay/Audio-JEPA`) | JEPA-family (general; **not** the original A-JEPA — see module docstring) | MIT | active, needs `scripts/setup_audio_jepa.sh` |
-| BEATs | Masked modeling (general audio) | unverified for weights | deferred, no native HF path |
+Every model's `checkpoint_status` (`official_open_weights` /
+`official_public_weights_license_unclear` / `community_conversion` /
+`code_only`) is enforced in code, not just documented here — see
+`audio_comp/models/base.py` and `registry.py`'s `get_model_class()`.
+
+| Model | Paradigm | License | checkpoint_status | Status |
+|---|---|---|---|---|
+| CLAP (`laion/larger_clap_general`) | Contrastive (audio-text) | Apache-2.0 | official_open_weights | active |
+| MERT (`m-a-p/MERT-v1-330M`) | Masked modeling (music) | CC-BY-NC-4.0 | official_open_weights | active |
+| HuBERT (`facebook/hubert-large-ll60k`) | Masked modeling (speech) | Apache-2.0 | official_open_weights | active |
+| wav2vec 2.0 (`facebook/wav2vec2-large-lv60`) | Masked modeling (speech) | Apache-2.0 | official_open_weights | active |
+| music2vec (`m-a-p/music2vec-v1`) | data2vec-family, not JEPA (music) | CC-BY-NC-4.0 | official_open_weights | active |
+| MusicFM (`minzwon/MusicFM`) | Masked modeling (BEST-RQ, music) | MIT | official_open_weights | active, needs `scripts/setup_musicfm.sh` |
+| Audio-JEPA (`ltuncay/Audio-JEPA`) | JEPA-family (general; **not** the original A-JEPA — see module docstring) | MIT | official_open_weights | active, needs `scripts/setup_audio_jepa.sh` |
+| PANNs Cnn14 (`qiuqiangkong/audioset_tagging_cnn`) | Supervised, pure-CNN (AudioSet tagging) | MIT | official_open_weights | active, needs `scripts/setup_panns.sh` |
+| Bird-MAE (`DBD-research-group/Bird-MAE-Base`) | Masked autoencoding, reconstruction-target (bioacoustic) | unstated — no LICENSE file, no HF card license field (checked 2026-08-10) | official_public_weights_license_unclear | active |
+| BEATs | Masked modeling (general audio) | MIT (repo-wide, no separate per-checkpoint statement — see module docstring) | official_open_weights | deferred, no native HF path (checkpoint availability is not the blocker) |
 
 The original paper's A-JEPA (Fei, Fan, Huang, arXiv 2311.15830) has no
 public checkpoint anywhere — `ltuncay/Audio-JEPA` is used as an

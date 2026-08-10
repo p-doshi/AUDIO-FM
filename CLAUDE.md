@@ -43,14 +43,14 @@ Phase 1 reached decision-rule outcome 2 (partial/cluster agreement) at 2000 clip
 
   **Tier 1 (near-term — each fills a specific, currently-open representational gap):**
 
-  | Model | Checkpoint status | Gap it fills |
-  |---|---|---|
-  | AudioMAE | official_open_weights | Reconstruction-target paradigm (raw spectrogram, not latent) — nothing in the current roster tests this |
-  | AST | official_open_weights | Supervised training — tests whether label supervision matters independent of paradigm |
-  | PANNs CNN14 | official_open_weights | Pure CNN architecture — every current model is transformer-based; untested ResNet-vs-ViT inductive-bias axis |
-  | BirdMAE | official_public_weights_license_unclear — verify before use | Domain-specific bioacoustic encoder; **also directly serves the `bird_sounds`/BirdCLEF X-ARES extension track (`xares_eval/birdclef/`) — one integration effort, not two** |
-  | Perch 2.0 | official_public_weights_license_unclear — verify before use | Second independent bioacoustic-domain check; same dual-purpose note as BirdMAE |
-  | EnCodecMAE | official_open_weights | Neural-codec-derived representation — discrete/compressed representation type, distinct from BEATs' self-distilled tokenizer approach |
+  | Model | Checkpoint status | Gap it fills | Status |
+  |---|---|---|---|
+  | AudioMAE | official_open_weights | Reconstruction-target paradigm (raw spectrogram, not latent) — nothing in the current roster tests this | not started |
+  | AST | official_open_weights | Supervised training — tests whether label supervision matters independent of paradigm | not started |
+  | PANNs CNN14 | official_open_weights (verified 2026-08-10 against `github.com/qiuqiangkong/audioset_tagging_cnn` directly: MIT LICENSE.MIT, checkpoint on the authors' own Zenodo record) | Pure CNN architecture — every current model is transformer-based; untested ResNet-vs-ViT inductive-bias axis | **wired up 2026-08-10** (`audio_comp/models/panns_cnn14.py`, active in `configs/models.yaml`) |
+  | BirdMAE | official_public_weights_license_unclear (verified 2026-08-10: no LICENSE file in the GitHub repo — confirmed via GitHub's license API returning 404, not just undetected — and no license field on the HF card; genuinely unresolved, not a formality) | Domain-specific bioacoustic encoder; **also directly serves the `bird_sounds`/BirdCLEF X-ARES extension track (`xares_eval/birdclef/`) — one integration effort, not two** | **wired up 2026-08-10** (`audio_comp/models/bird_mae.py`, active in `configs/models.yaml`; needed a version-skew shim for a transformers 4.38→5.15 incompatibility in the checkpoint's own vendored code — see module docstring) |
+  | Perch 2.0 | official_public_weights_license_unclear — verify before use | Second independent bioacoustic-domain check; same dual-purpose note as BirdMAE | not started |
+  | EnCodecMAE | official_open_weights | Neural-codec-derived representation — discrete/compressed representation type, distinct from BEATs' self-distilled tokenizer approach | not started |
 
   **Tier 2 (lower priority — doesn't fill a currently-open gap, defer until Tier 1 is done):**
 
@@ -141,6 +141,7 @@ Do not treat this table as final — confirm checkpoint availability and license
 - State assumptions explicitly in code comments and commit messages — this project has several open design choices (probe set composition, consensus-RDM construction method, downstream task selection) that are not yet finalized.
 - Do not silently expand scope into the excluded-topics list above without discussing first.
 - Prefer reproducible, seeded runs — cross-model comparisons are only meaningful if noise from randomness is distinguishable from genuine disagreement.
+- **Verify any factual claim about a model — paradigm, architecture, checkpoint provenance, license — against its primary paper or repo directly before it enters code, a comparison table, or a write-up, even when the claim comes from an instruction, a prior note in this file, or your own earlier output in the same session.** A label someone (including a past version of you) already wrote down is not verification; it's a claim that hasn't been re-checked. This is a standing rule, not a one-off reaction to a single incident — it's what caught music2vec's paradigm mislabel (2026-08-09), the A-JEPA/Audio-JEPA substitution needing to stay explicitly flagged, and `beats`' license note being stale relative to the actual unilm LICENSE file (2026-08-10, caught specifically by re-checking rather than applying an instructed label at face value). Cost of checking is a few minutes; cost of an unverified claim propagating into a comparison table is a silent, hard-to-trace correction later.
 
 ## journal.md — mandatory, ongoing
 
