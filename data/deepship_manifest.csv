@@ -1,0 +1,64 @@
+vessel_class,file,record_id,duration_s,n_clips,fold,vessel_name,date,time,range_field,metadata_confidence
+cargo,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Cargo/103.wav,103,199.0,19,2,SEASPAN SWIFT,20171214,213748,1123-1596,mismatch
+cargo,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Cargo/110.wav,110,202.0,20,0,SEASPAN SWIFT,20171215,214529,1145-1803,mismatch
+cargo,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Cargo/15.wav,15,187.0,18,1,NEW NADA,20171114,195740,1972-1333,exact
+cargo,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Cargo/27.wav,27,196.0,19,2,SEASPAN RELIANT,20171118,055532,980-1905,exact
+cargo,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Cargo/38.wav,38,196.0,19,0,ARIES LEADER,20171123,004508,1043-1734,mismatch
+cargo,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Cargo/41.wav,41,183.0,18,1,PRINCESS SUPERIOR,20171124,134001,1374-1945,mismatch
+cargo,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Cargo/44.wav,44,200.0,20,1,WESTWOOD COLUMBIA,20171125,120743,1785-787,mismatch
+cargo,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Cargo/62.wav,62,198.0,19,1,ANASTASIA,20171202,123015,1750-902,mismatch
+cargo,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Cargo/69.wav,69,184.0,18,2,PRINCESS SUPERIOR,20171205,030344,1856-1966,mismatch
+cargo,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Cargo/78.wav,78,194.0,19,2,CMA CGM,20171207,010450,1952-593,mismatch
+cargo,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Cargo/96.wav,96,199.0,19,0,STAR HARMONIA,20171213,154210,1630-676,mismatch
+cargo,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Cargo/99.wav,99,186.0,18,0,BRAZEN,20171213,234857,1695-475,mismatch
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/1.wav,1,37.0,3,2,QUEEN OF,20160505,125658,1593-1730,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/12.wav,12,18.0,1,2,MALASPINA,20160528,040358,1782-1853,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/14.wav,14,48.0,4,0,QUEEN OF,20160601,035047,1597-1921,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/16.wav,16,11.0,1,0,MALASPINA,20160604,040249,1601-1590,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/17.wav,17,26.0,2,0,COASTAL RENAISSANCE,20160606,153056,1619-1378,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/23.wav,23,130.0,13,1,BOWEN QUEEN,20160629,135115,333-363,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/27.wav,27,33.0,3,0,KENNICOTT,20160724,035758,1242-1395,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/29.wav,29,36.0,3,1,CRYSTAL SERENITY,20160727,111808,696-931,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/30.wav,30,6.0,0,2,COLUMBIA,20160806,035410,1800-1960,mismatch
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/31.wav,31,16.0,1,1,KENNICOTT,20160807,043508,1571-1619,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/32.wav,32,54.0,5,0,COLUMBIA,20160813,040611,1999-1998,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/33.wav,33,112.0,11,2,COASTAL INSPIRATION,20160820,202935,1028-1130,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/37.wav,37,162.0,16,1,COLUMBIA,20160827,043733,1667-1880,mismatch
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/4.wav,4,204.0,20,0,MALASPINA,20160507,043512,1453-1881,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/41.wav,41,23.0,2,1,CELEBRITY SOLSTICE,20160909,114625,1474-1651,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/5.wav,5,14.0,1,2,RUBY PRINCESS,20160507,115325,1089-1187,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/50.wav,50,163.0,16,2,COASTAL INSPIRATION,20161214,162017,1419-1465,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/6.wav,6,30.0,3,2,COASTAL INSPIRATION,20160507,202625,1430-1665,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/8.wav,8,12.0,1,0,KENNICOTT,20160515,062337,1999-1940,exact
+passengership,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Passengership/9.wav,9,11.0,1,1,CARNIVAL LEGEND,20160516,112116,1112-1170,exact
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/10.wav,10,30.0,3,0,NAVE ORBIT,20160602,225434,1956-1750,ambiguous_resolved
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/12.wav,12,33.0,3,2,KIRKEHOLMEN,20160612,211030,1605-1421,ambiguous_resolved
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/13.wav,13,157.0,15,2,HIGH ENDURANCE,20160613,061037,988-95,ambiguous_resolved
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/14.wav,14,25.0,2,0,ARGENT SUNRISE,20160615,063659,1073-974,ambiguous_resolved
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/18.wav,18,66.0,6,2,OVERSEAS ATHENS,20160619,215854,1180-802,ambiguous_resolved
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/19.wav,19,14.0,1,2,CARIBBEAN SPIRIT,20160625,141954,1153-1253,ambiguous_resolved
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/2.wav,2,150.0,15,2,CHERRY GALAXY,20160511,030034,950-1560,ambiguous_resolved
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/20.wav,20,104.0,10,1,CHEMICAL AQUARIUS,20160702,225342,1212-1990,ambiguous_resolved
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/21.wav,21,16.0,1,1,HARBOUR FASHION,20170824,194518,1772-1918,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/24.wav,24,21.0,2,2,GULF PEARL,20180119,055857,580-628,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/29.wav,29,109.0,10,1,NORD STEADY,20171008,053342,845-441,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/30.wav,30,33.0,3,1,UACC RAS,20180203,232020,956-1807,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/32.wav,32,38.0,3,0,KIRKEHOLMEN,20160810,215541,822-626,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/33.wav,33,16.0,1,2,REINHOLD SCHULTE,20171023,214849,742-1020,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/35.wav,35,16.0,1,0,KIRKEHOLMEN,20160831,210639,1502-1441,ambiguous_resolved
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/38.wav,38,174.0,17,0,OTTO H,20180314,155725,1929-336,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/39.wav,39,129.0,12,0,NORDISLE,20180314,171300,1922-1522,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/41.wav,41,44.0,4,0,ARDMORE CHEYENNE,20160927,081031,1710-994,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/42.wav,42,70.0,7,0,CHEMBULK NEW,20161002,130331,758-1532,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/43.wav,43,28.0,2,1,KIRKEHOLMEN,20161005,075627,1115-1293,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/47.wav,47,21.0,2,0,CHERRY GALAXY,20161024,061514,380-1822,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/48.wav,48,37.0,3,2,KIRKEHOLMEN,20180413,212814,912-982,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/49.wav,49,38.0,3,1,KIRKEHOLMEN,20161030,043924,869-963,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/5.wav,5,47.0,4,2,LYNDA VICTORY,20160519,123958,1252-1112,ambiguous_resolved
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/50.wav,50,10.0,1,1,OCEAN RELIANCE,20161101,053459,993-806,mismatch
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/6.wav,6,172.0,17,1,CHAMPION EBONY,20160526,193813,418-1052,ambiguous_resolved
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/8.wav,8,44.0,4,1,KIRKEHOLMEN,20160601,142520,769-741,ambiguous_resolved
+tanker,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tanker/9.wav,9,18.0,1,2,SONGA RUBY,20160602,203639,1850-1981,ambiguous_resolved
+tug,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tug/40.wav,40,200.0,20,0,SEASPAN COMMANDER,20171203,113510,1459-1311,exact
+tug,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tug/49.wav,49,190.0,19,2,SEASPAN EAGLE,20171210,132956,1037-1978,exact
+tug,/home/pdoshi/audio_comp_external/DeepShip/DeepShip-main/Tug/9.wav,9,203.0,20,1,MILLENNIUMSTAR,20171115,133938,831-10,exact

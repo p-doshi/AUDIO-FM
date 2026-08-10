@@ -20,3 +20,10 @@ wav2vec2,UrbanSound 8k,0.226029,0.077893,False
 mert,Free Music Archive Small,0.569635,0.359589,False
 mert,LibriSpeech-100h,0.0,0.0,False
 mert,UrbanSound 8k,0.773721,0.479862,False
+audio_jepa,"DeepShip (vessel class, 63-clip subset)",0.402109,0.288498,True
+clap,"DeepShip (vessel class, 63-clip subset)",0.369493,0.324907,True
+hubert,"DeepShip (vessel class, 63-clip subset)",0.363836,0.354913,True
+mert,"DeepShip (vessel class, 63-clip subset)",0.494235,0.336627,True
+music2vec,"DeepShip (vessel class, 63-clip subset)",0.407542,0.293772,True
+musicfm,"DeepShip (vessel class, 63-clip subset)",0.430177,0.385955,True
+wav2vec2,"DeepShip (vessel class, 63-clip subset)",0.414685,0.309751,True
