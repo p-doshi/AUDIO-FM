@@ -27,3 +27,10 @@ mert,"DeepShip (vessel class, 63-clip subset)",0.494235,0.336627,True
 music2vec,"DeepShip (vessel class, 63-clip subset)",0.407542,0.293772,True
 musicfm,"DeepShip (vessel class, 63-clip subset)",0.430177,0.385955,True
 wav2vec2,"DeepShip (vessel class, 63-clip subset)",0.414685,0.309751,True
+audio_jepa,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.089127,0.042706,True
+clap,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.283829,0.18944,True
+hubert,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.260137,0.068075,True
+mert,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.249558,0.067786,True
+music2vec,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.121018,0.048686,True
+musicfm,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.247242,0.112687,True
+wav2vec2,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.049288,0.034654,True

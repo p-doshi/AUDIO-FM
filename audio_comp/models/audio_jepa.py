@@ -182,6 +182,7 @@ class AudioJepaEncoder(BaseAudioEncoder):
         paradigm="JEPA-family (general audio; substitute for the unavailable original A-JEPA)",
         license="MIT",
         expected_sample_rate=SAMPLE_RATE,
+        checkpoint_status="official_open_weights",
     )
 
     def load(self) -> None:

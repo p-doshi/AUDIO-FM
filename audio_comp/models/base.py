@@ -13,6 +13,41 @@ from typing import Sequence
 
 import numpy as np
 
+# Checkpoint-provenance labels (added 2026-08-10, per the model-roster
+# expansion plan in CLAUDE.md's "Stage 2" section). Every registered model
+# must declare one of these — see registry.py's register_model() for the
+# schema check, and get_model_class() for the comparison-eligibility gate.
+#
+# - official_open_weights: checkpoint published by the model's own authors
+#   (or their organization), under an explicit, unambiguous open license
+#   covering the weights (not just the surrounding code).
+# - official_public_weights_license_unclear: checkpoint published by the
+#   model's own authors and publicly downloadable, but the license
+#   covering the weights specifically is not explicitly stated (e.g. only
+#   a repo-wide code license exists with no separate model-weights
+#   statement) — usable, but flagged for a follow-up check before treating
+#   it as unambiguously clear.
+# - community_conversion: not published by the original authors — a
+#   third-party port/conversion (e.g. an unofficial HF re-upload).
+# - code_only: no usable checkpoint at all; only training/inference code
+#   is available.
+CHECKPOINT_STATUSES = (
+    "official_open_weights",
+    "official_public_weights_license_unclear",
+    "community_conversion",
+    "code_only",
+)
+
+# Only these statuses may be used in the main RSA/CKA comparison (enforced
+# in registry.get_model_class()) — community_conversion and code_only
+# models can still be registered (so the framework already models them,
+# same convention as `beats` sitting in configs/models.yaml's
+# deferred_models before its loader was wired up) but must be kept out of
+# configs/models.yaml's active_models list.
+COMPARISON_ELIGIBLE_CHECKPOINT_STATUSES = frozenset(
+    {"official_open_weights", "official_public_weights_license_unclear"}
+)
+
 
 @dataclass(frozen=True)
 class ModelInfo:
@@ -21,6 +56,7 @@ class ModelInfo:
     paradigm: str
     license: str
     expected_sample_rate: int
+    checkpoint_status: str
 
 
 class BaseAudioEncoder(ABC):

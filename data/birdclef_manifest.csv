@@ -1,0 +1,1001 @@
+species,file,row_index,common_name,collection,author,duration_s,n_clips,fold
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0000.wav,0,American Kestrel,iNat,Unknown,3.948,1,0
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0001.wav,1,American Kestrel,XC,Nicole Henriod,4.55,1,1
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0002.wav,2,American Kestrel,XC,Dan Lane,17.398,3,2
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0003.wav,3,American Kestrel,iNat,Unknown,6.29,1,3
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0004.wav,4,American Kestrel,iNat,Tser,1.864,1,4
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0005.wav,5,American Kestrel,XC,Janine McCabe,159.898,31,0
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0006.wav,6,American Kestrel,XC,Ed Pandolfino,6.986,1,1
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0007.wav,7,American Kestrel,XC,Bernabé López-Lanus (Colección de Sonidos Ambientales - Instituto Humboldt),85.882,17,2
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0008.wav,8,American Kestrel,iNat,Carlos M Vieyra-Rojas,47.754,9,3
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0009.wav,9,American Kestrel,XC,Edward Caillouet,15.308,3,4
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0010.wav,10,American Kestrel,iNat,Unknown,15.726,3,0
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0011.wav,11,American Kestrel,iNat,Unknown,10.19,2,1
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0012.wav,12,American Kestrel,XC,Fernando Igor de Godoy,3.504,1,2
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0013.wav,13,American Kestrel,iNat,Maureen Clare Murphy,19.714,3,3
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0014.wav,14,American Kestrel,iNat,Erin Haase,16.418,3,4
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0015.wav,15,American Kestrel,XC,Bobby Wilcox,18.25,3,0
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0016.wav,16,American Kestrel,XC,Matthias Feuersenger,12.01,2,1
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0017.wav,17,American Kestrel,XC,Guilherme de Melo Becher,11.066,2,2
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0018.wav,18,American Kestrel,XC,Paul Driver,109.666,21,3
+amekes,/scratch/pdoshi/audio_comp/birdclef_audio/amekes_0019.wav,19,American Kestrel,XC,Manuel Grosselet,29.598,5,4
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0020.wav,20,Bananaquit,iNat,Unknown,32.014,6,0
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0021.wav,21,Bananaquit,XC,Yair G. Molina M.,33.726,6,1
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0022.wav,22,Bananaquit,iNat,Christopher Rustay,29.038,5,2
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0023.wav,23,Bananaquit,XC,Fernando Igor de Godoy,3.538,1,3
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0024.wav,24,Bananaquit,iNat,Zac Peterson,11.044,2,4
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0025.wav,25,Bananaquit,XC,Sue Riffe,22.81,4,0
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0026.wav,26,Bananaquit,XC,Daniel Lane,45.062,9,1
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0027.wav,27,Bananaquit,iNat,Victor,28.736,5,2
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0028.wav,28,Bananaquit,iNat,Evandro Mariano,29.052,5,3
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0029.wav,29,Bananaquit,XC,Cristhian David Gaitán García,17.574,3,4
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0030.wav,30,Bananaquit,XC,David Bradley,17.026,3,0
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0031.wav,31,Bananaquit,XC,Odirlei Vieira da Fonseca,192.41,38,1
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0032.wav,32,Bananaquit,XC,Franco Vushurovich,39.56,7,2
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0033.wav,33,Bananaquit,XC,Bobby Wilcox,46.222,9,3
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0034.wav,34,Bananaquit,XC,Tulio Dornas,12.25,2,4
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0035.wav,35,Bananaquit,XC,Dan Lane,73.69,14,0
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0036.wav,36,Bananaquit,XC,Mauricio Cuéllar Ramírez,18.422,3,1
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0037.wav,37,Bananaquit,XC,Niels Krabbe,30.582,6,2
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0038.wav,38,Bananaquit,XC,Niels Krabbe,28.342,5,3
+banana,/scratch/pdoshi/audio_comp/birdclef_audio/banana_0039.wav,39,Bananaquit,XC,JAYRSON ARAUJO DE OLIVEIRA,71.882,14,4
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0040.wav,40,Black-bellied Whistling-Duck,XC,Manuel Grosselet,9.814,1,0
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0041.wav,41,Black-bellied Whistling-Duck,XC,JAYRSON ARAUJO DE OLIVEIRA,3.358,1,1
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0042.wav,42,Black-bellied Whistling-Duck,XC,JAYRSON ARAUJO DE OLIVEIRA,31.626,6,2
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0043.wav,43,Black-bellied Whistling-Duck,iNat,Luciano Bernardes,26.646,5,3
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0044.wav,44,Black-bellied Whistling-Duck,XC,Jerome Fischer,10.174,2,4
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0045.wav,45,Black-bellied Whistling-Duck,iNat,pat,22.738,4,0
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0046.wav,46,Black-bellied Whistling-Duck,XC,Paul Marvin,78.97,15,1
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0047.wav,47,Black-bellied Whistling-Duck,iNat,Unknown,21.972,4,2
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0048.wav,48,Black-bellied Whistling-Duck,iNat,Bill Pranty,58.062,11,3
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0049.wav,49,Black-bellied Whistling-Duck,iNat,Fundación Dodo Colombia,16.074,3,4
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0050.wav,50,Black-bellied Whistling-Duck,XC,Manuel Grosselet,200.726,40,0
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0051.wav,51,Black-bellied Whistling-Duck,XC,Manuel Grosselet,6.418,1,1
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0052.wav,52,Black-bellied Whistling-Duck,XC,Manuel Grosselet,6.558,1,2
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0053.wav,53,Black-bellied Whistling-Duck,iNat,Sarah,17.094,3,3
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0054.wav,54,Black-bellied Whistling-Duck,XC,Mario Reyes Jr,15.05,3,4
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0055.wav,55,Black-bellied Whistling-Duck,iNat,Unknown,9.982,1,0
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0056.wav,56,Black-bellied Whistling-Duck,iNat,Jana Miller,9.814,1,1
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0057.wav,57,Black-bellied Whistling-Duck,XC,JAYRSON ARAUJO DE OLIVEIRA,3.566,1,2
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0058.wav,58,Black-bellied Whistling-Duck,iNat,Unknown,3.264,1,3
+bbwduc,/scratch/pdoshi/audio_comp/birdclef_audio/bbwduc_0059.wav,59,Black-bellied Whistling-Duck,XC,JAYRSON ARAUJO DE OLIVEIRA,5.436,1,4
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0060.wav,60,Yellow-throated Toucan,XC,GABRIEL LEITE,16.046,3,0
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0061.wav,61,Yellow-throated Toucan,XC,Thore Noernberg,18.63,3,1
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0062.wav,62,Yellow-throated Toucan,XC,Victor Vanegas,18.94,3,2
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0063.wav,63,Yellow-throated Toucan,XC,Mauricio Cuellar Ramirez (@Birding.travel),39.55,7,3
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0064.wav,64,Yellow-throated Toucan,XC,Guillermo Funes,56.854,11,4
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0065.wav,65,Yellow-throated Toucan,XC,Will Sweet,12.802,2,0
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0066.wav,66,Yellow-throated Toucan,XC,Niels Krabbe,57.906,11,1
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0067.wav,67,Yellow-throated Toucan,iNat,Unknown,10.194,2,2
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0068.wav,68,Yellow-throated Toucan,XC,Steve Hampton,29.642,5,3
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0069.wav,69,Yellow-throated Toucan,iNat,Luis Salagaje,31.464,6,4
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0070.wav,70,Yellow-throated Toucan,XC,Sue Riffe,15.414,3,0
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0071.wav,71,Yellow-throated Toucan,XC,Brayan Coral Jaramillo,49.378,9,1
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0072.wav,72,Yellow-throated Toucan,XC,Carlos Delgado JUMABITA,46.546,9,2
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0073.wav,73,Yellow-throated Toucan,XC,Scott Olmstead,183.638,36,3
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0074.wav,74,Yellow-throated Toucan,XC,Vivek M,25.702,5,4
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0075.wav,75,Yellow-throated Toucan,XC,Mauricio Álvarez-Rebolledo (Colección de Sonidos Ambientales - Instituto Humboldt),244.978,48,0
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0076.wav,76,Yellow-throated Toucan,XC,GABRIEL LEITE,34.046,6,1
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0077.wav,77,Yellow-throated Toucan,XC,Diego Calderon-F.,25.262,5,2
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0078.wav,78,Yellow-throated Toucan,iNat,Unknown,10.868,2,3
+bkmtou1,/scratch/pdoshi/audio_comp/birdclef_audio/bkmtou1_0079.wav,79,Yellow-throated Toucan,XC,Patricio Mena Valenzuela,82.706,16,4
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0080.wav,80,Blue-black Grassquit,XC,Blas Fandiño,38.238,7,0
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0081.wav,81,Blue-black Grassquit,XC,JAYRSON ARAUJO DE OLIVEIRA,29.546,5,1
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0082.wav,82,Blue-black Grassquit,XC,Mauricio Cuellar Ramirez (@Birding.travel),4.986,1,2
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0083.wav,83,Blue-black Grassquit,XC,Alfonso Auerbach,26.828,5,3
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0084.wav,84,Blue-black Grassquit,iNat,Alvaro Rojas (brújula de aves),7.2,1,4
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0085.wav,85,Blue-black Grassquit,iNat,pozaricaalnatural,179.542,35,0
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0086.wav,86,Blue-black Grassquit,XC,Cristian Rodas,10.246,2,1
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0087.wav,87,Blue-black Grassquit,XC,Nicole Alfaro Ponce,44.672,8,2
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0088.wav,88,Blue-black Grassquit,iNat,Ilse Huertas R.,42.97,8,3
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0089.wav,89,Blue-black Grassquit,XC,Mauricio Cuellar Ramirez (@Birding.travel),14.41,2,4
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0090.wav,90,Blue-black Grassquit,XC,Hans Groot,27.074,5,0
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0091.wav,91,Blue-black Grassquit,XC,JAYRSON ARAUJO DE OLIVEIRA,28.654,5,1
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0092.wav,92,Blue-black Grassquit,XC,Danny Zapata-Henao,27.278,5,2
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0093.wav,93,Blue-black Grassquit,XC,Mauricio Álvarez-Rebolledo,21.892,4,3
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0094.wav,94,Blue-black Grassquit,XC,Manuel Grosselet,36.762,7,4
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0095.wav,95,Blue-black Grassquit,XC,Dante Buzzetti,24.546,4,0
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0096.wav,96,Blue-black Grassquit,XC,Pedro Rinaldi,14.634,2,1
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0097.wav,97,Blue-black Grassquit,XC,JAYRSON ARAUJO DE OLIVEIRA,4.86,1,2
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0098.wav,98,Blue-black Grassquit,XC,András Schmidt,41.158,8,3
+blbgra1,/scratch/pdoshi/audio_comp/birdclef_audio/blbgra1_0099.wav,99,Blue-black Grassquit,iNat,Arturo Benavides-Mendoza,7.504,1,4
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0100.wav,100,Blue-headed Parrot,XC,yntze van der hoek,21.634,4,0
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0101.wav,101,Blue-headed Parrot,XC,Patricio Mena Valenzuela,19.426,3,1
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0102.wav,102,Blue-headed Parrot,XC,Bobby Wilcox,75.354,15,2
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0103.wav,103,Blue-headed Parrot,XC,Mauricio Álvarez-Rebolledo (Colección de Sonidos Ambientales - Instituto Humboldt),22.59,4,3
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0104.wav,104,Blue-headed Parrot,XC,Bobby Wilcox,15.294,3,4
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0105.wav,105,Blue-headed Parrot,iNat,Rosabel Miro,13.17,2,0
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0106.wav,106,Blue-headed Parrot,XC,Dante Buzzetti,26.054,5,1
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0107.wav,107,Blue-headed Parrot,XC,Sidnei Dantas,56.014,11,2
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0108.wav,108,Blue-headed Parrot,XC,Niels Krabbe,22.51,4,3
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0109.wav,109,Blue-headed Parrot,XC,Guy Kirwan,15.506,3,4
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0110.wav,110,Blue-headed Parrot,XC,Niels Krabbe,16.014,3,0
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0111.wav,111,Blue-headed Parrot,XC,Fernando Igor de Godoy,13.142,2,1
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0112.wav,112,Blue-headed Parrot,XC,JAYRSON ARAUJO DE OLIVEIRA,16.418,3,2
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0113.wav,113,Blue-headed Parrot,XC,Mauricio Álvarez-Rebolledo (Colección de Sonidos Ambientales - Instituto Humboldt),29.024,5,3
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0114.wav,114,Blue-headed Parrot,XC,Mauricio Álvarez-Rebolledo (Colección de Sonidos Ambientales - Instituto Humboldt),24.834,4,4
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0115.wav,115,Blue-headed Parrot,XC,Dante Buzzetti,4.442,1,0
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0116.wav,116,Blue-headed Parrot,XC,Bernabe Lopez-Lanus,23.046,4,1
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0117.wav,117,Blue-headed Parrot,XC,Daniel Blamires,11.494,2,2
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0118.wav,118,Blue-headed Parrot,iNat,Sam Darmstadt,18.086,3,3
+blhpar1,/scratch/pdoshi/audio_comp/birdclef_audio/blhpar1_0119.wav,119,Blue-headed Parrot,XC,Brice de la Croix,55.898,11,4
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0120.wav,120,Boat-billed Flycatcher,iNat,Alex Bentley,14.03,2,0
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0121.wav,121,Boat-billed Flycatcher,XC,Mauricio Cuellar Ramirez (@Birding.travel),3.742,1,1
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0122.wav,122,Boat-billed Flycatcher,XC,Oscar Humberto Marin-Gomez,104.826,20,2
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0123.wav,123,Boat-billed Flycatcher,iNat,Alejandro Luy,31.362,6,3
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0124.wav,124,Boat-billed Flycatcher,XC,Fernando Igor de Godoy,52.566,10,4
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0125.wav,125,Boat-billed Flycatcher,XC,Niels Krabbe,56.946,11,0
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0126.wav,126,Boat-billed Flycatcher,XC,Nick Komar,31.478,6,1
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0127.wav,127,Boat-billed Flycatcher,XC,Andres Angulo ,5.43,1,2
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0128.wav,128,Boat-billed Flycatcher,XC,Iván Lau,21.656,4,3
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0129.wav,129,Boat-billed Flycatcher,iNat,Unknown,18.112,3,4
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0130.wav,130,Boat-billed Flycatcher,XC,John V. Moore,36.918,7,0
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0131.wav,131,Boat-billed Flycatcher,iNat,William Hull,9.746,1,1
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0132.wav,132,Boat-billed Flycatcher,iNat,Rodríguez Viky,48.532,9,2
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0133.wav,133,Boat-billed Flycatcher,iNat,Unknown,4.622,1,3
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0134.wav,134,Boat-billed Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,14.082,2,4
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0135.wav,135,Boat-billed Flycatcher,XC,Melvin Bonilla,16.51,3,0
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0136.wav,136,Boat-billed Flycatcher,XC,Jacob C. Cooper,20.074,4,1
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0137.wav,137,Boat-billed Flycatcher,XC,Alán Palacios,27.282,5,2
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0138.wav,138,Boat-billed Flycatcher,iNat,Giovanna Roque de Castro,18.6,3,3
+bobfly1,/scratch/pdoshi/audio_comp/birdclef_audio/bobfly1_0139.wav,139,Boat-billed Flycatcher,XC,Fernando Igor de Godoy,23.294,4,4
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0140.wav,140,Buff-breasted Wren,XC,Andres Angulo ,46.878,9,0
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0141.wav,141,Buff-breasted Wren,XC,Rolf A. de By,85.774,17,1
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0142.wav,142,Buff-breasted Wren,XC,Oscar Humberto Marín Gómez &amp; Juan Pablo López,95.69,19,2
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0143.wav,143,Buff-breasted Wren,XC,Daniel Cadena (Colección de Sonidos Ambientales - Instituto Humboldt),119.946,23,3
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0144.wav,144,Buff-breasted Wren,XC,Sergio Chaparro Herrera,20.374,4,4
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0145.wav,145,Buff-breasted Wren,iNat,Laurent Quéno,5.946,1,0
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0146.wav,146,Buff-breasted Wren,iNat,Unknown,27.538,5,1
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0147.wav,147,Buff-breasted Wren,XC,Albert Lastukhin,10.774,2,2
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0148.wav,148,Buff-breasted Wren,XC,Bernabe Lopez-Lanus,5.806,1,3
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0149.wav,149,Buff-breasted Wren,XC,John V. Moore,39.594,7,4
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0150.wav,150,Buff-breasted Wren,XC,Bernabe Lopez-Lanus,13.558,2,0
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0151.wav,151,Buff-breasted Wren,XC,Marc Thibault,9.526,1,1
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0152.wav,152,Buff-breasted Wren,XC,JAYRSON ARAUJO DE OLIVEIRA,8.738,1,2
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0153.wav,153,Buff-breasted Wren,XC,Andres Angulo ,44.454,8,3
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0154.wav,154,Buff-breasted Wren,XC,Jeremy Minns,6.034,1,4
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0155.wav,155,Buff-breasted Wren,XC,JAYRSON ARAUJO DE OLIVEIRA,71.434,14,0
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0156.wav,156,Buff-breasted Wren,XC,Paula Caycedo,18.442,3,1
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0157.wav,157,Buff-breasted Wren,XC,Oscar Humberto Marín Gómez &amp; Juan Pablo López,38.934,7,2
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0158.wav,158,Buff-breasted Wren,XC,JAYRSON ARAUJO DE OLIVEIRA,4.704,1,3
+bubwre1,/scratch/pdoshi/audio_comp/birdclef_audio/bubwre1_0159.wav,159,Buff-breasted Wren,XC,Oscar Humberto Marín Gómez &amp; Juan Pablo López,11.626,2,4
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0160.wav,160,Blue-gray Tanager,iNat,Pablo González,10.776,2,0
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0161.wav,161,Blue-gray Tanager,iNat,itzel ivon Rodriguez,27.334,5,1
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0162.wav,162,Blue-gray Tanager,XC,Sander Bot,6.166,1,2
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0163.wav,163,Blue-gray Tanager,XC,Andy Birch,5.894,1,3
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0164.wav,164,Blue-gray Tanager,iNat,Cristopher Rodríguez-Moreira,10.678,2,4
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0165.wav,165,Blue-gray Tanager,XC,Leonardo Ordóñez-Delgado,70.094,14,0
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0166.wav,166,Blue-gray Tanager,XC,John V. Moore,35.286,7,1
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0167.wav,167,Blue-gray Tanager,XC,Wim Jacobs,29.964,5,2
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0168.wav,168,Blue-gray Tanager,XC,Cristopher Rodriguez-Moreira,14.87,2,3
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0169.wav,169,Blue-gray Tanager,XC,JAYRSON ARAUJO DE OLIVEIRA,46.114,9,4
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0170.wav,170,Blue-gray Tanager,XC,Galo Buitrón-Jurado,7.11,1,0
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0171.wav,171,Blue-gray Tanager,XC,Jerome Fischer,9.126,1,1
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0172.wav,172,Blue-gray Tanager,XC,Leonardo Ordóñez-Delgado,155.882,31,2
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0173.wav,173,Blue-gray Tanager,XC,Oscar Humberto Marín Gómez,47.154,9,3
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0174.wav,174,Blue-gray Tanager,iNat,sshe,26.246,5,4
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0175.wav,175,Blue-gray Tanager,XC,Jerome Fischer,1.438,1,0
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0176.wav,176,Blue-gray Tanager,iNat,Osmara Pinzón,11.392,2,1
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0177.wav,177,Blue-gray Tanager,XC,Patricio Mena Valenzuela,34.282,6,2
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0178.wav,178,Blue-gray Tanager,XC,Patricio Mena Valenzuela,16.69,3,3
+bugtan,/scratch/pdoshi/audio_comp/birdclef_audio/bugtan_0179.wav,179,Blue-gray Tanager,iNat,Paula Pineda,7.214,1,4
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0180.wav,180,Buff-throated Saltator,XC,Juan Freile,67.998,13,0
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0181.wav,181,Buff-throated Saltator,XC,Sjoerd Mayer,17.268,3,1
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0182.wav,182,Buff-throated Saltator,XC,Jerome Fischer,30.77,6,2
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0183.wav,183,Buff-throated Saltator,XC,JAYRSON ARAUJO DE OLIVEIRA,18.576,3,3
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0184.wav,184,Buff-throated Saltator,XC,Jacob Wijpkema,65.374,13,4
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0185.wav,185,Buff-throated Saltator,XC,Jeremy Minns,114.178,22,0
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0186.wav,186,Buff-throated Saltator,XC,Paul Driver,10.766,2,1
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0187.wav,187,Buff-throated Saltator,XC,Jeremy Minns,134.454,26,2
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0188.wav,188,Buff-throated Saltator,XC,JAYRSON ARAUJO DE OLIVEIRA,20.952,4,3
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0189.wav,189,Buff-throated Saltator,XC,Dante Buzzetti,41.014,8,4
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0190.wav,190,Buff-throated Saltator,XC,Myornis,73.458,14,0
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0191.wav,191,Buff-throated Saltator,XC,JAYRSON ARAUJO DE OLIVEIRA,17.882,3,1
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0192.wav,192,Buff-throated Saltator,XC,Richard E. Webster,37.214,7,2
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0193.wav,193,Buff-throated Saltator,XC,Cicero Simão Lima Santos,49.528,9,3
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0194.wav,194,Buff-throated Saltator,XC,Jeremy Minns,33.15,6,4
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0195.wav,195,Buff-throated Saltator,XC,Bobby Wilcox,40.106,8,0
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0196.wav,196,Buff-throated Saltator,XC,Odirlei Vieira da Fonseca,10.426,2,1
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0197.wav,197,Buff-throated Saltator,XC,Oscar Ramírez Alán,2.874,1,2
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0198.wav,198,Buff-throated Saltator,XC,Bernabe Lopez-Lanus,35.738,7,3
+butsal1,/scratch/pdoshi/audio_comp/birdclef_audio/butsal1_0199.wav,199,Buff-throated Saltator,XC,Eric DeFonso,48.178,9,4
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0200.wav,200,Chestnut-backed Antbird,XC,Myornis,8.742,1,0
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0201.wav,201,Chestnut-backed Antbird,XC,Myornis,10.83,2,1
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0202.wav,202,Chestnut-backed Antbird,XC,Sander Bot,23.694,4,2
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0203.wav,203,Chestnut-backed Antbird,XC,GABRIEL LEITE,27.336,5,3
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0204.wav,204,Chestnut-backed Antbird,XC,Allen T. Chartier,11.904,2,4
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0205.wav,205,Chestnut-backed Antbird,XC,GABRIEL LEITE,12.504,2,0
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0206.wav,206,Chestnut-backed Antbird,XC,Marcelo Araya-Salas,224.482,44,1
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0207.wav,207,Chestnut-backed Antbird,XC,Daniel Lane,81.774,16,2
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0208.wav,208,Chestnut-backed Antbird,iNat,Sam Darmstadt,3.032,1,3
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0209.wav,209,Chestnut-backed Antbird,XC,Kent Livezey,9.446,1,4
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0210.wav,210,Chestnut-backed Antbird,XC,Yoann Blanchon,11.61,2,0
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0211.wav,211,Chestnut-backed Antbird,iNat,Liam Pentangelo,14.162,2,1
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0212.wav,212,Chestnut-backed Antbird,XC,Myornis,29.566,5,2
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0213.wav,213,Chestnut-backed Antbird,XC,Olaf Jahn,6.826,1,3
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0214.wav,214,Chestnut-backed Antbird,iNat,Charlie Darmstadt,1.516,1,4
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0215.wav,215,Chestnut-backed Antbird,XC,brendan sloan,18.992,3,0
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0216.wav,216,Chestnut-backed Antbird,XC,Charlie Vogt,61.398,12,1
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0217.wav,217,Chestnut-backed Antbird,XC,Oliver Komar,23.174,4,2
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0218.wav,218,Chestnut-backed Antbird,XC,Danny Zapata-Henao,27.486,5,3
+chbant1,/scratch/pdoshi/audio_comp/birdclef_audio/chbant1_0219.wav,219,Chestnut-backed Antbird,XC,Jerome Fischer,64.998,12,4
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0220.wav,220,Common Pauraque,iNat,Jon McIntyre,24.206,4,0
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0221.wav,221,Common Pauraque,iNat,Evan Centanni,4.848,1,1
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0222.wav,222,Common Pauraque,XC,Dante Buzzetti,30.284,6,2
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0223.wav,223,Common Pauraque,iNat,Unknown,50.806,10,3
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0224.wav,224,Common Pauraque,XC,Carlos Delgado JUMABITA,15.116,3,4
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0225.wav,225,Common Pauraque,iNat,Ulf Mehlig,65.51,13,0
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0226.wav,226,Common Pauraque,iNat,Millie Basden,46.918,9,1
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0227.wav,227,Common Pauraque,XC,Douglas Meyer,3.754,1,2
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0228.wav,228,Common Pauraque,iNat,Hans Holbrook,15.942,3,3
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0229.wav,229,Common Pauraque,iNat,Unknown,28.106,5,4
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0230.wav,230,Common Pauraque,iNat,sshe,15.262,3,0
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0231.wav,231,Common Pauraque,XC,Niels Krabbe,66.162,13,1
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0232.wav,232,Common Pauraque,XC,Leonardo Ordóñez-Delgado,90.266,18,2
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0233.wav,233,Common Pauraque,XC,José María Loaiza B.,29.386,5,3
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0234.wav,234,Common Pauraque,iNat,Gonzalo Roget,11.538,2,4
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0235.wav,235,Common Pauraque,XC,JAYRSON ARAUJO DE OLIVEIRA,30.72,6,0
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0236.wav,236,Common Pauraque,XC,Manuel Grosselet,248.858,49,1
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0237.wav,237,Common Pauraque,XC,Yair Guillermo Molina Martínez.,58.558,11,2
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0238.wav,238,Common Pauraque,XC,Andres Angulo ,42.654,8,3
+compau,/scratch/pdoshi/audio_comp/birdclef_audio/compau_0239.wav,239,Common Pauraque,XC,Andres Angulo ,48.73,9,4
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0240.wav,240,Common Potoo,iNat,Unknown,10.0,2,0
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0241.wav,241,Common Potoo,iNat,Unknown,10.0,2,1
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0242.wav,242,Common Potoo,XC,Brice de la Croix,119.982,23,2
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0243.wav,243,Common Potoo,iNat,Unknown,10.0,2,3
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0244.wav,244,Common Potoo,XC,Mauricio Álvarez-Rebolledo (Colección de Sonidos Ambientales - Instituto Humboldt),96.236,19,4
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0245.wav,245,Common Potoo,XC,JAYRSON ARAUJO DE OLIVEIRA,6.586,1,0
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0246.wav,246,Common Potoo,iNat,Unknown,10.0,2,1
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0247.wav,247,Common Potoo,XC,Luis Seko Pradier,8.594,1,2
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0248.wav,248,Common Potoo,XC,John V. Moore,21.458,4,3
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0249.wav,249,Common Potoo,iNat,Unknown,10.0,2,4
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0250.wav,250,Common Potoo,iNat,Unknown,10.0,2,0
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0251.wav,251,Common Potoo,XC,Hotel Tinamu,47.262,9,1
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0252.wav,252,Common Potoo,XC,Jerome Fischer,5.254,1,2
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0253.wav,253,Common Potoo,iNat,Unknown,60.946,12,3
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0254.wav,254,Common Potoo,iNat,Unknown,10.0,2,4
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0255.wav,255,Common Potoo,XC,Jerome Fischer,23.658,4,0
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0256.wav,256,Common Potoo,XC,Alejandro Pinto-Gómez,15.702,3,1
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0257.wav,257,Common Potoo,XC,Pedro Rinaldi,37.09,7,2
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0258.wav,258,Common Potoo,XC,Mauricio Álvarez-Rebolledo (Colección de Sonidos Ambientales - Instituto Humboldt),23.042,4,3
+compot1,/scratch/pdoshi/audio_comp/birdclef_audio/compot1_0259.wav,259,Common Potoo,iNat,Unknown,10.0,2,4
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0260.wav,260,Common Tody-Flycatcher,iNat,Francisco Dubón,28.684,5,0
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0261.wav,261,Common Tody-Flycatcher,iNat,David Monroy R,27.11,5,1
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0262.wav,262,Common Tody-Flycatcher,XC,Caio Brito,9.13,1,2
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0263.wav,263,Common Tody-Flycatcher,XC,Sue Riffe,10.45,2,3
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0264.wav,264,Common Tody-Flycatcher,XC,Francisco Dubon,28.712,5,4
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0265.wav,265,Common Tody-Flycatcher,XC,Nick Komar,15.054,3,0
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0266.wav,266,Common Tody-Flycatcher,XC,Dante Buzzetti,14.014,2,1
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0267.wav,267,Common Tody-Flycatcher,XC,GABRIEL LEITE,9.05,1,2
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0268.wav,268,Common Tody-Flycatcher,XC,Allen T. Chartier,6.088,1,3
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0269.wav,269,Common Tody-Flycatcher,XC,Jerome Fischer,8.014,1,4
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0270.wav,270,Common Tody-Flycatcher,iNat,Maksymilian Wojtkiewicz,4.64,1,0
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0271.wav,271,Common Tody-Flycatcher,XC,Mike Nelson,22.832,4,1
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0272.wav,272,Common Tody-Flycatcher,XC,Paul Driver,5.674,1,2
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0273.wav,273,Common Tody-Flycatcher,iNat,Esteban Villa Restrepo,7.862,1,3
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0274.wav,274,Common Tody-Flycatcher,XC,Jeremy Minns,49.774,9,4
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0275.wav,275,Common Tody-Flycatcher,XC,Jerome Fischer,10.586,2,0
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0276.wav,276,Common Tody-Flycatcher,XC,Jerome Fischer,35.202,7,1
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0277.wav,277,Common Tody-Flycatcher,XC,Mario Trejo,28.854,5,2
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0278.wav,278,Common Tody-Flycatcher,XC,Jerome Fischer,8.322,1,3
+cotfly1,/scratch/pdoshi/audio_comp/birdclef_audio/cotfly1_0279.wav,279,Common Tody-Flycatcher,XC,Fernando Igor de Godoy,6.874,1,4
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0280.wav,280,Crested Oropendola,iNat,Daniel Duarte,36.498,7,0
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0281.wav,281,Crested Oropendola,XC,Albert Lastukhin,132.232,26,1
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0282.wav,282,Crested Oropendola,XC,Martin St-Michel,11.454,2,2
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0283.wav,283,Crested Oropendola,XC,Oswaldo Cortes,29.226,5,3
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0284.wav,284,Crested Oropendola,XC,Bernabe Lopez-Lanus,23.542,4,4
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0285.wav,285,Crested Oropendola,XC,Bobby Wilcox,11.93,2,0
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0286.wav,286,Crested Oropendola,XC,Mauricio Álvarez-Rebolledo,46.618,9,1
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0287.wav,287,Crested Oropendola,iNat,Alejandro Luy,51.542,10,2
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0288.wav,288,Crested Oropendola,XC,Dante Buzzetti,42.91,8,3
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0289.wav,289,Crested Oropendola,XC,Oscar Humberto Marín Gómez,36.006,7,4
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0290.wav,290,Crested Oropendola,XC,Brice de la Croix,20.298,4,0
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0291.wav,291,Crested Oropendola,XC,Yair G. Molina M.,94.226,18,1
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0292.wav,292,Crested Oropendola,iNat,Katharina,20.67,4,2
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0293.wav,293,Crested Oropendola,XC,Luis Pradier,8.358,1,3
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0294.wav,294,Crested Oropendola,XC,Gary Stiles (Colección de Sonidos Ambientales - Instituto Humboldt),57.17,11,4
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0295.wav,295,Crested Oropendola,XC,Jerome Fischer,9.842,1,0
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0296.wav,296,Crested Oropendola,XC,JAYRSON ARAUJO DE OLIVEIRA,3.426,1,1
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0297.wav,297,Crested Oropendola,iNat,Joe RoCa,9.56,1,2
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0298.wav,298,Crested Oropendola,XC,Ross Gallardy,17.686,3,3
+creoro1,/scratch/pdoshi/audio_comp/birdclef_audio/creoro1_0299.wav,299,Crested Oropendola,XC,Blair Jollands,4.99,1,4
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0300.wav,300,Great Egret,XC,Dilip KG,18.25,3,0
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0301.wav,301,Great Egret,XC,Aitor Zabala,94.666,18,1
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0302.wav,302,Great Egret,XC,Oscar Campbell,45.082,9,2
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0303.wav,303,Great Egret,XC,Leo,16.034,3,3
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0304.wav,304,Great Egret,iNat,Christopher Hensel,2.398,1,4
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0305.wav,305,Great Egret,XC,Paul Marvin,5.698,1,0
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0306.wav,306,Great Egret,iNat,Unknown,10.642,2,1
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0307.wav,307,Great Egret,XC,Dan Lane,8.382,1,2
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0308.wav,308,Great Egret,XC,JAYRSON ARAUJO DE OLIVEIRA,3.448,1,3
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0309.wav,309,Great Egret,iNat,Benjamin Schmid,4.59,1,4
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0310.wav,310,Great Egret,XC,JAYRSON ARAUJO DE OLIVEIRA,18.964,3,0
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0311.wav,311,Great Egret,XC,Mark Plummer,5.998,1,1
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0312.wav,312,Great Egret,XC,Francisco contreras,7.622,1,2
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0313.wav,313,Great Egret,XC,Albert Lastukhin,15.336,3,3
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0314.wav,314,Great Egret,XC,Rosendo Manuel Fraga,29.278,5,4
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0315.wav,315,Great Egret,XC,Antonio Xeira,2.578,1,0
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0316.wav,316,Great Egret,XC,Pedro Rinaldi,13.422,2,1
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0317.wav,317,Great Egret,XC,Paul Marvin,15.342,3,2
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0318.wav,318,Great Egret,XC,Richard E. Webster,21.058,4,3
+greegr,/scratch/pdoshi/audio_comp/birdclef_audio/greegr_0319.wav,319,Great Egret,XC,Maarten Sluijter,52.67,10,4
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0320.wav,320,Great Kiskadee,XC,Leonardo Ordóñez-Delgado,103.814,20,0
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0321.wav,321,Great Kiskadee,iNat,Dean Thompson,4.584,1,1
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0322.wav,322,Great Kiskadee,iNat,Juan Carlos Pérez Magaña,62.984,12,2
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0323.wav,323,Great Kiskadee,XC,Bernabe Lopez-Lanus,6.21,1,3
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0324.wav,324,Great Kiskadee,XC,Guillermo Treboux,4.254,1,4
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0325.wav,325,Great Kiskadee,XC,Franco Vushurovich,6.47,1,0
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0326.wav,326,Great Kiskadee,iNat,Maria de Fátima,138.394,27,1
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0327.wav,327,Great Kiskadee,iNat,Eduardo Luis Beltrocco,21.086,4,2
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0328.wav,328,Great Kiskadee,iNat,Moses Michelsohn,3.334,1,3
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0329.wav,329,Great Kiskadee,XC,Fernando Igor de Godoy,27.246,5,4
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0330.wav,330,Great Kiskadee,XC,Oscar H. Marín-Gómez,63.846,12,0
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0331.wav,331,Great Kiskadee,XC,Wim Jacobs,21.004,4,1
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0332.wav,332,Great Kiskadee,iNat,Jean Martins,2.906,1,2
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0333.wav,333,Great Kiskadee,iNat,Steven Mlodinow,20.51,4,3
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0334.wav,334,Great Kiskadee,XC,Manuel Grosselet,8.958,1,4
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0335.wav,335,Great Kiskadee,XC,Fernando Igor de Godoy,11.454,2,0
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0336.wav,336,Great Kiskadee,iNat,Efraín Octavio Aguilar Pérez,11.53,2,1
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0337.wav,337,Great Kiskadee,XC,Manuel Grosselet,50.05,10,2
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0338.wav,338,Great Kiskadee,iNat,Alejandro Luy,34.698,6,3
+grekis,/scratch/pdoshi/audio_comp/birdclef_audio/grekis_0339.wav,339,Great Kiskadee,XC,Arthur Gomes,25.202,5,4
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0340.wav,340,Gray-cowled Wood-Rail,XC,Richard Dunn,61.39,12,0
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0341.wav,341,Gray-cowled Wood-Rail,XC,Joseph Tobias and Nathalie Seddon,26.322,5,1
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0342.wav,342,Gray-cowled Wood-Rail,XC,Jeremy Minns,89.994,17,2
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0343.wav,343,Gray-cowled Wood-Rail,XC,Lucas Lombardo,13.976,2,3
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0344.wav,344,Gray-cowled Wood-Rail,XC,GABRIEL LEITE,31.448,6,4
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0345.wav,345,Gray-cowled Wood-Rail,XC,Ricardo Gagliardi,39.686,7,0
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0346.wav,346,Gray-cowled Wood-Rail,XC,Miguel Angel Muñoz Amaya,43.086,8,1
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0347.wav,347,Gray-cowled Wood-Rail,XC,Marcos E. Sosa,16.394,3,2
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0348.wav,348,Gray-cowled Wood-Rail,iNat,Pablo Demaio,44.138,8,3
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0349.wav,349,Gray-cowled Wood-Rail,iNat,Giovanna Roque de Castro,42.762,8,4
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0350.wav,350,Gray-cowled Wood-Rail,XC,Javier Ricardo Salamanca-Reyes,46.004,9,0
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0351.wav,351,Gray-cowled Wood-Rail,iNat,Unknown,15.942,3,1
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0352.wav,352,Gray-cowled Wood-Rail,iNat,José Valério,7.334,1,2
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0353.wav,353,Gray-cowled Wood-Rail,iNat,Unknown,43.754,8,3
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0354.wav,354,Gray-cowled Wood-Rail,XC,GABRIEL LEITE,13.796,2,4
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0355.wav,355,Gray-cowled Wood-Rail,iNat,Mariano Ordano,33.606,6,0
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0356.wav,356,Gray-cowled Wood-Rail,iNat,Tomás Carranza Perales,20.938,4,1
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0357.wav,357,Gray-cowled Wood-Rail,XC,JAYRSON ARAUJO DE OLIVEIRA,64.254,12,2
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0358.wav,358,Gray-cowled Wood-Rail,iNat,Horacio Alberto Garcia,8.184,1,3
+gycwor1,/scratch/pdoshi/audio_comp/birdclef_audio/gycwor1_0359.wav,359,Gray-cowled Wood-Rail,XC,lewis heriz,20.614,4,4
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0360.wav,360,Laughing Falcon,iNat,Mabelin,5.806,1,0
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0361.wav,361,Laughing Falcon,XC,John V. Moore,39.186,7,1
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0362.wav,362,Laughing Falcon,XC,Brice de la Croix,14.422,2,2
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0363.wav,363,Laughing Falcon,XC,Niels Krabbe,168.778,33,3
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0364.wav,364,Laughing Falcon,iNat,Unknown,17.97,3,4
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0365.wav,365,Laughing Falcon,XC,Jeremy Minns,102.134,20,0
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0366.wav,366,Laughing Falcon,iNat,Unknown,28.422,5,1
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0367.wav,367,Laughing Falcon,XC,Jelle Scharringa,19.854,3,2
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0368.wav,368,Laughing Falcon,XC,Francisco Dubon,249.77,49,3
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0369.wav,369,Laughing Falcon,XC,Fernando Igor de Godoy,42.696,8,4
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0370.wav,370,Laughing Falcon,XC,Victor Antonelli,238.184,47,0
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0371.wav,371,Laughing Falcon,iNat,Nantar Kuja,68.082,13,1
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0372.wav,372,Laughing Falcon,XC,Brayan Coral Jaramillo,27.182,5,2
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0373.wav,373,Laughing Falcon,iNat,pozaricaalnatural,38.426,7,3
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0374.wav,374,Laughing Falcon,XC,Bernabe Lopez-Lanus,48.714,9,4
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0375.wav,375,Laughing Falcon,XC,Manuel Grosselet,77.038,15,0
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0376.wav,376,Laughing Falcon,iNat,Helio Lourencini,23.02,4,1
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0377.wav,377,Laughing Falcon,iNat,Unknown,4.214,1,2
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0378.wav,378,Laughing Falcon,iNat,Unknown,8.57,1,3
+laufal1,/scratch/pdoshi/audio_comp/birdclef_audio/laufal1_0379.wav,379,Laughing Falcon,XC,Fernanda Fernandex,64.126,12,4
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0380.wav,380,Lineated Woodpecker,XC,JAYRSON ARAUJO DE OLIVEIRA,7.802,1,0
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0381.wav,381,Lineated Woodpecker,XC,Victor Antonelli,1.926,1,1
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0382.wav,382,Lineated Woodpecker,XC,Sjoerd Mayer,49.088,9,2
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0383.wav,383,Lineated Woodpecker,XC,Niels Krabbe,4.81,1,3
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0384.wav,384,Lineated Woodpecker,iNat,Oscar Díaz,13.126,2,4
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0385.wav,385,Lineated Woodpecker,XC,Alán Palacios,4.642,1,0
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0386.wav,386,Lineated Woodpecker,XC,Blair Jollands,6.606,1,1
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0387.wav,387,Lineated Woodpecker,XC,Carlos Funes,15.078,3,2
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0388.wav,388,Lineated Woodpecker,XC,Sander Bot,3.346,1,3
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0389.wav,389,Lineated Woodpecker,XC,Brice de la Croix,6.95,1,4
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0390.wav,390,Lineated Woodpecker,XC,Patricio Mena Valenzuela,13.334,2,0
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0391.wav,391,Lineated Woodpecker,iNat,Gustavo,10.24,2,1
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0392.wav,392,Lineated Woodpecker,XC,Bobby Wilcox,15.306,3,2
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0393.wav,393,Lineated Woodpecker,XC,Roney Souza,15.384,3,3
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0394.wav,394,Lineated Woodpecker,XC,Dante Buzzetti,19.078,3,4
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0395.wav,395,Lineated Woodpecker,iNat,Unknown,9.712,1,0
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0396.wav,396,Lineated Woodpecker,XC,JAYRSON ARAUJO DE OLIVEIRA,24.818,4,1
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0397.wav,397,Lineated Woodpecker,iNat,Miguel Ángel Mota Ayala,7.676,1,2
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0398.wav,398,Lineated Woodpecker,XC,Oswaldo Cortes,19.246,3,3
+linwoo1,/scratch/pdoshi/audio_comp/birdclef_audio/linwoo1_0399.wav,399,Lineated Woodpecker,XC,Tom Lawrence,5.706,1,4
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0400.wav,400,Little Tinamou,XC,Oscar H. Marín-Gómez,75.314,15,0
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0401.wav,401,Little Tinamou,XC,GABRIEL LEITE,33.434,6,1
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0402.wav,402,Little Tinamou,XC,Allen T. Chartier,4.94,1,2
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0403.wav,403,Little Tinamou,XC,José Agustín López (Colección de Sonidos Ambientales - Instituto Humboldt),111.03,22,3
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0404.wav,404,Little Tinamou,XC,Bernabe Lopez-Lanus,3.538,1,4
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0405.wav,405,Little Tinamou,iNat,Alejo Williams,40.59,8,0
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0406.wav,406,Little Tinamou,iNat,Unknown,55.698,11,1
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0407.wav,407,Little Tinamou,XC,Myornis,26.778,5,2
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0408.wav,408,Little Tinamou,XC,JAYRSON ARAUJO DE OLIVEIRA,84.782,16,3
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0409.wav,409,Little Tinamou,XC,Oscar Humberto Marin-Gomez,35.338,7,4
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0410.wav,410,Little Tinamou,XC,José Agustín López (Colección de Sonidos Ambientales - Instituto Humboldt),177.122,35,0
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0411.wav,411,Little Tinamou,XC,Jeff Normandin,13.614,2,1
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0412.wav,412,Little Tinamou,XC,Brice de la Croix,30.934,6,2
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0413.wav,413,Little Tinamou,XC,José Agustín López (Colección de Sonidos Ambientales - Instituto Humboldt),467.562,93,3
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0414.wav,414,Little Tinamou,XC,Jerome Fischer,16.17,3,4
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0415.wav,415,Little Tinamou,XC,Alfonso Auerbach,31.142,6,0
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0416.wav,416,Little Tinamou,XC,Nunes D&#039;Acosta,39.392,7,1
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0417.wav,417,Little Tinamou,XC,Galo Buitrón-Jurado,23.25,4,2
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0418.wav,418,Little Tinamou,XC,Dante Buzzetti,23.198,4,3
+littin1,/scratch/pdoshi/audio_comp/birdclef_audio/littin1_0419.wav,419,Little Tinamou,iNat,David Torres,65.83,13,4
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0420.wav,420,Orange-chinned Parakeet,XC,Rosa Elena Albornoz,35.576,7,0
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0421.wav,421,Orange-chinned Parakeet,iNat,Rodríguez Viky,57.846,11,1
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0422.wav,422,Orange-chinned Parakeet,iNat,Mabelin,7.34,1,2
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0423.wav,423,Orange-chinned Parakeet,XC,Richard E. Webster,13.73,2,3
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0424.wav,424,Orange-chinned Parakeet,XC,Jerome Fischer,20.198,4,4
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0425.wav,425,Orange-chinned Parakeet,XC,Alfonso Auerbach,21.944,4,0
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0426.wav,426,Orange-chinned Parakeet,iNat,Heidi Pasch de Viteri,11.52,2,1
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0427.wav,427,Orange-chinned Parakeet,iNat,Juan Cruzado Cortés,13.43,2,2
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0428.wav,428,Orange-chinned Parakeet,XC,Albert Lastukhin,9.956,1,3
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0429.wav,429,Orange-chinned Parakeet,XC,Rosa Elena Albornoz,72.616,14,4
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0430.wav,430,Orange-chinned Parakeet,XC,Walter Elías Méndez Rivera,14.686,2,0
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0431.wav,431,Orange-chinned Parakeet,iNat,Unknown,11.054,2,1
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0432.wav,432,Orange-chinned Parakeet,XC,Cristhian David Gaitán,70.266,14,2
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0433.wav,433,Orange-chinned Parakeet,iNat,Yennifer Alfaro,20.91,4,3
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0434.wav,434,Orange-chinned Parakeet,iNat,Rosabel Miro,3.794,1,4
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0435.wav,435,Orange-chinned Parakeet,iNat,Cynthia Tercero,9.998,1,0
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0436.wav,436,Orange-chinned Parakeet,XC,Victor Vanegas,56.372,11,1
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0437.wav,437,Orange-chinned Parakeet,XC,Manuel Grosselet,18.822,3,2
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0438.wav,438,Orange-chinned Parakeet,XC,Walter Rivera,62.046,12,3
+orcpar,/scratch/pdoshi/audio_comp/birdclef_audio/orcpar_0439.wav,439,Orange-chinned Parakeet,iNat,Mabelin,18.368,3,4
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0440.wav,440,Palm Tanager,XC,JAYRSON ARAUJO DE OLIVEIRA,14.212,2,0
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0441.wav,441,Palm Tanager,XC,Oscar Humberto Marín Gómez,69.342,13,1
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0442.wav,442,Palm Tanager,XC,Jerome Fischer,33.282,6,2
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0443.wav,443,Palm Tanager,iNat,Unknown,10.326,2,3
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0444.wav,444,Palm Tanager,XC,Eric DeFonso,72.818,14,4
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0445.wav,445,Palm Tanager,iNat,Unknown,25.048,5,0
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0446.wav,446,Palm Tanager,XC,Joseph Tobias and Nathalie Seddon,14.812,2,1
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0447.wav,447,Palm Tanager,XC,Bobby Wilcox,86.226,17,2
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0448.wav,448,Palm Tanager,XC,Nick Komar,6.558,1,3
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0449.wav,449,Palm Tanager,iNat,Antonio Nonato,17.294,3,4
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0450.wav,450,Palm Tanager,XC,JAYRSON ARAUJO DE OLIVEIRA,16.386,3,0
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0451.wav,451,Palm Tanager,XC,Jacob Wijpkema,19.866,3,1
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0452.wav,452,Palm Tanager,XC,Brice de la Croix,23.434,4,2
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0453.wav,453,Palm Tanager,iNat,Ana Julia Peracini,8.658,1,3
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0454.wav,454,Palm Tanager,iNat,Lucas Moreira,15.024,3,4
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0455.wav,455,Palm Tanager,XC,Fernando Igor de Godoy,15.128,3,0
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0456.wav,456,Palm Tanager,XC,Phil Stouffer,18.306,3,1
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0457.wav,457,Palm Tanager,XC,Oswaldo Cortes,36.938,7,2
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0458.wav,458,Palm Tanager,XC,Wim Jacobs,40.642,8,3
+paltan1,/scratch/pdoshi/audio_comp/birdclef_audio/paltan1_0459.wav,459,Palm Tanager,XC,Nick Athanas,21.354,4,4
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0460.wav,460,Piratic Flycatcher,XC,Mauricio Cuellar Ramirez (@Birding.travel),16.086,3,0
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0461.wav,461,Piratic Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,14.734,2,1
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0462.wav,462,Piratic Flycatcher,XC,Caio Brito,34.67,6,2
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0463.wav,463,Piratic Flycatcher,XC,Antonio de Almeida Correia Junior,46.21,9,3
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0464.wav,464,Piratic Flycatcher,XC,Fernando Igor de Godoy,32.174,6,4
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0465.wav,465,Piratic Flycatcher,XC,Manuel Grosselet,133.234,26,0
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0466.wav,466,Piratic Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,4.362,1,1
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0467.wav,467,Piratic Flycatcher,XC,Bernabe Lopez-Lanus,25.022,5,2
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0468.wav,468,Piratic Flycatcher,XC,Eric DeFonso,34.074,6,3
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0469.wav,469,Piratic Flycatcher,XC,Oscar Humberto Marín Gómez &amp; Luis Hernán Carrasco Guanay,65.234,13,4
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0470.wav,470,Piratic Flycatcher,XC,Brice de la Croix,52.746,10,0
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0471.wav,471,Piratic Flycatcher,XC,Daniel Lane,72.474,14,1
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0472.wav,472,Piratic Flycatcher,iNat,Arthur de Jesús Chavarría Pérez,16.934,3,2
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0473.wav,473,Piratic Flycatcher,XC,Kent Livezey,30.394,6,3
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0474.wav,474,Piratic Flycatcher,XC,Alex Lees,18.578,3,4
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0475.wav,475,Piratic Flycatcher,XC,Jeremy Minns,74.142,14,0
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0476.wav,476,Piratic Flycatcher,iNat,Unknown,4.706,1,1
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0477.wav,477,Piratic Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,12.134,2,2
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0478.wav,478,Piratic Flycatcher,XC,Mauricio Álvarez-Rebolledo (Colección de Sonidos Ambientales - Instituto Humboldt),21.882,4,3
+pirfly1,/scratch/pdoshi/audio_comp/birdclef_audio/pirfly1_0479.wav,479,Piratic Flycatcher,XC,Alfonso Auerbach,19.378,3,4
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0480.wav,480,Ringed Kingfisher,XC,Niels Krabbe,13.43,2,0
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0481.wav,481,Ringed Kingfisher,XC,Daniel Lane,56.202,11,1
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0482.wav,482,Ringed Kingfisher,XC,Franco Vushurovich,28.822,5,2
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0483.wav,483,Ringed Kingfisher,XC,Alexandre Bianco,42.778,8,3
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0484.wav,484,Ringed Kingfisher,XC,Janine McCabe,232.286,46,4
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0485.wav,485,Ringed Kingfisher,XC,Hernán Arias,124.656,24,0
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0486.wav,486,Ringed Kingfisher,XC,Dan Lane,72.87,14,1
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0487.wav,487,Ringed Kingfisher,XC,Richard E. Webster,99.014,19,2
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0488.wav,488,Ringed Kingfisher,XC,Gary Stiles (Colección de Sonidos Ambientales - Instituto Humboldt),66.042,13,3
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0489.wav,489,Ringed Kingfisher,XC,Allen T. Chartier,4.964,1,4
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0490.wav,490,Ringed Kingfisher,XC,Noé Eiterer,6.222,1,0
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0491.wav,491,Ringed Kingfisher,XC,Bernabe Lopez-Lanus,16.486,3,1
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0492.wav,492,Ringed Kingfisher,iNat,Unknown,20.17,4,2
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0493.wav,493,Ringed Kingfisher,XC,Joseph Tobias and Nathalie Seddon,22.198,4,3
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0494.wav,494,Ringed Kingfisher,XC,Rodolfo Salinas-Villarreal,3.382,1,4
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0495.wav,495,Ringed Kingfisher,XC,JAYRSON ARAUJO DE OLIVEIRA,44.118,8,0
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0496.wav,496,Ringed Kingfisher,iNat,Joaquín Vazquez,77.386,15,1
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0497.wav,497,Ringed Kingfisher,iNat,Eduardo Luis Beltrocco,21.89,4,2
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0498.wav,498,Ringed Kingfisher,XC,Jeremy Minns,6.51,1,3
+rinkin1,/scratch/pdoshi/audio_comp/birdclef_audio/rinkin1_0499.wav,499,Ringed Kingfisher,XC,Leonardo Ordóñez-Delgado,45.682,9,4
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0500.wav,500,Roadside Hawk,XC, Guillermo Treboux,67.602,13,0
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0501.wav,501,Roadside Hawk,XC,Justin Flint,15.314,3,1
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0502.wav,502,Roadside Hawk,XC,Mario Trejo,35.234,7,2
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0503.wav,503,Roadside Hawk,iNat,Andrés Urvina,13.626,2,3
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0504.wav,504,Roadside Hawk,XC,Bernabe Lopez-Lanus,5.138,1,4
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0505.wav,505,Roadside Hawk,iNat,Gonzalo Diaz,12.068,2,0
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0506.wav,506,Roadside Hawk,XC,Ricardo José Mitidieri,5.068,1,1
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0507.wav,507,Roadside Hawk,iNat,Javier Piquillén,40.058,8,2
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0508.wav,508,Roadside Hawk,XC,Oscar Humberto Marín Gómez,48.846,9,3
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0509.wav,509,Roadside Hawk,XC,Arthur Gomes,52.39,10,4
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0510.wav,510,Roadside Hawk,iNat,providenceplus,7.0,1,0
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0511.wav,511,Roadside Hawk,XC,Yair Guillermo Molina Martínez.,103.694,20,1
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0512.wav,512,Roadside Hawk,iNat,David Monroy R,45.266,9,2
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0513.wav,513,Roadside Hawk,XC,Tom OShea,14.976,2,3
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0514.wav,514,Roadside Hawk,XC,JAYRSON ARAUJO DE OLIVEIRA,32.374,6,4
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0515.wav,515,Roadside Hawk,XC,Cheng-En; HSIEH,56.714,11,0
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0516.wav,516,Roadside Hawk,XC,Bernabe Lopez-Lanus,21.946,4,1
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0517.wav,517,Roadside Hawk,iNat,GERMAN LEONEL SARMIENTO CRUZ,11.892,2,2
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0518.wav,518,Roadside Hawk,XC,Oscar Humberto Marín Gómez,23.386,4,3
+roahaw,/scratch/pdoshi/audio_comp/birdclef_audio/roahaw_0519.wav,519,Roadside Hawk,XC,Manuel Roncal- Rabanal,12.59,2,4
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0520.wav,520,Rusty-margined Flycatcher,XC,Mauricio Álvarez-Rebolledo (Colección de Sonidos Ambientales - Instituto Humboldt),10.188,2,0
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0521.wav,521,Rusty-margined Flycatcher,XC,Jeremy Minns,27.182,5,1
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0522.wav,522,Rusty-margined Flycatcher,XC,Jacob Wijpkema,28.086,5,2
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0523.wav,523,Rusty-margined Flycatcher,XC,rudy gelis,2.744,1,3
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0524.wav,524,Rusty-margined Flycatcher,XC,Bobby Wilcox,4.438,1,4
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0525.wav,525,Rusty-margined Flycatcher,iNat,Angelica Holguin,100.754,20,0
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0526.wav,526,Rusty-margined Flycatcher,XC,Olaf Jahn,21.122,4,1
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0527.wav,527,Rusty-margined Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,6.97,1,2
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0528.wav,528,Rusty-margined Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,14.666,2,3
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0529.wav,529,Rusty-margined Flycatcher,XC,Myornis,16.102,3,4
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0530.wav,530,Rusty-margined Flycatcher,XC,Brice de la Croix,23.174,4,0
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0531.wav,531,Rusty-margined Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,11.158,2,1
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0532.wav,532,Rusty-margined Flycatcher,iNat,Christoph Moning,25.51,5,2
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0533.wav,533,Rusty-margined Flycatcher,XC,Nick Athanas,17.846,3,3
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0534.wav,534,Rusty-margined Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,24.926,4,4
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0535.wav,535,Rusty-margined Flycatcher,XC,Fernando Igor de Godoy,28.046,5,0
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0536.wav,536,Rusty-margined Flycatcher,XC,Jerome Fischer,16.822,3,1
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0537.wav,537,Rusty-margined Flycatcher,XC,Cristian Rodas,1.626,1,2
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0538.wav,538,Rusty-margined Flycatcher,XC,Fernando Pocho Cabral,70.944,14,3
+rumfly1,/scratch/pdoshi/audio_comp/birdclef_audio/rumfly1_0539.wav,539,Rusty-margined Flycatcher,XC,Geoffrey Monchaux,5.068,1,4
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0540.wav,540,Rufous-tailed Jacamar,XC,Nick Athanas,31.766,6,0
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0541.wav,541,Rufous-tailed Jacamar,iNat,Yby Naturalista,15.616,3,1
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0542.wav,542,Rufous-tailed Jacamar,XC,Paul Driver,16.746,3,2
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0543.wav,543,Rufous-tailed Jacamar,XC,Victor Vanegas,4.048,1,3
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0544.wav,544,Rufous-tailed Jacamar,iNat,Helio Lourencini,17.738,3,4
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0545.wav,545,Rufous-tailed Jacamar,XC,Max Noack,50.822,10,0
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0546.wav,546,Rufous-tailed Jacamar,XC,Niels Krabbe,24.518,4,1
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0547.wav,547,Rufous-tailed Jacamar,XC,Jerome Fischer,5.766,1,2
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0548.wav,548,Rufous-tailed Jacamar,XC,Tulio Dornas,12.006,2,3
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0549.wav,549,Rufous-tailed Jacamar,XC,Olaf Jahn,22.838,4,4
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0550.wav,550,Rufous-tailed Jacamar,XC,GABRIEL LEITE,9.354,1,0
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0551.wav,551,Rufous-tailed Jacamar,XC,Dante Buzzetti,65.234,13,1
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0552.wav,552,Rufous-tailed Jacamar,XC,Marcelo Jordani Feliti,75.85,15,2
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0553.wav,553,Rufous-tailed Jacamar,XC,GABRIEL LEITE,34.368,6,3
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0554.wav,554,Rufous-tailed Jacamar,XC,Fernando Igor de Godoy,21.006,4,4
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0555.wav,555,Rufous-tailed Jacamar,XC,Antonio Silveira,45.894,9,0
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0556.wav,556,Rufous-tailed Jacamar,XC,Roney Assis Souza,16.418,3,1
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0557.wav,557,Rufous-tailed Jacamar,XC,Bernabe Lopez-Lanus,11.442,2,2
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0558.wav,558,Rufous-tailed Jacamar,iNat,Ricardo Gagliardi,19.066,3,3
+rutjac1,/scratch/pdoshi/audio_comp/birdclef_audio/rutjac1_0559.wav,559,Rufous-tailed Jacamar,XC,Oscar Humberto Marín Gómez &amp; Natalia Perez Amaya,79.474,15,4
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0560.wav,560,Saffron Finch,XC,Cristian Rodas,3.294,1,0
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0561.wav,561,Saffron Finch,XC,Jeremy Minns,20.906,4,1
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0562.wav,562,Saffron Finch,iNat,Pedro Henrique Maloso Ramos,38.646,7,2
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0563.wav,563,Saffron Finch,iNat,Unknown,14.738,2,3
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0564.wav,564,Saffron Finch,XC,JAYRSON ARAUJO DE OLIVEIRA,70.358,14,4
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0565.wav,565,Saffron Finch,iNat,Unknown,15.036,3,0
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0566.wav,566,Saffron Finch,iNat,Unknown,61.188,12,1
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0567.wav,567,Saffron Finch,XC,Sabrina Andrea Rendon Anaya,12.366,2,2
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0568.wav,568,Saffron Finch,iNat,Unknown,22.27,4,3
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0569.wav,569,Saffron Finch,XC,Pedro Rinaldi,157.086,31,4
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0570.wav,570,Saffron Finch,XC, Guillermo Treboux,60.19,12,0
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0571.wav,571,Saffron Finch,XC,JAYRSON ARAUJO DE OLIVEIRA,16.422,3,1
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0572.wav,572,Saffron Finch,iNat,Yuri Tedéo,43.426,8,2
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0573.wav,573,Saffron Finch,iNat,Jesser Oliveira,24.938,4,3
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0574.wav,574,Saffron Finch,XC,Dan Lane,14.474,2,4
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0575.wav,575,Saffron Finch,iNat,Patricia Mees,8.722,1,0
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0576.wav,576,Saffron Finch,iNat,Moses Michelsohn,11.482,2,1
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0577.wav,577,Saffron Finch,XC,Jeremy Minns,35.766,7,2
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0578.wav,578,Saffron Finch,iNat,Kellen Apuna,10.582,2,3
+saffin,/scratch/pdoshi/audio_comp/birdclef_audio/saffin_0579.wav,579,Saffron Finch,XC,Cristopher Rodríguez-Moreira,19.006,3,4
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0580.wav,580,Smooth-billed Ani,XC,Kent Livezey,5.594,1,0
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0581.wav,581,Smooth-billed Ani,XC,Yoann Blanchon,34.35,6,1
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0582.wav,582,Smooth-billed Ani,iNat,David Jeffrey Ringer,15.094,3,2
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0583.wav,583,Smooth-billed Ani,iNat,Hubert Szczygieł,12.842,2,3
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0584.wav,584,Smooth-billed Ani,XC,Albert Lastukhin,10.296,2,4
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0585.wav,585,Smooth-billed Ani,iNat,Unknown,6.178,1,0
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0586.wav,586,Smooth-billed Ani,XC,Breno Dias Vitorino,9.772,1,1
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0587.wav,587,Smooth-billed Ani,XC,Sjoerd Mayer,8.39,1,2
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0588.wav,588,Smooth-billed Ani,XC,Luisa,11.602,2,3
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0589.wav,589,Smooth-billed Ani,XC,John V. Moore,29.454,5,4
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0590.wav,590,Smooth-billed Ani,iNat,Luke Padon,5.23,1,0
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0591.wav,591,Smooth-billed Ani,iNat,Unknown,9.846,1,1
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0592.wav,592,Smooth-billed Ani,XC,Jarrod Swackhamer,2.246,1,2
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0593.wav,593,Smooth-billed Ani,XC,Wim Jacobs,20.116,4,3
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0594.wav,594,Smooth-billed Ani,iNat,Wayne Fidler,15.98,3,4
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0595.wav,595,Smooth-billed Ani,XC,Alberto Lobato,5.338,1,0
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0596.wav,596,Smooth-billed Ani,iNat,Eduardo Luis Beltrocco,18.368,3,1
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0597.wav,597,Smooth-billed Ani,XC,JAYRSON ARAUJO DE OLIVEIRA,10.398,2,2
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0598.wav,598,Smooth-billed Ani,XC,Paul Marvin,121.314,24,3
+smbani,/scratch/pdoshi/audio_comp/birdclef_audio/smbani_0599.wav,599,Smooth-billed Ani,iNat,Unknown,7.31,1,4
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0600.wav,600,Southern Beardless-Tyrannulet,XC,Mauricio Cuellar Ramirez (@Birding.travel),9.322,1,0
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0601.wav,601,Southern Beardless-Tyrannulet,XC,Guilherme Willrich,70.982,14,1
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0602.wav,602,Southern Beardless-Tyrannulet,iNat,Unknown,4.52,1,2
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0603.wav,603,Southern Beardless-Tyrannulet,XC,Dominic Garcia-Hall,18.578,3,3
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0604.wav,604,Southern Beardless-Tyrannulet,iNat,Edson Luis Fabro Gasperin,22.226,4,4
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0605.wav,605,Southern Beardless-Tyrannulet,XC,Jeremy Minns,19.754,3,0
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0606.wav,606,Southern Beardless-Tyrannulet,XC,Bob Planqué,14.552,2,1
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0607.wav,607,Southern Beardless-Tyrannulet,iNat,Gabriel Celedon,13.981,2,2
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0608.wav,608,Southern Beardless-Tyrannulet,iNat,Camilo Garcia Gonzalez,4.538,1,3
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0609.wav,609,Southern Beardless-Tyrannulet,XC,Nick Athanas,24.034,4,4
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0610.wav,610,Southern Beardless-Tyrannulet,XC,José María Loaiza B.,21.658,4,0
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0611.wav,611,Southern Beardless-Tyrannulet,XC,Jeremy Minns,13.262,2,1
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0612.wav,612,Southern Beardless-Tyrannulet,XC,Fernando Igor de Godoy,10.174,2,2
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0613.wav,613,Southern Beardless-Tyrannulet,XC,Yair Guillermo Molina Martínez.,2.906,1,3
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0614.wav,614,Southern Beardless-Tyrannulet,XC,Andre Vielma,2.554,1,4
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0615.wav,615,Southern Beardless-Tyrannulet,XC,Roney Assis Souza,16.418,3,0
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0616.wav,616,Southern Beardless-Tyrannulet,XC,Cristian Rodas,4.306,1,1
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0617.wav,617,Southern Beardless-Tyrannulet,XC,Breno Vitorino,9.536,1,2
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0618.wav,618,Southern Beardless-Tyrannulet,XC,Carol,30.282,6,3
+sobtyr1,/scratch/pdoshi/audio_comp/birdclef_audio/sobtyr1_0619.wav,619,Southern Beardless-Tyrannulet,XC,Carlos S. Rodrigues,26.866,5,4
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0620.wav,620,Social Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,23.134,4,0
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0621.wav,621,Social Flycatcher,XC,Jerome Fischer,43.318,8,1
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0622.wav,622,Social Flycatcher,XC,Patricio Mena Valenzuela,47.914,9,2
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0623.wav,623,Social Flycatcher,XC,Ricardo José Mitidieri,12.33,2,3
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0624.wav,624,Social Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,1.394,1,4
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0625.wav,625,Social Flycatcher,XC,Dante Buzzetti,12.846,2,0
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0626.wav,626,Social Flycatcher,iNat,Unknown,11.726,2,1
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0627.wav,627,Social Flycatcher,XC,Kent Livezey,53.604,10,2
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0628.wav,628,Social Flycatcher,XC,Andre Vielma,1.282,1,3
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0629.wav,629,Social Flycatcher,XC,Eric DeFonso,58.206,11,4
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0630.wav,630,Social Flycatcher,iNat,Efraín Octavio Aguilar Pérez,28.05,5,0
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0631.wav,631,Social Flycatcher,iNat,Henrry,3.584,1,1
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0632.wav,632,Social Flycatcher,XC,Manuel Grosselet,20.626,4,2
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0633.wav,633,Social Flycatcher,iNat,Rodríguez Viky,57.004,11,3
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0634.wav,634,Social Flycatcher,iNat,Rodolfo Salinas Villarreal,22.774,4,4
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0635.wav,635,Social Flycatcher,XC,Niels Krabbe,102.47,20,0
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0636.wav,636,Social Flycatcher,XC,Bernabe Lopez-Lanus,3.55,1,1
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0637.wav,637,Social Flycatcher,iNat,Gustavo Contreras C.,8.05,1,2
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0638.wav,638,Social Flycatcher,iNat,Eliseo Hernandez Hernandez,3.186,1,3
+socfly1,/scratch/pdoshi/audio_comp/birdclef_audio/socfly1_0639.wav,639,Social Flycatcher,XC,Mike Nelson,2.938,1,4
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0640.wav,640,Solitary Sandpiper,iNat,Aurelie Belanger,15.514,3,0
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0641.wav,641,Solitary Sandpiper,iNat,Micah Grove,51.422,10,1
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0642.wav,642,Solitary Sandpiper,iNat,Jo Roberts,20.122,4,2
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0643.wav,643,Solitary Sandpiper,XC,Dany Sloan,2.486,1,3
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0644.wav,644,Solitary Sandpiper,XC,Dante Buzzetti,8.014,1,4
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0645.wav,645,Solitary Sandpiper,XC,Niels Krabbe,16.094,3,0
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0646.wav,646,Solitary Sandpiper,XC,Eric DeFonso,81.162,16,1
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0647.wav,647,Solitary Sandpiper,XC,Isain Contreras Rodríguez,4.786,1,2
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0648.wav,648,Solitary Sandpiper,XC,Jerome Fischer,17.098,3,3
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0649.wav,649,Solitary Sandpiper,iNat,Dan MacNeal,46.522,9,4
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0650.wav,650,Solitary Sandpiper,XC,Cin-Ty Lee,6.296,1,0
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0651.wav,651,Solitary Sandpiper,iNat,Unknown,9.79,1,1
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0652.wav,652,Solitary Sandpiper,iNat,Fundación Dodo Colombia,41.402,8,2
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0653.wav,653,Solitary Sandpiper,iNat,John D Reynolds,4.082,1,3
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0654.wav,654,Solitary Sandpiper,XC,Paul Driver,14.114,2,4
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0655.wav,655,Solitary Sandpiper,XC,JAYRSON ARAUJO DE OLIVEIRA,1.752,1,0
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0656.wav,656,Solitary Sandpiper,iNat,Georgia B,6.254,1,1
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0657.wav,657,Solitary Sandpiper,iNat,James Shelton,4.322,1,2
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0658.wav,658,Solitary Sandpiper,XC,Paul Driver,6.218,1,3
+solsan,/scratch/pdoshi/audio_comp/birdclef_audio/solsan_0659.wav,659,Solitary Sandpiper,iNat,Rich Russell,71.278,14,4
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0660.wav,660,Southern Lapwing,iNat,Unknown,11.55,2,0
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0661.wav,661,Southern Lapwing,iNat,Jashira,12.37,2,1
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0662.wav,662,Southern Lapwing,XC,Fernando Castro,12.59,2,2
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0663.wav,663,Southern Lapwing,XC,Gabriel Morales,25.018,5,3
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0664.wav,664,Southern Lapwing,XC,GABRIEL LEITE,7.838,1,4
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0665.wav,665,Southern Lapwing,XC,JAYRSON ARAUJO DE OLIVEIRA,4.29,1,0
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0666.wav,666,Southern Lapwing,XC,JAYRSON ARAUJO DE OLIVEIRA,23.93,4,1
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0667.wav,667,Southern Lapwing,XC,Antonio Silveira,55.362,11,2
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0668.wav,668,Southern Lapwing,XC,JAYRSON ARAUJO DE OLIVEIRA,19.182,3,3
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0669.wav,669,Southern Lapwing,XC,Mauricio Cuellar Ramirez (@Birding.travel),9.93,1,4
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0670.wav,670,Southern Lapwing,iNat,Geografiaargentina,14.346,2,0
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0671.wav,671,Southern Lapwing,iNat,Pablo H Capovilla,9.482,1,1
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0672.wav,672,Southern Lapwing,iNat,Alejandro Luy,25.878,5,2
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0673.wav,673,Southern Lapwing,XC,Daniel Blamires,13.872,2,3
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0674.wav,674,Southern Lapwing,iNat,Nelson Wisnik,40.844,8,4
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0675.wav,675,Southern Lapwing,XC,Bobby Wilcox,24.466,4,0
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0676.wav,676,Southern Lapwing,iNat,NataliaR,25.778,5,1
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0677.wav,677,Southern Lapwing,XC,Felipe N. Moreno-Gómez,17.458,3,2
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0678.wav,678,Southern Lapwing,iNat,Yby Naturalista,7.886,1,3
+soulap1,/scratch/pdoshi/audio_comp/birdclef_audio/soulap1_0679.wav,679,Southern Lapwing,XC,Albert Lastukhin,13.3,2,4
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0680.wav,680,Spectacled Owl,iNat,Diego Carús,4.902,1,0
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0681.wav,681,Spectacled Owl,XC,Urias Edgardo Gonzalez Carreño,200.23,40,1
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0682.wav,682,Spectacled Owl,XC,OSWALDO RAMOS,209.976,41,2
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0683.wav,683,Spectacled Owl,XC,Ciro Albano,232.91,46,3
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0684.wav,684,Spectacled Owl,XC,Carlos Delgado JUMABITA,58.328,11,4
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0685.wav,685,Spectacled Owl,XC,José María Loaiza B.,40.702,8,0
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0686.wav,686,Spectacled Owl,iNat,Mario Montero-Guzmán,34.642,6,1
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0687.wav,687,Spectacled Owl,XC,Rafael Martos Martins,30.81,6,2
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0688.wav,688,Spectacled Owl,iNat,Moses Michelsohn,15.64,3,3
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0689.wav,689,Spectacled Owl,XC,Jacob Wijpkema,42.058,8,4
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0690.wav,690,Spectacled Owl,XC,Olaf Jahn,20.594,4,0
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0691.wav,691,Spectacled Owl,XC,Nunes D´Acosta,3.622,1,1
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0692.wav,692,Spectacled Owl,XC,Eduardo Patrial,32.062,6,2
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0693.wav,693,Spectacled Owl,XC,Leonardo Ordóñez-Delgado,68.55,13,3
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0694.wav,694,Spectacled Owl,XC,Ross Gallardy,57.61,11,4
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0695.wav,695,Spectacled Owl,XC,Dante Buzzetti,491.282,98,0
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0696.wav,696,Spectacled Owl,XC,Dante Buzzetti,22.17,4,1
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0697.wav,697,Spectacled Owl,XC,Alberto Madroño,4.674,1,2
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0698.wav,698,Spectacled Owl,XC,Nunes D´Acosta,3.094,1,3
+speowl1,/scratch/pdoshi/audio_comp/birdclef_audio/speowl1_0699.wav,699,Spectacled Owl,XC,Bernabe Lopez-Lanus,43.442,8,4
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0700.wav,700,Straight-billed Woodcreeper,XC,JAYRSON ARAUJO DE OLIVEIRA,6.742,1,0
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0701.wav,701,Straight-billed Woodcreeper,XC,Jerome Fischer,18.21,3,1
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0702.wav,702,Straight-billed Woodcreeper,XC,Albert Lastukhin,10.506,2,2
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0703.wav,703,Straight-billed Woodcreeper,XC,Dante Buzzetti,75.18,15,3
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0704.wav,704,Straight-billed Woodcreeper,XC,Joserley Carlos,27.116,5,4
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0705.wav,705,Straight-billed Woodcreeper,XC,Andres Angulo ,14.67,2,0
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0706.wav,706,Straight-billed Woodcreeper,XC,Fernando Igor de Godoy,40.062,8,1
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0707.wav,707,Straight-billed Woodcreeper,XC,Jerome Fischer,5.91,1,2
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0708.wav,708,Straight-billed Woodcreeper,XC,GABRIEL LEITE,14.438,2,3
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0709.wav,709,Straight-billed Woodcreeper,XC,Richard E. Webster,87.986,17,4
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0710.wav,710,Straight-billed Woodcreeper,XC,JAYRSON ARAUJO DE OLIVEIRA,27.366,5,0
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0711.wav,711,Straight-billed Woodcreeper,XC,Michel Giraud-Audine,54.542,10,1
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0712.wav,712,Straight-billed Woodcreeper,XC,Dante Buzzetti,8.326,1,2
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0713.wav,713,Straight-billed Woodcreeper,XC,Andres Angulo,15.596,3,3
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0714.wav,714,Straight-billed Woodcreeper,XC,Jeremy Minns,24.562,4,4
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0715.wav,715,Straight-billed Woodcreeper,XC,João Antônio de B. Vitto,12.016,2,0
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0716.wav,716,Straight-billed Woodcreeper,XC,JAYRSON ARAUJO DE OLIVEIRA,57.202,11,1
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0717.wav,717,Straight-billed Woodcreeper,XC,Oswaldo Cortes,49.958,9,2
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0718.wav,718,Straight-billed Woodcreeper,XC,JAYRSON ARAUJO DE OLIVEIRA,3.942,1,3
+stbwoo2,/scratch/pdoshi/audio_comp/birdclef_audio/stbwoo2_0719.wav,719,Straight-billed Woodcreeper,XC,David Bradley y Sandra Valderrama,4.058,1,4
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0720.wav,720,Striped Cuckoo,XC,Andres Angulo ,32.306,6,0
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0721.wav,721,Striped Cuckoo,XC,Aves del NEA,39.734,7,1
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0722.wav,722,Striped Cuckoo,iNat,Victor,26.65,5,2
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0723.wav,723,Striped Cuckoo,XC,Jeisson Poveda,78.394,15,3
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0724.wav,724,Striped Cuckoo,iNat,Breno Figueiredo,28.938,5,4
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0725.wav,725,Striped Cuckoo,XC,Daniel Blamires,30.634,6,0
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0726.wav,726,Striped Cuckoo,XC,Kent Livezey,139.166,27,1
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0727.wav,727,Striped Cuckoo,XC,Eric DeFonso,53.506,10,2
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0728.wav,728,Striped Cuckoo,XC,David Monroy Rengifo,25.906,5,3
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0729.wav,729,Striped Cuckoo,iNat,Pablo H Capovilla,46.49,9,4
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0730.wav,730,Striped Cuckoo,XC,Niels Krabbe,30.946,6,0
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0731.wav,731,Striped Cuckoo,iNat,Diego Cordero,18.394,3,1
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0732.wav,732,Striped Cuckoo,XC,Ross Gallardy,14.106,2,2
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0733.wav,733,Striped Cuckoo,XC,JAYRSON ARAUJO DE OLIVEIRA,16.506,3,3
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0734.wav,734,Striped Cuckoo,iNat,Eduardo Luis Beltrocco,42.888,8,4
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0735.wav,735,Striped Cuckoo,XC,Tulio Dornas,22.966,4,0
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0736.wav,736,Striped Cuckoo,iNat,Eduardo Luis Beltrocco,13.674,2,1
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0737.wav,737,Striped Cuckoo,XC,Bernabe Lopez-Lanus,19.25,3,2
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0738.wav,738,Striped Cuckoo,XC,Andrea Lopera-Salazar,110.37,22,3
+strcuc1,/scratch/pdoshi/audio_comp/birdclef_audio/strcuc1_0739.wav,739,Striped Cuckoo,iNat,Christopher Rustay,9.298,1,4
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0740.wav,740,Streaked Flycatcher,iNat,Unknown,41.59,8,0
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0741.wav,741,Streaked Flycatcher,iNat,Unknown,7.286,1,1
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0742.wav,742,Streaked Flycatcher,XC,Niels Krabbe,11.554,2,2
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0743.wav,743,Streaked Flycatcher,XC,Patricio Mena Valenzuela,19.626,3,3
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0744.wav,744,Streaked Flycatcher,XC,Niels Krabbe,91.53,18,4
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0745.wav,745,Streaked Flycatcher,XC,Leonardo Ordóñez-Delgado,9.91,1,0
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0746.wav,746,Streaked Flycatcher,iNat,Alejandro Luy,16.118,3,1
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0747.wav,747,Streaked Flycatcher,XC,Antonio Silveira,46.182,9,2
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0748.wav,748,Streaked Flycatcher,iNat,Unknown,9.142,1,3
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0749.wav,749,Streaked Flycatcher,iNat,Esteban Villa Restrepo,30.458,6,4
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0750.wav,750,Streaked Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,81.39,16,0
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0751.wav,751,Streaked Flycatcher,XC,Erick Nicolás Patiño Acosta,62.214,12,1
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0752.wav,752,Streaked Flycatcher,iNat,Sam Darmstadt,15.224,3,2
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0753.wav,753,Streaked Flycatcher,XC,Niels Krabbe,15.126,3,3
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0754.wav,754,Streaked Flycatcher,XC,Jeisson Poveda,48.418,9,4
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0755.wav,755,Streaked Flycatcher,iNat,Unknown,12.948,2,0
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0756.wav,756,Streaked Flycatcher,iNat,Luis Áureo Pellozo,27.114,5,1
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0757.wav,757,Streaked Flycatcher,iNat,Gustavo Gonsioroski,12.382,2,2
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0758.wav,758,Streaked Flycatcher,XC,GABRIEL LEITE,26.664,5,3
+strfly1,/scratch/pdoshi/audio_comp/birdclef_audio/strfly1_0759.wav,759,Streaked Flycatcher,XC,Fernando Igor de Godoy,51.802,10,4
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0760.wav,760,Tropical Kingbird,iNat,Ze Roberto,36.802,7,0
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0761.wav,761,Tropical Kingbird,XC,Isain Contreras Rodríguez,2.742,1,1
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0762.wav,762,Tropical Kingbird,iNat,Unknown,23.552,4,2
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0763.wav,763,Tropical Kingbird,iNat,Randolph (Randy) King,4.196,1,3
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0764.wav,764,Tropical Kingbird,XC,GABRIEL LEITE,5.942,1,4
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0765.wav,765,Tropical Kingbird,iNat,Luis Enrique Flores Hernández,25.058,5,0
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0766.wav,766,Tropical Kingbird,XC,Danny Zapata-Henao,2.65,1,1
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0767.wav,767,Tropical Kingbird,XC,JAYRSON ARAUJO DE OLIVEIRA,5.41,1,2
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0768.wav,768,Tropical Kingbird,iNat,Unknown,9.19,1,3
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0769.wav,769,Tropical Kingbird,XC,Fernanda Fernandex,101.186,20,4
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0770.wav,770,Tropical Kingbird,iNat,Cristopher Rodríguez-Moreira,66.782,13,0
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0771.wav,771,Tropical Kingbird,XC,Cristopher Rodriguez-Moreira,19.514,3,1
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0772.wav,772,Tropical Kingbird,XC,Fernando Igor de Godoy,14.774,2,2
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0773.wav,773,Tropical Kingbird,iNat,James Chapman,21.686,4,3
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0774.wav,774,Tropical Kingbird,iNat,Unknown,30.022,6,4
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0775.wav,775,Tropical Kingbird,XC,Christopher Rodriguez-Moreira,5.618,1,0
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0776.wav,776,Tropical Kingbird,XC,Richard E. Webster,47.566,9,1
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0777.wav,777,Tropical Kingbird,XC,Allen T. Chartier,17.58,3,2
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0778.wav,778,Tropical Kingbird,iNat,Noah Strycker,35.008,7,3
+trokin,/scratch/pdoshi/audio_comp/birdclef_audio/trokin_0779.wav,779,Tropical Kingbird,XC,Paul Marvin,28.27,5,4
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0780.wav,780,Tropical Parula,XC,JAYRSON ARAUJO DE OLIVEIRA,15.382,3,0
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0781.wav,781,Tropical Parula,XC,Matt Wistrand,170.874,34,1
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0782.wav,782,Tropical Parula,iNat,Diego Trillo,33.354,6,2
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0783.wav,783,Tropical Parula,XC,Sue Riffe,10.354,2,3
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0784.wav,784,Tropical Parula,iNat,Court Harding,4.05,1,4
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0785.wav,785,Tropical Parula,XC,Patricio Mena Valenzuela,22.57,4,0
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0786.wav,786,Tropical Parula,XC,Alán Palacios,2.25,1,1
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0787.wav,787,Tropical Parula,XC,Daniel Lane,96.31,19,2
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0788.wav,788,Tropical Parula,iNat,Facundo Varela Barros,11.078,2,3
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0789.wav,789,Tropical Parula,XC,Alán Palacios,31.718,6,4
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0790.wav,790,Tropical Parula,iNat,Unknown,2.074,1,0
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0791.wav,791,Tropical Parula,XC,Myornis,103.85,20,1
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0792.wav,792,Tropical Parula,iNat,Andrew Orgill,6.026,1,2
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0793.wav,793,Tropical Parula,XC,Andy Birch,28.456,5,3
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0794.wav,794,Tropical Parula,iNat,Unknown,6.95,1,4
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0795.wav,795,Tropical Parula,XC,Mauricio Cuéllar-Ramírez,52.742,10,0
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0796.wav,796,Tropical Parula,XC,Guilherme Melo,50.186,10,1
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0797.wav,797,Tropical Parula,XC,Alán Palacios,16.91,3,2
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0798.wav,798,Tropical Parula,iNat,Eduardo Luis Beltrocco,38.572,7,3
+tropar,/scratch/pdoshi/audio_comp/birdclef_audio/tropar_0799.wav,799,Tropical Parula,iNat,Liu Idárraga Orozco,41.842,8,4
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0800.wav,800,Tropical Screech-Owl,XC,Rafael Gianni,47.074,9,0
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0801.wav,801,Tropical Screech-Owl,XC, Guillermo Treboux,77.97,15,1
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0802.wav,802,Tropical Screech-Owl,iNat,Francisco González Táboas,19.89,3,2
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0803.wav,803,Tropical Screech-Owl,XC,Bernabe Lopez-Lanus,15.666,3,3
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0804.wav,804,Tropical Screech-Owl,iNat,Eduardo Luis Beltrocco,18.228,3,4
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0805.wav,805,Tropical Screech-Owl,XC,Joe Klaiber,17.094,3,0
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0806.wav,806,Tropical Screech-Owl,XC,Ricardo José Mitidieri,9.56,1,1
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0807.wav,807,Tropical Screech-Owl,iNat,Gabriel Vianna Alves,10.046,2,2
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0808.wav,808,Tropical Screech-Owl,XC,Paul Bourdin,28.996,5,3
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0809.wav,809,Tropical Screech-Owl,XC,Bernabe Lopez-Lanus,15.698,3,4
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0810.wav,810,Tropical Screech-Owl,iNat,Helio Lourencini,29.928,5,0
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0811.wav,811,Tropical Screech-Owl,XC,Bobby Wilcox,33.33,6,1
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0812.wav,812,Tropical Screech-Owl,iNat,Eduardo Luis Beltrocco,15.694,3,2
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0813.wav,813,Tropical Screech-Owl,iNat,Sebastián Lovera,14.234,2,3
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0814.wav,814,Tropical Screech-Owl,iNat,Nantar Kuja,37.854,7,4
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0815.wav,815,Tropical Screech-Owl,XC,JAYRSON ARAUJO DE OLIVEIRA,119.07,23,0
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0816.wav,816,Tropical Screech-Owl,XC,Jerome Fischer,20.094,4,1
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0817.wav,817,Tropical Screech-Owl,XC,William Adsett ,58.418,11,2
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0818.wav,818,Tropical Screech-Owl,XC,JAYRSON ARAUJO DE OLIVEIRA,20.976,4,3
+trsowl,/scratch/pdoshi/audio_comp/birdclef_audio/trsowl_0819.wav,819,Tropical Screech-Owl,iNat,Jacob Ira,10.874,2,4
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0820.wav,820,White-breasted Wood-Wren,XC,GABRIEL LEITE,27.658,5,0
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0821.wav,821,White-breasted Wood-Wren,XC,Niels Krabbe,22.654,4,1
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0822.wav,822,White-breasted Wood-Wren,XC,Jerome Fischer,56.09,11,2
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0823.wav,823,White-breasted Wood-Wren,XC,Joe Klaiber,4.562,1,3
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0824.wav,824,White-breasted Wood-Wren,XC,Richard E. Webster,40.79,8,4
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0825.wav,825,White-breasted Wood-Wren,XC,Scott Olmstead,28.786,5,0
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0826.wav,826,White-breasted Wood-Wren,XC,Olaf Jahn,29.578,5,1
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0827.wav,827,White-breasted Wood-Wren,XC,Diego Calderon-F.,17.286,3,2
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0828.wav,828,White-breasted Wood-Wren,XC,Carlos Funes,10.034,2,3
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0829.wav,829,White-breasted Wood-Wren,iNat,Mattis Hernández,14.232,2,4
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0830.wav,830,White-breasted Wood-Wren,XC,Mauricio Álvarez-Rebolledo,18.26,3,0
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0831.wav,831,White-breasted Wood-Wren,XC,Kent Livezey,164.034,32,1
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0832.wav,832,White-breasted Wood-Wren,XC,Olaf Jahn,15.434,3,2
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0833.wav,833,White-breasted Wood-Wren,XC,Mauricio Álvarez-Rebolledo (Colección de Sonidos Ambientales - Instituto Humboldt),17.458,3,3
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0834.wav,834,White-breasted Wood-Wren,XC,Sander Bot,11.838,2,4
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0835.wav,835,White-breasted Wood-Wren,XC,Camilo E. Sánchez Sarria,32.058,6,0
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0836.wav,836,White-breasted Wood-Wren,iNat,J. Mortensen,10.406,2,1
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0837.wav,837,White-breasted Wood-Wren,XC,Niels Krabbe,51.898,10,2
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0838.wav,838,White-breasted Wood-Wren,XC,Oscar Ramírez Alán,27.99,5,3
+wbwwre1,/scratch/pdoshi/audio_comp/birdclef_audio/wbwwre1_0839.wav,839,White-breasted Wood-Wren,XC,John V. Moore,27.014,5,4
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0840.wav,840,White-bearded Manakin,XC,JAYRSON ARAUJO DE OLIVEIRA,26.234,5,0
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0841.wav,841,White-bearded Manakin,XC,Andres Angulo,125.712,25,1
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0842.wav,842,White-bearded Manakin,XC,JAYRSON ARAUJO DE OLIVEIRA,1.048,1,2
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0843.wav,843,White-bearded Manakin,XC,Bernabe Lopez-Lanus,3.498,1,3
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0844.wav,844,White-bearded Manakin,XC,JAYRSON ARAUJO DE OLIVEIRA,4.554,1,4
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0845.wav,845,White-bearded Manakin,XC,Niels Krabbe,42.898,8,0
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0846.wav,846,White-bearded Manakin,XC,Dante Buzzetti,132.258,26,1
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0847.wav,847,White-bearded Manakin,XC,Caio Brito,67.298,13,2
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0848.wav,848,White-bearded Manakin,XC,Ricardo Gagliardi,81.206,16,3
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0849.wav,849,White-bearded Manakin,XC,JAYRSON ARAUJO DE OLIVEIRA,50.182,10,4
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0850.wav,850,White-bearded Manakin,XC,JAYRSON ARAUJO DE OLIVEIRA,23.876,4,0
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0851.wav,851,White-bearded Manakin,XC,Dante Buzzetti,171.674,34,1
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0852.wav,852,White-bearded Manakin,XC,Rodrigo Dela Rosa de Souza,31.954,6,2
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0853.wav,853,White-bearded Manakin,XC,GABRIEL LEITE,20.046,4,3
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0854.wav,854,White-bearded Manakin,XC,Patricio Mena Valenzuela,21.37,4,4
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0855.wav,855,White-bearded Manakin,XC,Niels Krabbe,17.926,3,0
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0856.wav,856,White-bearded Manakin,XC,Ross Gallardy,10.47,2,1
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0857.wav,857,White-bearded Manakin,XC,Douglas Meyer,31.97,6,2
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0858.wav,858,White-bearded Manakin,XC,John V. Moore,37.054,7,3
+whbman1,/scratch/pdoshi/audio_comp/birdclef_audio/whbman1_0859.wav,859,White-bearded Manakin,XC,Jerome Fischer,3.314,1,4
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0860.wav,860,White-tipped Dove,XC,Franco Vushurovich,238.63,47,0
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0861.wav,861,White-tipped Dove,iNat,Eduardo Luis Beltrocco,43.586,8,1
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0862.wav,862,White-tipped Dove,iNat,Christopher Rustay,14.078,2,2
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0863.wav,863,White-tipped Dove,iNat,Unknown,25.794,5,3
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0864.wav,864,White-tipped Dove,XC,Jeremy Minns,43.778,8,4
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0865.wav,865,White-tipped Dove,iNat,Unknown,25.104,5,0
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0866.wav,866,White-tipped Dove,iNat,Efraín Octavio Aguilar Pérez,17.114,3,1
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0867.wav,867,White-tipped Dove,XC,Ricardo Gagliardi,26.418,5,2
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0868.wav,868,White-tipped Dove,XC,steve,19.008,3,3
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0869.wav,869,White-tipped Dove,iNat,Carlos Domínguez-Rodríguez,10.58,2,4
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0870.wav,870,White-tipped Dove,XC,Richard E. Webster,106.554,21,0
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0871.wav,871,White-tipped Dove,XC,JAYRSON ARAUJO DE OLIVEIRA,16.406,3,1
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0872.wav,872,White-tipped Dove,XC,Francisco Sornoza,75.042,15,2
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0873.wav,873,White-tipped Dove,XC,Mike Nelson,17.244,3,3
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0874.wav,874,White-tipped Dove,XC,Niels Krabbe,30.674,6,4
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0875.wav,875,White-tipped Dove,XC,Mario Reyes Jr,28.032,5,0
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0876.wav,876,White-tipped Dove,XC,JAYRSON ARAUJO DE OLIVEIRA,36.526,7,1
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0877.wav,877,White-tipped Dove,XC,Oscar Humberto Marin-Gomez,45.702,9,2
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0878.wav,878,White-tipped Dove,iNat,Leonardo Adrián LEIVA,34.898,6,3
+whtdov,/scratch/pdoshi/audio_comp/birdclef_audio/whtdov_0879.wav,879,White-tipped Dove,XC,Fernando Igor de Godoy,36.534,7,4
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0880.wav,880,Yellow-bellied Elaenia,XC,Nicole Alfaro Ponce,70.954,14,0
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0881.wav,881,Yellow-bellied Elaenia,XC,Jeremy Minns,9.586,1,1
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0882.wav,882,Yellow-bellied Elaenia,iNat,Gustavo Gonsioroski,11.506,2,2
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0883.wav,883,Yellow-bellied Elaenia,XC,Bernabe Lopez-Lanus,4.118,1,3
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0884.wav,884,Yellow-bellied Elaenia,XC,Ciro Albano,37.694,7,4
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0885.wav,885,Yellow-bellied Elaenia,XC,John V. Moore,8.786,1,0
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0886.wav,886,Yellow-bellied Elaenia,XC,Caio Brito,45.582,9,1
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0887.wav,887,Yellow-bellied Elaenia,XC,J. Alejandro Giraldo-Camacho,6.018,1,2
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0888.wav,888,Yellow-bellied Elaenia,XC,Mike Nelson,42.242,8,3
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0889.wav,889,Yellow-bellied Elaenia,XC,JAYRSON ARAUJO DE OLIVEIRA,1.802,1,4
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0890.wav,890,Yellow-bellied Elaenia,XC,JAYRSON ARAUJO DE OLIVEIRA,1.542,1,0
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0891.wav,891,Yellow-bellied Elaenia,XC,JAYRSON ARAUJO DE OLIVEIRA,7.394,1,1
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0892.wav,892,Yellow-bellied Elaenia,XC,Oscar H. Marín-Gómez,10.106,2,2
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0893.wav,893,Yellow-bellied Elaenia,XC,Daniel Lane,30.066,6,3
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0894.wav,894,Yellow-bellied Elaenia,XC,JAYRSON ARAUJO DE OLIVEIRA,8.674,1,4
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0895.wav,895,Yellow-bellied Elaenia,XC,Antonio Silveira,20.69,4,0
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0896.wav,896,Yellow-bellied Elaenia,XC,Roney Assis Souza,40.302,8,1
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0897.wav,897,Yellow-bellied Elaenia,XC,Marcelo da Rocha,25.434,5,2
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0898.wav,898,Yellow-bellied Elaenia,iNat,Unknown,23.442,4,3
+yebela1,/scratch/pdoshi/audio_comp/birdclef_audio/yebela1_0899.wav,899,Yellow-bellied Elaenia,XC,John V. Moore,10.194,2,4
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0900.wav,900,Yellow-breasted Flycatcher,XC,Eduardo D. Schultz,28.712,5,0
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0901.wav,901,Yellow-breasted Flycatcher,XC,Dante Buzzetti,46.404,9,1
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0902.wav,902,Yellow-breasted Flycatcher,XC,Kent Livezey,11.154,2,2
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0903.wav,903,Yellow-breasted Flycatcher,XC,Ricardo Gagliardi,96.746,19,3
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0904.wav,904,Yellow-breasted Flycatcher,XC,Ricardo José Mitidieri,44.406,8,4
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0905.wav,905,Yellow-breasted Flycatcher,XC,Jacob Wijpkema,5.618,1,0
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0906.wav,906,Yellow-breasted Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,8.464,1,1
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0907.wav,907,Yellow-breasted Flycatcher,XC,Roney Souza,17.298,3,2
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0908.wav,908,Yellow-breasted Flycatcher,XC,Manuel Sanchez,130.722,26,3
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0909.wav,909,Yellow-breasted Flycatcher,XC,Fernando Igor de Godoy,12.542,2,4
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0910.wav,910,Yellow-breasted Flycatcher,XC,Jeremy Minns,76.694,15,0
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0911.wav,911,Yellow-breasted Flycatcher,XC,Andrew Spencer,61.446,12,1
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0912.wav,912,Yellow-breasted Flycatcher,XC,Ricardo Gagliardi,25.864,5,2
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0913.wav,913,Yellow-breasted Flycatcher,XC,Daniel Lane,45.834,9,3
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0914.wav,914,Yellow-breasted Flycatcher,XC,Oswaldo Cortes,23.094,4,4
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0915.wav,915,Yellow-breasted Flycatcher,XC,Todd Mark,19.706,3,0
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0916.wav,916,Yellow-breasted Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,15.102,3,1
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0917.wav,917,Yellow-breasted Flycatcher,iNat,Yby Naturalista,2.732,1,2
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0918.wav,918,Yellow-breasted Flycatcher,XC,Oscar Humberto Marín Gómez &amp; Luis Hernán Carrasco Guanay,106.518,21,3
+yebfly1,/scratch/pdoshi/audio_comp/birdclef_audio/yebfly1_0919.wav,919,Yellow-breasted Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,11.286,2,4
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0920.wav,920,Yellow-chinned Spinetail,XC,JAYRSON ARAUJO DE OLIVEIRA,87.122,17,0
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0921.wav,921,Yellow-chinned Spinetail,XC,João Antônio de B. Vitto,26.874,5,1
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0922.wav,922,Yellow-chinned Spinetail,XC,Caio Brito,7.466,1,2
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0923.wav,923,Yellow-chinned Spinetail,XC,Pedro Rinaldi,9.198,1,3
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0924.wav,924,Yellow-chinned Spinetail,XC,Daniel Lane,13.742,2,4
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0925.wav,925,Yellow-chinned Spinetail,XC,JAYRSON ARAUJO DE OLIVEIRA,26.15,5,0
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0926.wav,926,Yellow-chinned Spinetail,XC,Ricardo Gagliardi,72.174,14,1
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0927.wav,927,Yellow-chinned Spinetail,XC,Dante Buzzetti,62.468,12,2
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0928.wav,928,Yellow-chinned Spinetail,XC,Dante Buzzetti,34.076,6,3
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0929.wav,929,Yellow-chinned Spinetail,iNat,Pablo H Capovilla,26.076,5,4
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0930.wav,930,Yellow-chinned Spinetail,XC,Dante Buzzetti,7.108,1,0
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0931.wav,931,Yellow-chinned Spinetail,XC,Tulio Dornas,4.278,1,1
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0932.wav,932,Yellow-chinned Spinetail,iNat,Eduardo Luis Beltrocco,35.63,7,2
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0933.wav,933,Yellow-chinned Spinetail,XC,Dante Buzzetti,23.19,4,3
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0934.wav,934,Yellow-chinned Spinetail,XC,Barry Edmonston,50.548,10,4
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0935.wav,935,Yellow-chinned Spinetail,XC,Dante Buzzetti,36.678,7,0
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0936.wav,936,Yellow-chinned Spinetail,iNat,Sebastián,21.9,4,1
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0937.wav,937,Yellow-chinned Spinetail,XC,Robson Silva e Silva,12.126,2,2
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0938.wav,938,Yellow-chinned Spinetail,XC,JAYRSON ARAUJO DE OLIVEIRA,30.826,6,3
+yecspi2,/scratch/pdoshi/audio_comp/birdclef_audio/yecspi2_0939.wav,939,Yellow-chinned Spinetail,iNat,Gonzalo Diaz,39.102,7,4
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0940.wav,940,Yellow-headed Caracara,XC,Bernabe Lopez-Lanus,3.102,1,0
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0941.wav,941,Yellow-headed Caracara,XC,Andres Angulo ,48.098,9,1
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0942.wav,942,Yellow-headed Caracara,XC,Sebastián González,9.026,1,2
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0943.wav,943,Yellow-headed Caracara,XC,Bernabe Lopez-Lanus,15.054,3,3
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0944.wav,944,Yellow-headed Caracara,XC,Tulio Dornas,4.734,1,4
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0945.wav,945,Yellow-headed Caracara,XC,Odirlei Vieira da Fonseca,28.534,5,0
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0946.wav,946,Yellow-headed Caracara,XC,Marco Manhães,65.938,13,1
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0947.wav,947,Yellow-headed Caracara,XC,Cristian Rodas,7.058,1,2
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0948.wav,948,Yellow-headed Caracara,XC,Mauricio Álvarez Rebolledo (Colección de Sonidos Ambientales - Instituto Humboldt),12.096,2,3
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0949.wav,949,Yellow-headed Caracara,iNat,Angela,33.886,6,4
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0950.wav,950,Yellow-headed Caracara,XC,Fabricio Gorleri,41.086,8,0
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0951.wav,951,Yellow-headed Caracara,XC,Richard E. Webster,33.57,6,1
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0952.wav,952,Yellow-headed Caracara,XC,Keith Blomerley,24.088,4,2
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0953.wav,953,Yellow-headed Caracara,XC,Nick Komar,3.402,1,3
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0954.wav,954,Yellow-headed Caracara,XC,Urias Edgardo Gonzalez Carreño,40.042,8,4
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0955.wav,955,Yellow-headed Caracara,XC,Mauricio Álvarez Rebolledo (Colección de Sonidos Ambientales - Instituto Humboldt),118.338,23,0
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0956.wav,956,Yellow-headed Caracara,XC,Oswaldo Cortes,26.83,5,1
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0957.wav,957,Yellow-headed Caracara,XC,Jerome Fischer,5.002,1,2
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0958.wav,958,Yellow-headed Caracara,XC,Joe Klaiber,25.302,5,3
+yehcar1,/scratch/pdoshi/audio_comp/birdclef_audio/yehcar1_0959.wav,959,Yellow-headed Caracara,XC,Bernabe Lopez-Lanus,65.49,13,4
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0960.wav,960,Yellow-olive Flycatcher,XC,Dan Lane,120.322,24,0
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0961.wav,961,Yellow-olive Flycatcher,XC,Aves del NEA,30.226,6,1
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0962.wav,962,Yellow-olive Flycatcher,XC,Oswaldo Cortes,7.694,1,2
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0963.wav,963,Yellow-olive Flycatcher,XC,Mateus Gonçalves Santos,56.47,11,3
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0964.wav,964,Yellow-olive Flycatcher,XC,Paul Driver,5.646,1,4
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0965.wav,965,Yellow-olive Flycatcher,iNat,Unknown,16.038,3,0
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0966.wav,966,Yellow-olive Flycatcher,XC,Caio Brito,36.294,7,1
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0967.wav,967,Yellow-olive Flycatcher,XC,Antonio de Almeida Correia Junior,5.146,1,2
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0968.wav,968,Yellow-olive Flycatcher,XC,Rosendo Manuel Fraga,78.962,15,3
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0969.wav,969,Yellow-olive Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,35.634,7,4
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0970.wav,970,Yellow-olive Flycatcher,XC,Dante Buzzetti,47.298,9,0
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0971.wav,971,Yellow-olive Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,5.25,1,1
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0972.wav,972,Yellow-olive Flycatcher,XC,Dan Lane,62.958,12,2
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0973.wav,973,Yellow-olive Flycatcher,XC,GABRIEL LEITE,40.238,8,3
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0974.wav,974,Yellow-olive Flycatcher,XC,Bernabe Lopez-Lanus,6.514,1,4
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0975.wav,975,Yellow-olive Flycatcher,XC,Caio Brito,34.042,6,0
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0976.wav,976,Yellow-olive Flycatcher,XC,JAYRSON ARAUJO DE OLIVEIRA,18.738,3,1
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0977.wav,977,Yellow-olive Flycatcher,XC,Jeremy Minns,27.17,5,2
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0978.wav,978,Yellow-olive Flycatcher,XC,Manuel Grosselet,17.566,3,3
+yeofly1,/scratch/pdoshi/audio_comp/birdclef_audio/yeofly1_0979.wav,979,Yellow-olive Flycatcher,XC,Ross Gallardy,49.998,9,4
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0980.wav,980,Yellow-rumped Cacique,XC,Jeremy Minns,38.762,7,0
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0981.wav,981,Yellow-rumped Cacique,XC,Niels Krabbe,44.57,8,1
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0982.wav,982,Yellow-rumped Cacique,XC,Leonardo Ordóñez-Delgado,133.062,26,2
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0983.wav,983,Yellow-rumped Cacique,XC,Antonio Silveira,15.338,3,3
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0984.wav,984,Yellow-rumped Cacique,XC,Oscar Humberto Marín Gómez,64.61,12,4
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0985.wav,985,Yellow-rumped Cacique,XC,Caio Brito,98.078,19,0
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0986.wav,986,Yellow-rumped Cacique,iNat,Unknown,3.0,1,1
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0987.wav,987,Yellow-rumped Cacique,XC,Brice de la Croix,28.138,5,2
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0988.wav,988,Yellow-rumped Cacique,XC,Bobby Wilcox,69.96,13,3
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0989.wav,989,Yellow-rumped Cacique,XC,Danny Zapata-Henao,28.292,5,4
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0990.wav,990,Yellow-rumped Cacique,XC,Urias Edgardo Gonzalez Carreño,90.202,18,0
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0991.wav,991,Yellow-rumped Cacique,XC,JAYRSON ARAUJO DE OLIVEIRA,65.832,13,1
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0992.wav,992,Yellow-rumped Cacique,XC,Myornis,63.482,12,2
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0993.wav,993,Yellow-rumped Cacique,XC,Susan Hochgraf,22.56,4,3
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0994.wav,994,Yellow-rumped Cacique,XC,JAYRSON ARAUJO DE OLIVEIRA,9.51,1,4
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0995.wav,995,Yellow-rumped Cacique,XC,Allen T. Chartier,15.294,3,0
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0996.wav,996,Yellow-rumped Cacique,XC,Cristopher Rodriguez-Moreira,14.202,2,1
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0997.wav,997,Yellow-rumped Cacique,XC,GABRIEL LEITE,13.75,2,2
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0998.wav,998,Yellow-rumped Cacique,XC,Oswaldo Cortes,12.49,2,3
+yercac1,/scratch/pdoshi/audio_comp/birdclef_audio/yercac1_0999.wav,999,Yellow-rumped Cacique,XC,JAYRSON ARAUJO DE OLIVEIRA,10.302,2,4

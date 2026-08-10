@@ -20,6 +20,7 @@ class MertEncoder(BaseAudioEncoder):
         paradigm="masked modeling (music)",
         license="CC-BY-NC-4.0",
         expected_sample_rate=24000,
+        checkpoint_status="official_open_weights",
     )
 
     def load(self) -> None:

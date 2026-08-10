@@ -21,6 +21,7 @@ class Wav2Vec2Encoder(BaseAudioEncoder):
         paradigm="masked modeling (speech)",
         license="Apache-2.0",
         expected_sample_rate=16000,
+        checkpoint_status="official_open_weights",
     )
 
     def load(self) -> None:
