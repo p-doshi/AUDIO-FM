@@ -14,3 +14,9 @@ musicfm,UrbanSound 8k,0.798797,0.586673,False
 music2vec,Free Music Archive Small,0.521143,0.387429,False
 music2vec,LibriSpeech-100h,0.019876,0.0,False
 music2vec,UrbanSound 8k,0.601011,0.359774,False
+wav2vec2,Free Music Archive Small,0.184932,0.151826,False
+wav2vec2,LibriSpeech-100h,0.0,0.0,False
+wav2vec2,UrbanSound 8k,0.226029,0.077893,False
+mert,Free Music Archive Small,0.569635,0.359589,False
+mert,LibriSpeech-100h,0.0,0.0,False
+mert,UrbanSound 8k,0.773721,0.479862,False
