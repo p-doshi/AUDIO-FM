@@ -2,3 +2,15 @@ model,task,mlp_score,knn_score,private
 hubert,Free Music Archive Small,0.481735,0.243151,False
 hubert,LibriSpeech-100h,0.855371,0.0,False
 hubert,UrbanSound 8k,0.681657,0.321992,False
+clap,Free Music Archive Small,0.686857,0.636571,False
+clap,LibriSpeech-100h,0.0,0.0,False
+clap,UrbanSound 8k,0.887562,0.853946,False
+audio_jepa,Free Music Archive Small,0.552,0.435429,False
+audio_jepa,LibriSpeech-100h,0.0,0.0,False
+audio_jepa,UrbanSound 8k,0.556158,0.331413,False
+musicfm,Free Music Archive Small,0.614857,0.496,False
+musicfm,LibriSpeech-100h,0.0,0.0,False
+musicfm,UrbanSound 8k,0.798797,0.586673,False
+music2vec,Free Music Archive Small,0.521143,0.387429,False
+music2vec,LibriSpeech-100h,0.019876,0.0,False
+music2vec,UrbanSound 8k,0.601011,0.359774,False

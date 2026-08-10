@@ -3,7 +3,7 @@
 #SBATCH --gres=gpu:nvidia_h100_80gb_hbm3_3g.40gb:1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=32G
-#SBATCH --time=04:00:00
+#SBATCH --time=06:00:00
 #SBATCH --job-name=xares_eval
 #SBATCH --output=/scratch/pdoshi/audio_comp/slurm_logs/%x-%j.out
 #
