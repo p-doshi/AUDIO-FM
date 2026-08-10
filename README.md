@@ -76,12 +76,16 @@ python -m audio_comp.pipelines.compare_models \
 ```bash
 # gcc + arrow must be loaded BEFORE the venv is activated (Compute Canada's
 # pyarrow — a `datasets` dependency — is provided by the system module, not pip;
-# pip install -e . fails with a clear "load the Arrow module first" error otherwise)
+# a plain `pip install pyarrow` fails with a clear "load the Arrow module first" error otherwise)
 module load python/3.11 cuda/12.6 gcc arrow/25.0.0
-python -m venv ~/audio-comp-venv
-source ~/audio-comp-venv/bin/activate
+python -m venv "$SCRATCH/audio-comp-venv"   # $HOME, not just quota-limited but had a real storage
+                                              # incident (2026-08-10 journal entry) — venv lives on $SCRATCH
+source "$SCRATCH/audio-comp-venv/bin/activate"
 pip install --no-index torch torchaudio torchvision   # Compute Canada wheelhouse
-pip install -e .                                        # everything else, from pyproject.toml
+pip install transformers huggingface_hub datasets torchcodec librosa soundfile \
+    scipy scikit-learn scikit-dimension einops pyyaml matplotlib pytest "xares[examples]"
+export PYTHONPATH="$HOME/audio_comp:${PYTHONPATH:-}"   # audio_comp/xares_eval aren't pip-installed,
+                                                          # just importable via PYTHONPATH — see below
 huggingface-cli login                                   # caches your HF token; never paste it into chat
 ```
 
@@ -90,6 +94,18 @@ time too, not just at install time — every shell that runs this code (Slurm
 jobs, interactive use, `build_probe_set.py`) needs
 `module load python/3.11 cuda/12.6 gcc arrow/25.0.0` loaded before activating
 the venv. `scripts/slurm/extract_embeddings.sbatch` already does this.
+
+Neither `audio_comp` nor `xares_eval` are `pip install -e .`'d — both are
+plain `PYTHONPATH`-relative packages instead. This was originally just true
+for `xares_eval` (its CLI loader needs paths relative to CWD, incompatible
+with a normal install); `audio_comp` joined it after `$HOME` had a storage
+incident that made `pip install -e .`'s wheel-build step for our own package
+unreliable (repeated `Cannot send after transport endpoint shutdown` errors
+on the same file, eventually traced to one specific corrupted inode — see
+the 2026-08-10 journal entry). `export PYTHONPATH="$HOME/audio_comp"` (from
+the repo root, so `python -m audio_comp.pipelines...` and
+`python -m xares_eval.encoders...` both resolve) replaces the editable
+install everywhere — already wired into both sbatch scripts.
 
 `$SCRATCH/audio_comp/` (not this git repo) holds raw probe-set audio,
 downloaded checkpoints, and extracted embeddings — set `AUDIO_COMP_DATA_ROOT`
