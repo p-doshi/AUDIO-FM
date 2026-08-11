@@ -10,12 +10,21 @@ contrastively-trained model):
 The original paper defines "positive pairs" as augmented views of the
 same instance (from contrastive-learning setups where that pairing is
 given by construction). This project's probe set has no such augmented-
-view structure, so **alignment here is adapted to use same-category
-clips as the positive-pair proxy** (5 categories: music, speech,
-bird_sounds, ship_vessel, city_noise) — a reasonable stand-in for "should
-be close together" but not the literal original definition; state this
-plainly wherever these numbers are reported, don't imply they're the
-textbook metric unmodified.
+view structure. `alignment_score()` below uses same-category clips as a
+positive-pair proxy — a reasonable stand-in for "should be close
+together" but not the literal original definition. **That proxy turned
+out to have a real problem, found 2026-08-10**: alignment and uniformity
+came back perfectly rank-correlated (Spearman -1.0) across all 9 models
+tested, meaning the category proxy wasn't measuring anything independent
+of overall embedding-space dispersion — every same-category pair (e.g.
+every "ship" clip paired with every other "ship" clip) conflates "close
+because genuinely similar" with "close because same broad label."
+`alignment_score_paired()` fixes this using true instance-level positive
+pairs (original clip vs. a pitch-shifted augmented view of the *same*
+clip, built by `audio_comp/data/build_augmented_probe_subset.py`) — the
+literal original definition, not an adaptation. Prefer this one; the
+category-proxy version is kept for the historical comparison, not as
+the recommended metric going forward.
 
 Both metrics require L2-normalized (unit hypersphere) embeddings; this
 module normalizes internally, callers pass raw embeddings.
@@ -59,6 +68,20 @@ def alignment_score(embeddings: np.ndarray, labels: np.ndarray) -> float:
         total_sq_dist += mean_sq_dist * n_pairs
         total_pairs += n_pairs
     return total_sq_dist / total_pairs
+
+
+def alignment_score_paired(embeddings_a: np.ndarray, embeddings_b: np.ndarray) -> float:
+    """Mean squared L2 distance between true instance-level positive
+    pairs: embeddings_a[i] and embeddings_b[i] must be (original,
+    augmented-view) embeddings of the *same* underlying clip, same
+    ordering in both arrays. This is the literal Wang & Isola definition
+    (no category-proxy adaptation) -- prefer this over alignment_score()
+    when paired-augmentation embeddings are available."""
+    if embeddings_a.shape != embeddings_b.shape:
+        raise ValueError(f"shape mismatch: {embeddings_a.shape} vs {embeddings_b.shape}")
+    a, b = _l2_normalize(embeddings_a), _l2_normalize(embeddings_b)
+    sq_dists = np.sum((a - b) ** 2, axis=1)
+    return float(np.mean(sq_dists))
 
 
 def uniformity_score(

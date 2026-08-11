@@ -13,6 +13,16 @@
 # specific bioacoustic axes respectively, see CLAUDE.md). Both smoke-
 # tested on CPU with dummy + short (60ms) clips before being added here,
 # per the same discipline every prior model went through.
+#
+# `ast` and `audiomae` added 2026-08-10 (Stage 2 Tier 1, continued) —
+# supervised-transformer and reconstruction-target/general-domain axes
+# respectively. `audiomae` needed several narrow version-skew shims
+# (torch._six, a pinned timm==0.4.9, a bypassed-but-verified-safe
+# decoder path, np.float) — see audio_comp/models/audiomae.py's
+# docstring for the full, checked reasoning behind each one. Both
+# smoke-tested standalone on the shortest edge-case clip (60ms) per the
+# process fix logged 2026-08-10 (CLAUDE.md's Stage 2 gate), not just
+# inside a padded batch.
 
 active_models:
   - clap
@@ -24,6 +34,8 @@ active_models:
   - audio_jepa
   - panns_cnn14
   - bird_mae
+  - ast
+  - audiomae
 
 deferred_models:
   - beats
