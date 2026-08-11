@@ -263,7 +263,7 @@ result rather than forced into a false universal claim.
   if BirdNET numbers appear in any figure, so a reader doesn't assume
   uniform provenance-checking across every reported number.
 
-## 5. Stage 5 — OOD vessel fine-tuning (what would actually complete this paper)
+## 5. Stage 5 — OOD vessel fine-tuning
 
 Per CLAUDE.md's roadmap: matched lightweight adaptation (LoRA/small
 adapter) on a fixed-size OOD (vessel-acoustic) training slice; measure
@@ -271,36 +271,52 @@ adapted performance + few-shot learning curve; correlate against the
 frozen-geometry metrics above (breadth-cluster membership, TwoNN ID,
 alignment/uniformity). Two fine-tuning conditions (official-released vs.
 matched-protocol-across-all-models), only the matched condition used for
-the actual scientific comparison (already specified in CLAUDE.md, not
-re-derived here).
+the actual scientific comparison.
 
-**[OPEN — the actual open design question before starting]**: which result
-would most *complete* the paper, i.e. which correlation is most informative
-given what Findings 1-4 already established, rather than which is easiest
-to run first:
-- Does **breadth-cluster membership** (Finding 1) predict OOD vessel
-  adaptability? This is the most direct test of whether the geometry
-  question this whole project opened with actually matters for the
-  stated eventual application.
-- Does **discriminative-vs-reconstruction objective** (Finding 2) predict
-  adaptation speed/final accuracy on vessel data specifically? Given
-  Finding 2 was about *general-audio* fine-grained classification, does it
-  generalize to a genuinely OOD acoustic domain, or was it domain-bound
-  the way Finding 3 suggests domain match matters?
-- Does **alignment/uniformity** (Finding 4) predict OOD adaptability where
-  it predicts in-domain kNN — resolving whether Finding 4's scope-
-  dependence is about task type (in-domain classification vs. OOD
-  adaptation) rather than just model roster.
+### 5.1 v1 result (2026-08-11): matched LoRA underperforms frozen probing — a real, if negative, finding
 
-Given DeepShip's 63-clip subset is already extracted/embedded for the full
-roster (7 models) — the cheapest true Stage 5 preview is a small LoRA
-fine-tuning run on those 63 clips (or their vessel-file-level split) against
-the models already embedded, correlating adapted-accuracy against Finding 1's
-breadth-cluster membership specifically, since that's the single question
-most central to the project's own stated motivation. **Recommend starting
-there** rather than a from-scratch OOD dataset acquisition, given ShipsEar
-is still access-blocked and DeepShip's full 265-vessel set is likewise
-email-gated.
+- Ran the cheapest real preview first, per this draft's own earlier
+  recommendation: matched LoRA fine-tuning (`audio_comp/pipelines/
+  stage5_lora_finetune.py`) on DeepShip's 63-clip subset, 5 models
+  (wav2vec2, hubert, mert, music2vec, ast — scoped to models with
+  verified-identical LoRA target modules; `panns_cnn14` excluded
+  architecturally, pure CNN, no attention layer for a standard LoRA
+  target; rest of the roster not yet individually verified).
+- **Result**: adapted accuracy is *worse* than frozen-embedding linear
+  probing in every comparable case (mert -0.118, wav2vec2 -0.109,
+  music2vec -0.013, hubert -0.019 vs. their earlier frozen DeepShip MLP
+  scores), and rank-uncorrelated with frozen performance (spearman=0.000,
+  n=4). Corroborated by `wav2vec2`'s own 1-epoch smoke test (0.511)
+  beating its 10-epoch full-protocol result on the identical fold (0.367)
+  — more training made it worse, not better.
+- **Diagnosis: overfitting, not a real cross-model adaptability
+  difference.** 63 total clips, ~40/fold available for training, one
+  class (tug) with only 3 vessels in the whole dataset. This is a
+  reportable result on its own (matched lightweight adaptation doesn't
+  help at this data scale) but **not yet the geometry-vs-adaptability
+  correlation Stage 5 is ultimately for** — deliberately did not force
+  the planned breadth-cluster correlation on top of a signal already
+  known to be overfitting-dominated (would be noise regressed on noise,
+  not a real test of Finding 1).
+
+### 5.2 What v2 needs before the actual question is testable
+
+- Either (a) early stopping against a held-out validation slice or
+  stronger regularization (lower LoRA rank, higher dropout/weight decay),
+  or (b) more OOD data — which loops back to the still-open ShipsEar
+  access request and DeepShip's still-gated full 265-vessel set. (a) is
+  cheap and should be tried first; (b) is the actual bottleneck if (a)
+  doesn't fix it, since 63 clips may simply be below the floor for any
+  fine-tuning protocol to show a real, non-overfit adaptation signal.
+- Once a v2 protocol shows *some* real (non-overfit) adaptation signal,
+  the original three-way design question is still open and still the
+  right one to resolve, in priority order: does breadth-cluster
+  membership (Finding 1) predict OOD adaptability (most direct test of
+  the project's own motivating question); does the discriminative-vs-
+  reconstruction axis (Finding 2) generalize from general-audio
+  fine-grained classification to a genuinely OOD domain; does alignment/
+  uniformity (Finding 4) predict OOD adaptation where it predicts
+  in-domain kNN, separating task-type effects from model-roster effects.
 
 ## 6. Deliverables / Reproducibility checklist
 
@@ -314,7 +330,9 @@ email-gated.
 - [ ] BirdCLEF/DeepShip numbers for `birdnet` (needs a subprocess bridge
   from the PyTorch `xares_eval` venv into the isolated TF venv — scoped
   out of this session, real but bounded work)
-- [ ] Stage 5 OOD fine-tuning result (see §5)
+- [x] Stage 5 v1 result: matched LoRA underperforms frozen probing,
+  overfitting-diagnosed (see §5.1) — real result, not yet the
+  geometry-vs-adaptability correlation (see §5.2 for what v2 needs)
 - [ ] Figures: RSA heatmap with breadth-group annotation; MLP/KNN scatter
   by training objective; alignment/uniformity scope-dependence plot
 - [ ] Decision-rule outcome summary (CLAUDE.md Stage 1(c), still marked
