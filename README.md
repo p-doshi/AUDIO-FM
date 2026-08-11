@@ -84,7 +84,13 @@ source "$SCRATCH/audio-comp-venv/bin/activate"
 pip install --no-index torch torchaudio torchvision   # Compute Canada wheelhouse
 pip install transformers huggingface_hub datasets torchcodec librosa soundfile \
     scipy scikit-learn scikit-dimension einops pyyaml matplotlib pytest "xares[examples]" \
-    panns_inference torchlibrosa   # panns_cnn14 adapter; --no-deps not required, doesn't touch torch
+    panns_inference torchlibrosa gdown beautifulsoup4 filelock "timm==0.4.9"
+# panns_inference/torchlibrosa: panns_cnn14 adapter. gdown/beautifulsoup4/filelock:
+# audiomae adapter's Google Drive checkpoint download. timm PINNED to 0.4.9, not
+# latest -- audio_comp/models/audiomae.py's docstring has the full reasoning: a real
+# version-skew conflict between the ViT encoder's old qk_scale-era timm API and the
+# (unused, bypassed) decoder's newer Swin API; 0.4.9 is the only version tested that
+# has both symbols at once. None of these touch torch as a declared dependency.
 export PYTHONPATH="$HOME/audio_comp:${PYTHONPATH:-}"   # audio_comp/xares_eval aren't pip-installed,
                                                           # just importable via PYTHONPATH — see below
 huggingface-cli login                                   # caches your HF token; never paste it into chat
@@ -113,11 +119,12 @@ downloaded checkpoints, and extracted embeddings — set `AUDIO_COMP_DATA_ROOT`
 and `AUDIO_COMP_EXTERNAL` env vars to override the defaults
 (`~/audio_comp_data` and `~/audio_comp_external`).
 
-`musicfm`, `audio_jepa`, and `panns_cnn14` each need one extra one-time step before they'll load:
+`musicfm`, `audio_jepa`, `panns_cnn14`, and `audiomae` each need one extra one-time step before they'll load:
 ```bash
 bash scripts/setup_musicfm.sh
 bash scripts/setup_audio_jepa.sh
 bash scripts/setup_panns.sh
+bash scripts/setup_audiomae.sh
 ```
 and `music` category clips need:
 ```bash
@@ -142,6 +149,8 @@ Every model's `checkpoint_status` (`official_open_weights` /
 | Audio-JEPA (`ltuncay/Audio-JEPA`) | JEPA-family (general; **not** the original A-JEPA — see module docstring) | MIT | official_open_weights | active, needs `scripts/setup_audio_jepa.sh` |
 | PANNs Cnn14 (`qiuqiangkong/audioset_tagging_cnn`) | Supervised, pure-CNN (AudioSet tagging) | MIT | official_open_weights | active, needs `scripts/setup_panns.sh` |
 | Bird-MAE (`DBD-research-group/Bird-MAE-Base`) | Masked autoencoding, reconstruction-target (bioacoustic) | unstated — no LICENSE file, no HF card license field (checked 2026-08-10) | official_public_weights_license_unclear | active |
+| AST (`MIT/ast-finetuned-audioset-10-10-0.4593`) | Supervised, transformer (AudioSet tagging) | BSD-3-Clause | official_open_weights | active |
+| AudioMAE (`facebookresearch/AudioMAE`) | Masked autoencoding, reconstruction-target (general audio) | CC-BY-4.0 | official_open_weights | active, needs `scripts/setup_audiomae.sh` |
 | BEATs | Masked modeling (general audio) | MIT (repo-wide, no separate per-checkpoint statement — see module docstring) | official_open_weights | deferred, no native HF path (checkpoint availability is not the blocker) |
 
 The original paper's A-JEPA (Fei, Fan, Huang, arXiv 2311.15830) has no
