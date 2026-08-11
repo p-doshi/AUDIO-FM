@@ -44,22 +44,32 @@ DOMAIN_PARADIGM_GROUPS = {
     "jepa_general": ["audio_jepa"],
     "reconstruction_bioacoustic": ["bird_mae"],
     "supervised_cnn_general": ["panns_cnn14"],
+    "supervised_transformer_general": ["ast"],
+    "reconstruction_general": ["audiomae"],
 }
 
 # Training-distribution-breadth framing, per CLAUDE.md Stage 1(b)'s
-# original sketch, extended to the 2 models added 2026-08-10: panns_cnn14
-# trains on AudioSet (527 diverse everyday-sound classes spanning speech,
-# music, animals, vehicles, alarms -- genuinely broad content), so it
-# joins audio_jepa/clap in "broad_mixed". bird_mae trains exclusively on
-# BirdSet (bird vocalizations only) -- as narrow as hubert/wav2vec2's
-# speech-only or mert/musicfm's music-only corpora, just a third domain,
-# hence a new "narrow_bioacoustic" bucket rather than folding it into an
-# existing one.
+# original sketch, extended to the 4 models added 2026-08-10: panns_cnn14
+# and ast both train on AudioSet (527 diverse everyday-sound classes
+# spanning speech, music, animals, vehicles, alarms -- genuinely broad
+# content), so both join audio_jepa/clap in "broad_mixed". audiomae ALSO
+# trains on AudioSet (same breadth-of-DATA argument) -- included here on
+# the same principle, categorized by documented training-data breadth,
+# not by how well it happens to fit the RSA matrix; if it turns out to be
+# a poor fit for this group empirically (its RSA correlations with the
+# rest of broad_mixed are in fact much weaker than the other 4 members'
+# mutual correlations, ~0.3-0.5 vs ~0.55-0.84), that is itself honest
+# information about the limits of a pure data-breadth account, not a
+# reason to move it to a category invented to fit better. bird_mae trains
+# exclusively on BirdSet (bird vocalizations only) -- as narrow as
+# hubert/wav2vec2's speech-only or mert/musicfm's music-only corpora,
+# just a third domain, hence "narrow_bioacoustic" rather than folding it
+# into an existing one.
 BREADTH_GROUPS = {
     "narrow_speech": ["hubert", "wav2vec2"],
     "narrow_music": ["mert", "musicfm"],
     "narrow_bioacoustic": ["bird_mae"],
-    "broad_mixed": ["audio_jepa", "clap", "panns_cnn14"],
+    "broad_mixed": ["audio_jepa", "clap", "panns_cnn14", "ast", "audiomae"],
     "self_distillation_narrow_music": ["music2vec"],
 }
 
