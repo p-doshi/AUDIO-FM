@@ -46,6 +46,7 @@ DOMAIN_PARADIGM_GROUPS = {
     "supervised_cnn_general": ["panns_cnn14"],
     "supervised_transformer_general": ["ast"],
     "reconstruction_general": ["audiomae"],
+    "supervised_cnn_bioacoustic": ["birdnet"],
 }
 
 # Training-distribution-breadth framing, per CLAUDE.md Stage 1(b)'s
@@ -64,11 +65,20 @@ DOMAIN_PARADIGM_GROUPS = {
 # exclusively on BirdSet (bird vocalizations only) -- as narrow as
 # hubert/wav2vec2's speech-only or mert/musicfm's music-only corpora,
 # just a third domain, hence "narrow_bioacoustic" rather than folding it
-# into an existing one.
+# into an existing one. birdnet (added 2026-08-10) trains exclusively on
+# Macaulay Library/Xeno-canto bird recordings -- same narrow bioacoustic
+# domain as bird_mae, despite the two having opposite training
+# objectives (birdnet: discriminative/supervised; bird_mae: reconstruction)
+# -- breadth groups by DATA domain only, not objective, so both belong
+# in narrow_bioacoustic together; if their RSA correlation with each
+# other is notably weaker than same-domain same-objective pairs
+# elsewhere (e.g. hubert-wav2vec2), that would itself be evidence that
+# objective matters *within* a fixed domain, worth checking explicitly
+# once this result is in, not assumed either way beforehand.
 BREADTH_GROUPS = {
     "narrow_speech": ["hubert", "wav2vec2"],
     "narrow_music": ["mert", "musicfm"],
-    "narrow_bioacoustic": ["bird_mae"],
+    "narrow_bioacoustic": ["bird_mae", "birdnet"],
     "broad_mixed": ["audio_jepa", "clap", "panns_cnn14", "ast", "audiomae"],
     "self_distillation_narrow_music": ["music2vec"],
 }
