@@ -36,6 +36,13 @@ active_models:
   - bird_mae
   - ast
   - audiomae
+  - wavlm
+  - whisper
+  - data2vec_audio
+  - mms
+  - unispeech_sat
+  - sew
+  - wav2vec2_conformer
 
 deferred_models:
   - beats

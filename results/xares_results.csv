@@ -38,3 +38,48 @@ panns_cnn14,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.308439,0.133588,True
 bird_mae,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.345088,0.182585,True
 ast,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.394002,0.239392,True
 audiomae,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.167474,0.038848,True
+ast,"ShipsEar (vessel type A/B/D, real recordings only)",0.477404,0.399102,True
+audio_jepa,"ShipsEar (vessel type A/B/D, real recordings only)",0.459314,0.336705,True
+audiomae,"ShipsEar (vessel type A/B/D, real recordings only)",0.4345,0.320458,True
+bird_mae,"ShipsEar (vessel type A/B/D, real recordings only)",0.485767,0.420755,True
+clap,"ShipsEar (vessel type A/B/D, real recordings only)",0.429629,0.394134,True
+hubert,"ShipsEar (vessel type A/B/D, real recordings only)",0.418812,0.168547,True
+mert,"ShipsEar (vessel type A/B/D, real recordings only)",0.468908,0.331792,True
+music2vec,"ShipsEar (vessel type A/B/D, real recordings only)",0.393732,0.443127,True
+musicfm,"ShipsEar (vessel type A/B/D, real recordings only)",0.431259,0.254644,True
+panns_cnn14,"ShipsEar (vessel type A/B/D, real recordings only)",0.491722,0.207623,True
+wav2vec2,"ShipsEar (vessel type A/B/D, real recordings only)",0.126547,0.169768,True
+wav2vec2_conformer,Free Music Archive Small,0.460046,0.398402,False
+wav2vec2_conformer,LibriSpeech-100h,0.0,0.0,False
+wav2vec2_conformer,UrbanSound 8k,0.65634,0.521812,False
+mms,Free Music Archive Small,0.457763,0.18379,False
+mms,LibriSpeech-100h,0.0,0.0,False
+mms,UrbanSound 8k,0.689044,0.383026,False
+unispeech_sat,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.212675,0.080254,True
+sew,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.156836,0.065607,True
+wavlm,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.250798,0.066252,True
+whisper,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.174618,0.062171,True
+mms,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.18976,0.051442,True
+wav2vec2_conformer,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.215155,0.127302,True
+data2vec_audio,"BirdCLEF (50-species, mteb/birdclef25-mini)",0.089592,0.031573,True
+unispeech_sat,Free Music Archive Small,0.475429,0.229714,False
+unispeech_sat,LibriSpeech-100h,0.856189,0.0,False
+unispeech_sat,UrbanSound 8k,0.631422,0.377519,False
+bird_mae,Free Music Archive Small,0.582857,0.336,False
+bird_mae,LibriSpeech-100h,0.0,0.0,False
+bird_mae,UrbanSound 8k,0.84187,0.361663,False
+data2vec_audio,Free Music Archive Small,0.356571,0.158857,False
+data2vec_audio,LibriSpeech-100h,0.903701,0.0,False
+data2vec_audio,UrbanSound 8k,0.429405,0.162331,False
+sew,Free Music Archive Small,0.416,0.296,False
+sew,LibriSpeech-100h,0.0,0.0,False
+sew,UrbanSound 8k,0.544502,0.286208,False
+wavlm,Free Music Archive Small,0.510857,0.276571,False
+wavlm,LibriSpeech-100h,0.903492,0.0,False
+wavlm,UrbanSound 8k,0.65715,0.275532,False
+panns_cnn14,Free Music Archive Small,0.597714,0.593143,False
+panns_cnn14,LibriSpeech-100h,0.0,0.0,False
+panns_cnn14,UrbanSound 8k,0.856529,0.730059,False
+audiomae,Free Music Archive Small,0.532571,0.408,False
+audiomae,LibriSpeech-100h,0.0,0.0,False
+audiomae,UrbanSound 8k,0.731893,0.304396,False

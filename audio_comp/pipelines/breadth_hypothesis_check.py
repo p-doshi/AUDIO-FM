@@ -36,10 +36,26 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 # table / ModelInfo.paradigm fields through Stage 0 -- essentially every
 # model in its own paradigm+domain bucket except the two same-domain,
 # same-paradigm pairs.
+#
+# Extended 2026-08-13 for the 7 Tier 2 models added that day. wavlm/
+# unispeech_sat/sew/wav2vec2_conformer/mms all share wav2vec2/hubert's
+# core masked-prediction objective (unispeech_sat adds an auxiliary
+# speaker-aware loss, sew is an efficiency-architecture variant,
+# wav2vec2_conformer swaps the encoder block, mms is the same
+# architecture/objective at far larger training scale -- none of these
+# changes the fundamental paradigm bucket, so all five join
+# masked_modeling_speech). data2vec_audio is data2vec-family
+# (self-distillation, EMA teacher) like music2vec, but speech domain
+# instead of music -- gets its own "data2vec_speech" bucket, the
+# direct domain-paradigm-matched sibling of music2vec's "data2vec_music".
+# whisper is genuinely distinct from every existing bucket: encoder-
+# decoder trained with ASR (transcript) supervision, not masked-modeling,
+# not contrastive, not data2vec-style self-distillation -- own bucket.
 DOMAIN_PARADIGM_GROUPS = {
-    "masked_modeling_speech": ["hubert", "wav2vec2"],
+    "masked_modeling_speech": ["hubert", "wav2vec2", "wavlm", "unispeech_sat", "sew", "wav2vec2_conformer", "mms"],
     "masked_modeling_music": ["mert", "musicfm"],
     "data2vec_music": ["music2vec"],
+    "data2vec_speech": ["data2vec_audio"],
     "contrastive_general": ["clap"],
     "jepa_general": ["audio_jepa"],
     "reconstruction_bioacoustic": ["bird_mae"],
@@ -47,6 +63,7 @@ DOMAIN_PARADIGM_GROUPS = {
     "supervised_transformer_general": ["ast"],
     "reconstruction_general": ["audiomae"],
     "supervised_cnn_bioacoustic": ["birdnet"],
+    "supervised_asr_speech": ["whisper"],
 }
 
 # Training-distribution-breadth framing, per CLAUDE.md Stage 1(b)'s
@@ -75,11 +92,35 @@ DOMAIN_PARADIGM_GROUPS = {
 # elsewhere (e.g. hubert-wav2vec2), that would itself be evidence that
 # objective matters *within* a fixed domain, worth checking explicitly
 # once this result is in, not assumed either way beforehand.
+# Extended 2026-08-13 for the 7 Tier 2 models. wavlm/data2vec_audio/
+# unispeech_sat/sew/wav2vec2_conformer all train on a single narrow
+# speech corpus (960h LibriSpeech, same as plain wav2vec2/hubert) --
+# breadth groups by DATA distribution, not paradigm, so all five join
+# narrow_speech regardless of their differing objectives/architectures.
+#
+# mms and whisper do NOT join narrow_speech, despite being speech-only
+# in domain -- CLAUDE.md already flags MMS as "the most extreme
+# training-distribution-breadth data point in the roster by a wide
+# margin" (500k hours, 1400+ languages); putting it in narrow_speech
+# would directly contradict that. Whisper is similarly broad within
+# speech (680k hours, ~100 languages, diverse web-scraped conditions,
+# multiple tasks). Neither is domain-broad the way broad_mixed's
+# members are (speech+music+environmental all at once) -- they're
+# domain-narrow (speech only) but distribution-broad *within* that
+# domain, a genuinely different axis existing_groups didn't have a
+# bucket for. New "broad_speech" group, not folded into broad_mixed
+# (would conflate domain breadth with within-domain breadth) or
+# narrow_speech (would misrepresent the one property CLAUDE.md already
+# singled MMS out for). This also gives the breadth hypothesis a real
+# boundary-condition test it didn't have before: does broad_speech
+# behave more like narrow_speech (domain match) or broad_mixed
+# (breadth match)?
 BREADTH_GROUPS = {
-    "narrow_speech": ["hubert", "wav2vec2"],
+    "narrow_speech": ["hubert", "wav2vec2", "wavlm", "data2vec_audio", "unispeech_sat", "sew", "wav2vec2_conformer"],
     "narrow_music": ["mert", "musicfm"],
     "narrow_bioacoustic": ["bird_mae", "birdnet"],
     "broad_mixed": ["audio_jepa", "clap", "panns_cnn14", "ast", "audiomae"],
+    "broad_speech": ["mms", "whisper"],
     "self_distillation_narrow_music": ["music2vec"],
 }
 

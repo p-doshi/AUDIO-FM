@@ -39,3 +39,11 @@ env/
 # os/editor
 .DS_Store
 .ipynb_checkpoints/
+
+# CONFIDENTIAL — real labelled vessel-acoustic data (AIS-derived), added
+# 2026-08-11. Never commit, never push, never let this leave local disk.
+# Streaming-only access to the underlying audio (see
+# scripts/remote_stream.py); this directory holds only local label/index
+# CSVs and must be deleted once the confidential-data experiment is done
+# (per explicit user instruction — no exceptions, no "just this once").
+data/AIS/

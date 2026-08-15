@@ -121,8 +121,17 @@ def _pooler_output_forward(peft_model, **inputs):
     return peft_model(**inputs).pooler_output
 
 
-def build_model_and_head(model_name: str, device: str) -> tuple[nn.Module, callable, int, int]:
-    """Returns (trainable_module, forward_fn(module, inputs)->logits, sample_rate, embed_dim)."""
+def build_model_and_head(
+    model_name: str, device: str, num_classes: int = NUM_CLASSES
+) -> tuple[nn.Module, callable, int, int]:
+    """Returns (trainable_module, forward_fn(module, inputs)->logits, sample_rate, embed_dim).
+
+    forward_fn closes over trainable["head"] by reference (not a copy), so
+    callers needing a different num_classes than this module's own
+    DeepShip-specific default must pass it here rather than swapping
+    trainable["head"] after the fact -- the closure would keep using the
+    original head, silently ignoring the swap.
+    """
     adapter = get_model_class(model_name)(device=device)
     adapter.load()
 
@@ -134,25 +143,22 @@ def build_model_and_head(model_name: str, device: str) -> tuple[nn.Module, calla
         bias="none",
     )
     peft_model = get_peft_model(adapter._model, lora_config).to(device)
+    embed_dim = peft_model.config.hidden_size
+    trainable = nn.ModuleDict({"peft_model": peft_model, "head": nn.Linear(embed_dim, num_classes).to(device)})
 
     if model_name == "ast":
-        embed_dim = peft_model.config.hidden_size
-        head = nn.Linear(embed_dim, NUM_CLASSES).to(device)
 
         def forward_fn(inputs):
-            pooled = peft_model(**inputs).pooler_output
-            return head(pooled)
+            pooled = trainable["peft_model"](**inputs).pooler_output
+            return trainable["head"](pooled)
 
     else:
-        embed_dim = peft_model.config.hidden_size
-        head = nn.Linear(embed_dim, NUM_CLASSES).to(device)
 
         def forward_fn(inputs):
-            hidden = peft_model(**inputs).last_hidden_state
+            hidden = trainable["peft_model"](**inputs).last_hidden_state
             pooled = mean_pool(hidden)
-            return head(pooled)
+            return trainable["head"](pooled)
 
-    trainable = nn.ModuleDict({"peft_model": peft_model, "head": head})
     return trainable, forward_fn, adapter.info.expected_sample_rate, embed_dim, adapter
 
 

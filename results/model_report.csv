@@ -1,0 +1,20 @@
+name,category,training_objective,discriminative_bucket,input_representation,architecture_type,n_params,embed_dim,native_sample_rate_hz,hf_id,license,checkpoint_status
+ast,general,supervised_classification,discriminative,spectrogram,vision_transformer,86187264,768,16000,MIT/ast-finetuned-audioset-10-10-0.4593,BSD-3-Clause,official_open_weights
+audio_jepa,general,self_distillation_jepa,self_supervised,spectrogram,vision_transformer_jepa_predictor,85351680,768,32000,ltuncay/Audio-JEPA,MIT,official_open_weights
+audiomae,general,reconstruction_mae,self_supervised,spectrogram,vision_transformer_mae,111656448,768,16000,"facebookresearch/AudioMAE (Google Drive checkpoint, not HF-native)",CC-BY-4.0,official_open_weights
+bird_mae,bird_sounds,reconstruction_mae,self_supervised,spectrogram,vision_transformer_mae,85453056,768,32000,DBD-research-group/Bird-MAE-Base,"unstated — no LICENSE file in the GitHub repo, no license field on the HF card (checked 2026-08-10)",official_public_weights_license_unclear
+clap,general,contrastive,discriminative,spectrogram,swin_transformer_htsat,193913882,512,48000,laion/larger_clap_general,Apache-2.0,official_open_weights
+data2vec_audio,speech,self_distillation_data2vec,self_supervised,raw_waveform,transformer_encoder_cnn_frontend,93164288,768,16000,facebook/data2vec-audio-base,Apache-2.0,official_open_weights
+hubert,speech,masked_modeling,self_supervised,raw_waveform,transformer_encoder_cnn_frontend,315438720,1024,16000,facebook/hubert-large-ll60k,Apache-2.0,official_open_weights
+mert,music,masked_modeling,self_supervised,raw_waveform,transformer_encoder_cnn_frontend,315428992,1024,24000,m-a-p/MERT-v1-330M,CC-BY-NC-4.0,official_open_weights
+mms,speech,masked_modeling,self_supervised,raw_waveform,transformer_encoder_cnn_frontend,315438720,1024,16000,facebook/mms-300m,CC-BY-NC-4.0,official_open_weights
+music2vec,music,self_distillation_data2vec,self_supervised,raw_waveform,transformer_encoder_cnn_frontend,93164288,768,16000,m-a-p/music2vec-v1,CC-BY-NC-4.0,official_open_weights
+musicfm,music,masked_modeling_bestrq,self_supervised,spectrogram,conformer_encoder,328932480,1024,24000,minzwon/MusicFM,MIT,official_open_weights
+panns_cnn14,general,supervised_classification,discriminative,spectrogram,pure_cnn,81837071,2048,32000,"qiuqiangkong/audioset_tagging_cnn (Zenodo checkpoint, not HF-native)",MIT,official_open_weights
+sew,speech,masked_modeling,self_supervised,raw_waveform,transformer_encoder_cnn_frontend_squeezed,40708895,512,16000,asapp/sew-tiny-100k,Apache-2.0,official_open_weights
+unispeech_sat,speech,masked_modeling+speaker_aware,self_supervised,raw_waveform,transformer_encoder_cnn_frontend,94371712,768,16000,microsoft/unispeech-sat-base,CC BY-SA 3.0 Unported,official_open_weights
+wav2vec2,speech,masked_modeling,self_supervised,raw_waveform,transformer_encoder_cnn_frontend,315438720,1024,16000,facebook/wav2vec2-large-lv60,Apache-2.0,official_open_weights
+wav2vec2_conformer,speech,masked_modeling,self_supervised,raw_waveform,conformer_encoder_cnn_frontend,618559104,1024,16000,facebook/wav2vec2-conformer-rel-pos-large,Apache-2.0,official_open_weights
+wavlm,speech,masked_modeling,self_supervised,raw_waveform,transformer_encoder_cnn_frontend,94381936,768,16000,microsoft/wavlm-base-plus,CC BY-SA 3.0 Unported,official_open_weights
+whisper,speech,supervised_asr,supervised_asr,spectrogram,transformer_encoder_decoder_cnn_frontend,20590592,512,16000,openai/whisper-base,Apache-2.0,official_open_weights
+birdnet,bird_sounds,supervised_classification,discriminative,spectrogram,efficientnet_cnn,,,48000,"kahst/BirdNET-Analyzer (Zenodo v2.4, TFLite -- not HF-native)",CC BY-NC-SA 4.0 (weights); MIT (code),official_open_weights

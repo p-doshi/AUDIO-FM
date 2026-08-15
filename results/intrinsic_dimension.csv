@@ -5,9 +5,15 @@ audiomae,15.993
 bird_mae,14.348
 birdnet,17.873
 clap,12.314
+data2vec_audio,14.038
 hubert,17.286
 mert,11.525
+mms,12.751
 music2vec,21.523
 musicfm,15.410
 panns_cnn14,12.524
+sew,10.426
+unispeech_sat,16.436
 wav2vec2,11.493
+wav2vec2_conformer,18.542
+whisper,15.354
