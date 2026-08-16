@@ -43,6 +43,7 @@ active_models:
   - unispeech_sat
   - sew
   - wav2vec2_conformer
+  - encodecmae
 
 deferred_models:
   - beats

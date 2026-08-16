@@ -83,3 +83,24 @@ panns_cnn14,UrbanSound 8k,0.856529,0.730059,False
 audiomae,Free Music Archive Small,0.532571,0.408,False
 audiomae,LibriSpeech-100h,0.0,0.0,False
 audiomae,UrbanSound 8k,0.731893,0.304396,False
+ast,Free Music Archive Small,0.649543,0.621005,False
+ast,LibriSpeech-100h,0.0,0.0,False
+ast,UrbanSound 8k,0.880197,0.826197,False
+whisper,Free Music Archive Small,0.572571,0.403429,False
+whisper,LibriSpeech-100h,0.837721,0.0,False
+whisper,UrbanSound 8k,0.687384,0.212874,False
+wav2vec2_conformer,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.787729,0.70265,True
+mms,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.846307,0.791723,True
+musicfm,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.815732,0.672888,True
+wav2vec2,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.824328,0.725267,True
+unispeech_sat,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.814817,0.729521,True
+hubert,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.835696,0.620046,True
+data2vec_audio,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.825923,0.824613,True
+sew,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.845478,0.776807,True
+wavlm,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.821673,0.570213,True
+panns_cnn14,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.812074,0.671833,True
+audiomae,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.754499,0.66355,True
+bird_mae,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.784513,0.68447,True
+clap,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.73014,0.731439,True
+audio_jepa,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.859693,0.710872,True
+whisper,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.856712,0.673054,True
