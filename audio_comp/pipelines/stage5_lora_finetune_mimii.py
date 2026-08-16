@@ -1,11 +1,17 @@
 """Stage 5 MIMII extension: matched LoRA fine-tuning on MIMII (industrial
-machine anomaly detection), the same 5-model architecture-verified LoRA
-policy as `stage5_lora_finetune.py`'s DeepShip run, applied to a much
-larger, genuinely-never-trained-on OOD domain -- built specifically to
-test whether Stage 5 v1's diagnosed problem (overfitting on DeepShip's
-63-clip dataset, see journal.md 2026-08-11 and CLAUDE.md's Stage 5 v1
-entry) was a real cross-model adaptability signal drowned by tiny-data
-noise, or something else.
+machine anomaly detection), applied to a much larger, genuinely-never-
+trained-on OOD domain -- built specifically to test whether Stage 5 v1's
+diagnosed problem (overfitting on DeepShip's 63-clip dataset, see
+journal.md 2026-08-11 and CLAUDE.md's Stage 5 v1 entry) was a real
+cross-model adaptability signal drowned by tiny-data noise, or something
+else.
+
+**Extended 2026-08-16 from the original 5-model set to all 14 models
+covered by `lora_model_configs.py`'s shared LoRA wiring** (the original
+5-model DeepShip config plus data2vec_audio/mms/sew/unispeech_sat/wavlm/
+whisper/wav2vec2_conformer/bird_mae/clap -- see that module's docstring
+for the per-model target-module verification and the 5 models still
+excluded: panns_cnn14/audio_jepa/audiomae/musicfm/encodecmae).
 
 **Design choices, stated explicitly (CLAUDE.md's own convention):**
 - Binary classification (normal vs. abnormal), the dataset's own
@@ -31,14 +37,12 @@ noise, or something else.
   (~1,200 clips/fold) is ~30x DeepShip's (~42 clips/fold); fewer epochs
   needed to reach a comparable number of gradient steps, and the whole
   point of this run is to test whether *more real data* (not more
-  epochs) fixes v1's overfitting diagnosis. Matched across all 5 models
+  epochs) fixes v1's overfitting diagnosis. Matched across all models
   within this run, same as every other hyperparameter -- never blended
   with the DeepShip run's own epoch count as if they were one comparison.
-- Same LoRA config as DeepShip (`rank=8, alpha=16,
-  target_modules=["q_proj","v_proj"], dropout=0.05`) and the same
-  `SUPPORTED_MODELS` list, for the same reason DeepShip's run was scoped
-  there: these 5 models were the ones with directly-verified matching
-  attention submodule names (see stage5_lora_finetune.py's docstring).
+- Same LoRA config as DeepShip (`rank=8, alpha=16`, per-model
+  `target_modules`, `dropout=0.05`) via `lora_model_configs.py`'s shared
+  per-model wiring rather than a single hardcoded config.
 
 Usage:
     python -m audio_comp.pipelines.stage5_lora_finetune_mimii --model wav2vec2
@@ -53,10 +57,11 @@ import soundfile as sf
 import torch
 import torch.nn as nn
 
-from audio_comp.pipelines.stage5_lora_finetune import (
-    SUPPORTED_MODELS,
-    build_model_and_head,
-    prepare_inputs,
+from audio_comp.models import get_model_class
+from audio_comp.pipelines.lora_model_configs import (
+    LORA_SUPPORTED_MODELS as SUPPORTED_MODELS,
+    build_lora_model_and_head,
+    lora_prepare_inputs,
 )
 
 
@@ -74,6 +79,28 @@ MACHINE_TYPES = ["fan", "pump", "slider", "valve"]
 NUM_FOLDS = len(MACHINE_TYPES)
 NUM_CLASSES = 2
 MAX_PER_CLASS_PER_MACHINE = 200
+
+# All MIMII wavs are natively 16kHz (verified directly via sf.info(), not
+# assumed) -- this is the TRUE sample rate of the raw waveforms read by
+# _read_mono(), and must be passed to lora_prepare_inputs() as the
+# resample-FROM rate. **Real bug fixed 2026-08-16**: run_fold() used to
+# pass build_lora_model_and_head()'s returned `sample_rate` (the MODEL's
+# *expected* rate, e.g. 24000 for mert) as if it were this native rate --
+# for any model whose expected rate isn't 16000 (mert=24000), that made
+# resample() a silent no-op instead of an actual resample, feeding the
+# model pitch/speed-corrupted audio. Coincidentally harmless for the
+# other 4 original models (wav2vec2/hubert/music2vec/ast all expect
+# 16000 too), but a real, confirmed bug for mert and would have silently
+# affected any future model whose expected rate differs from 16000.
+# Discovered while extending this script to the full 14-model roster --
+# same-shaped bug also exists, unfixed, in stage5_lora_finetune.py's
+# DeepShip run (32kHz-native clips, every one of its 5 models expects
+# 16 or 24kHz) -- left alone there per explicit user direction (DeepShip
+# is being deprioritized in favor of the confidential vessel data, not
+# worth re-running), but the DeepShip Stage 5 v1 "matched LoRA
+# underperforms frozen probing" finding should be read with this
+# confound in mind, not purely as an overfitting result.
+MIMII_NATIVE_SAMPLE_RATE = 16000
 
 EPOCHS = 5
 LEARNING_RATE = 1e-4
@@ -110,8 +137,8 @@ def run_fold(model_name: str, test_machine: str, device: str) -> float:
     train_clips = [c for c in clips if c["machine"] != test_machine]
     test_clips = [c for c in clips if c["machine"] == test_machine]
 
-    trainable, forward_fn, sample_rate, embed_dim, adapter = build_model_and_head(
-        model_name, device, num_classes=NUM_CLASSES
+    trainable, forward_fn, sample_rate, embed_dim, adapter = build_lora_model_and_head(
+        model_name, device, NUM_CLASSES, get_model_class
     )
     optimizer = torch.optim.AdamW([p for p in trainable.parameters() if p.requires_grad], lr=LEARNING_RATE)
     criterion = nn.CrossEntropyLoss()
@@ -127,7 +154,7 @@ def run_fold(model_name: str, test_machine: str, device: str) -> float:
             waveforms = [_read_mono(c["path"]) for c in batch]
             labels = torch.tensor([c["label"] for c in batch], device=device)
 
-            inputs = prepare_inputs(adapter, model_name, waveforms, sample_rate, device)
+            inputs = lora_prepare_inputs(model_name, adapter, waveforms, MIMII_NATIVE_SAMPLE_RATE, device)
             logits = forward_fn(inputs)
             loss = criterion(logits, labels)
 
@@ -148,7 +175,7 @@ def run_fold(model_name: str, test_machine: str, device: str) -> float:
             batch = test_clips[start : start + BATCH_SIZE]
             waveforms = [_read_mono(c["path"]) for c in batch]
             labels = torch.tensor([c["label"] for c in batch], device=device)
-            inputs = prepare_inputs(adapter, model_name, waveforms, sample_rate, device)
+            inputs = lora_prepare_inputs(model_name, adapter, waveforms, MIMII_NATIVE_SAMPLE_RATE, device)
             logits = forward_fn(inputs)
             preds = logits.argmax(dim=-1)
             correct += (preds == labels).sum().item()
