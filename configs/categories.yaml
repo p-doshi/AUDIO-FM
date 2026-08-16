@@ -23,3 +23,5 @@ categories:
     source: ds3500
   city_noise:
     source: urbansound8k
+  machine_sounds:
+    source: mimii

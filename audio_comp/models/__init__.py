@@ -7,6 +7,7 @@ from . import (  # noqa: F401
     bird_mae,
     clap,
     data2vec_audio,
+    encodecmae,
     hubert,
     mert,
     mms,

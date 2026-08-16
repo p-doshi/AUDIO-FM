@@ -47,3 +47,4 @@ env/
 # CSVs and must be deleted once the confidential-data experiment is done
 # (per explicit user instruction — no exceptions, no "just this once").
 data/AIS/
+brain_rsa/auditory_brain_dnn/
