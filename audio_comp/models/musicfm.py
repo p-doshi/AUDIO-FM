@@ -40,6 +40,16 @@ class MusicFMEncoder(BaseAudioEncoder):
     # embedding layer (layer 12 is meant for fine-tuning, not frozen probing).
     layer_ix: int = 7
 
+    # Caught 2026-08-16 via the mandatory standalone-60ms-clip smoke test
+    # while wiring up a separate top-K-unfreeze fine-tuning path: a
+    # 960-sample (60ms @ 16kHz) clip crashes some internal conv/pool stage
+    # with "Padding size should be less than the corresponding input
+    # dimension" (needs >=1024 samples at 24kHz). Never hit in practice
+    # by this project's own probe-set/vessel clips (all long enough so
+    # far), but a real latent bug in the frozen path too -- same category
+    # as the audio_jepa/panns_cnn14 short-clip lessons.
+    MIN_SAFE_SAMPLES_S = 1.0
+
     def load(self) -> None:
         if not MUSICFM_REPO.exists():
             raise RuntimeError(
@@ -63,7 +73,8 @@ class MusicFMEncoder(BaseAudioEncoder):
 
     def embed_batch(self, waveforms: Sequence[np.ndarray], sample_rate: int) -> np.ndarray:
         resampled = [resample(w, sample_rate, self.info.expected_sample_rate) for w in waveforms]
-        max_len = max(len(w) for w in resampled)
+        min_samples = int(self.info.expected_sample_rate * self.MIN_SAFE_SAMPLES_S)
+        max_len = max(min_samples, max(len(w) for w in resampled))
         batch = np.stack([np.pad(w, (0, max_len - len(w))) for w in resampled]).astype(np.float32)
         wav = torch.from_numpy(batch).to(self.device)
         with torch.no_grad():
