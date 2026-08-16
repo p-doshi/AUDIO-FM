@@ -104,3 +104,6 @@ bird_mae,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB 
 clap,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.73014,0.731439,True
 audio_jepa,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.859693,0.710872,True
 whisper,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.856712,0.673054,True
+music2vec,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.78256,0.62985,True
+ast,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.814493,0.718913,True
+mert,"MIMII (industrial machine anomaly detection, normal vs. abnormal, 6dB tier)",0.789555,0.676809,True
