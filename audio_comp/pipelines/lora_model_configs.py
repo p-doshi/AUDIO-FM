@@ -96,12 +96,21 @@ def _whisper_prepare_inputs(adapter, waveforms, sample_rate, device):
     return {"input_features": inputs["input_features"].to(device)}
 
 
-def _whisper_forward(peft_model, inputs):
-    # peft_model here wraps adapter._model as a whole (WhisperModel); its
-    # .encoder submodule is where LoRA was injected and where the actual
-    # forward pass must go -- calling peft_model(**inputs) directly would
-    # invoke the full encoder-decoder, which this project never uses.
-    encoder_out = peft_model.base_model.model.encoder(inputs["input_features"])
+def _whisper_forward(model, inputs):
+    # For peft-wrapped LoRA, `model` is a PeftModel wrapping the original
+    # WhisperModel at `.base_model.model`; its `.encoder` submodule is
+    # where LoRA was injected and where the actual forward pass must go --
+    # calling model(**inputs) directly would invoke the full
+    # encoder-decoder, which this project never uses. For ALLoRA (no peft
+    # involved, module replacement happens directly on the raw model),
+    # `model` already IS the WhisperModel. Checking `hasattr(model,
+    # "base_model")` alone is NOT a reliable peft-vs-raw test: HF's own
+    # PreTrainedModel defines a `base_model` *property* too (returns self
+    # for a bare WhisperModel with no task head) -- caught via a real
+    # AttributeError during the ALLoRA smoke test, not assumed. Check for
+    # `peft_config` instead, an attribute only a real peft.PeftModel has.
+    whisper_model = model.base_model.model if hasattr(model, "peft_config") else model
+    encoder_out = whisper_model.encoder(inputs["input_features"])
     return mean_pool(encoder_out.last_hidden_state)
 
 
