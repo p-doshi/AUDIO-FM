@@ -14,6 +14,7 @@ from __future__ import annotations
 
 from typing import Callable
 
+import audioread.ffdec
 import numpy as np
 import soundfile as sf
 import torch
@@ -21,6 +22,7 @@ import torch.nn as nn
 
 from audio_comp.models import get_model_class
 from audio_comp.pipelines.lora_model_configs import build_lora_model_and_head, lora_prepare_inputs
+from audio_comp.pipelines.allora_model_configs import build_allora_model_and_head, allora_prepare_inputs
 
 EPOCHS = 8
 LEARNING_RATE = 1e-4
@@ -29,14 +31,58 @@ EARLY_STOP_PATIENCE = 3
 SEED = 0
 
 
+def _read_mp3_via_ffmpeg(path: str) -> np.ndarray:
+    """FMA-small ships .mp3 files, which libsndfile can't decode
+    (confirmed: real LibsndfileError). librosa.load()'s automatic
+    audioread dispatch was tried next and ALSO failed with
+    NoBackendError, despite `audioread.available_backends()` listing
+    FFmpegAudioFile as available AND a direct, manual
+    `audioread.ffdec.FFmpegAudioFile(path)` call succeeding cleanly in
+    isolation -- a real flakiness in audioread's own automatic backend
+    dispatch/probing logic, not an environment problem (confirmed via a
+    dedicated debug job before reaching for this workaround). Using the
+    working backend directly, bypassing librosa/audioread's dispatcher
+    entirely, rather than continuing to chase why the automatic path
+    fails when the manual path doesn't."""
+    with audioread.ffdec.FFmpegAudioFile(path) as f:
+        sr = f.samplerate
+        channels = f.channels
+        buf = b"".join(f)
+    pcm = np.frombuffer(buf, dtype=np.int16).astype(np.float32) / 32768.0
+    if channels > 1:
+        pcm = pcm.reshape(-1, channels).mean(axis=1)
+    return pcm
+
+
 def read_mono(path: str) -> np.ndarray:
+    if path.lower().endswith(".mp3"):
+        return _read_mp3_via_ffmpeg(path)
     waveform, _ = sf.read(path, dtype="float32")
     if waveform.ndim > 1:
         waveform = waveform.mean(axis=1)
     return waveform
 
 
-def train_and_eval_lora(
+def read_batch_skip_bad(clips: list[dict]) -> tuple[list[np.ndarray], list[dict]]:
+    """FMA-small ships a handful of genuinely corrupted mp3s (documented
+    upstream, e.g. 099134.mp3 -- audio_comp/data/sources/fma.py's own
+    probe-set loader already skips these the same way). Returns waveforms
+    alongside the SURVIVING clip dicts (not the original `clips` list) so
+    labels stay aligned with whichever waveforms actually decoded."""
+    waveforms, kept_clips = [], []
+    for c in clips:
+        try:
+            waveforms.append(read_mono(c["path"]))
+            kept_clips.append(c)
+        except Exception as e:
+            print(f"  WARNING: skipping undecodable clip {c['path']}: {repr(e)[:150]}", flush=True)
+    return waveforms, kept_clips
+
+
+def _train_and_eval_adapter(
+    method_tag: str,
+    build_fn: Callable,
+    prepare_inputs_fn: Callable,
     model_name: str,
     train_clips: list[dict],
     val_clips: list[dict],
@@ -44,16 +90,16 @@ def train_and_eval_lora(
     num_classes: int,
     native_sample_rate: int,
     device: str,
-    epochs: int = EPOCHS,
+    epochs: int,
 ) -> float:
-    """Each clip dict needs 'path' and 'label' keys. Returns test accuracy
-    from the best-val-accuracy epoch (early-stopped)."""
+    """Shared core for both train_and_eval_lora() and
+    train_and_eval_allora() -- identical training loop, only the model
+    builder and input-preparation functions differ (LoRA via peft vs.
+    ALLoRA via manual module replacement, see allora_model_configs.py)."""
     torch.manual_seed(SEED)
     np.random.seed(SEED)
 
-    trainable, forward_fn, _, embed_dim, adapter = build_lora_model_and_head(
-        model_name, device, num_classes, get_model_class
-    )
+    trainable, forward_fn, _, embed_dim, adapter = build_fn(model_name, device, num_classes, get_model_class)
     optimizer = torch.optim.AdamW([p for p in trainable.parameters() if p.requires_grad], lr=LEARNING_RATE)
     criterion = nn.CrossEntropyLoss()
 
@@ -63,9 +109,11 @@ def train_and_eval_lora(
         with torch.no_grad():
             for start in range(0, len(clips), BATCH_SIZE):
                 batch = clips[start : start + BATCH_SIZE]
-                waveforms = [read_mono(c["path"]) for c in batch]
+                waveforms, batch = read_batch_skip_bad(batch)
+                if not waveforms:
+                    continue
                 labels = torch.tensor([c["label"] for c in batch], device=device)
-                inputs = lora_prepare_inputs(model_name, adapter, waveforms, native_sample_rate, device)
+                inputs = prepare_inputs_fn(model_name, adapter, waveforms, native_sample_rate, device)
                 logits = forward_fn(inputs)
                 preds = logits.argmax(dim=-1)
                 correct += (preds == labels).sum().item()
@@ -83,9 +131,11 @@ def train_and_eval_lora(
         for start in range(0, len(order), BATCH_SIZE):
             batch_idx = order[start : start + BATCH_SIZE]
             batch = [train_clips[i] for i in batch_idx]
-            waveforms = [read_mono(c["path"]) for c in batch]
+            waveforms, batch = read_batch_skip_bad(batch)
+            if not waveforms:
+                continue
             labels = torch.tensor([c["label"] for c in batch], device=device)
-            inputs = lora_prepare_inputs(model_name, adapter, waveforms, native_sample_rate, device)
+            inputs = prepare_inputs_fn(model_name, adapter, waveforms, native_sample_rate, device)
             logits = forward_fn(inputs)
             loss = criterion(logits, labels)
             optimizer.zero_grad()
@@ -93,7 +143,7 @@ def train_and_eval_lora(
             optimizer.step()
             total_loss += loss.item() * len(batch)
         val_acc = run_epoch_eval(val_clips)
-        print(f"  [{model_name}] epoch {epoch + 1}/{epochs} loss={total_loss / len(train_clips):.4f} val_acc={val_acc:.4f}", flush=True)
+        print(f"  [{method_tag}:{model_name}] epoch {epoch + 1}/{epochs} loss={total_loss / len(train_clips):.4f} val_acc={val_acc:.4f}", flush=True)
 
         if val_acc > best_val_acc:
             best_val_acc = val_acc
@@ -104,11 +154,47 @@ def train_and_eval_lora(
         else:
             epochs_without_improvement += 1
             if epochs_without_improvement >= EARLY_STOP_PATIENCE:
-                print(f"  [{model_name}] early stopping at epoch {epoch + 1} (best val_acc={best_val_acc:.4f})")
+                print(f"  [{method_tag}:{model_name}] early stopping at epoch {epoch + 1} (best val_acc={best_val_acc:.4f})")
                 break
 
     trainable.load_state_dict({k: v.to(device) for k, v in best_state.items()}, strict=False)
     return run_epoch_eval(test_clips)
+
+
+def train_and_eval_lora(
+    model_name: str,
+    train_clips: list[dict],
+    val_clips: list[dict],
+    test_clips: list[dict],
+    num_classes: int,
+    native_sample_rate: int,
+    device: str,
+    epochs: int = EPOCHS,
+) -> float:
+    """Each clip dict needs 'path' and 'label' keys. Returns test accuracy
+    from the best-val-accuracy epoch (early-stopped)."""
+    return _train_and_eval_adapter(
+        "lora", build_lora_model_and_head, lora_prepare_inputs,
+        model_name, train_clips, val_clips, test_clips, num_classes, native_sample_rate, device, epochs,
+    )
+
+
+def train_and_eval_allora(
+    model_name: str,
+    train_clips: list[dict],
+    val_clips: list[dict],
+    test_clips: list[dict],
+    num_classes: int,
+    native_sample_rate: int,
+    device: str,
+    epochs: int = EPOCHS,
+) -> float:
+    """ALLoRA counterpart to train_and_eval_lora() -- same signature, same
+    training loop, only the adapter method differs."""
+    return _train_and_eval_adapter(
+        "allora", build_allora_model_and_head, allora_prepare_inputs,
+        model_name, train_clips, val_clips, test_clips, num_classes, native_sample_rate, device, epochs,
+    )
 
 
 def train_and_eval_frozen(
@@ -131,20 +217,26 @@ def train_and_eval_frozen(
     adapter = get_model_class(model_name)(device=device)
     adapter.load()
 
-    def embed(clips: list[dict]) -> np.ndarray:
-        embeddings = []
+    def embed(clips: list[dict]) -> tuple[np.ndarray, list[dict]]:
+        embeddings, kept = [], []
         for start in range(0, len(clips), batch_size):
             batch = clips[start : start + batch_size]
-            waveforms = [read_mono(c["path"]) for c in batch]
+            waveforms, batch = read_batch_skip_bad(batch)
+            if not waveforms:
+                continue
             batch_embeds = adapter.embed_batch(waveforms, adapter.info.expected_sample_rate)
             embeddings.append(batch_embeds)
+            kept.extend(batch)
             if device == "cuda":
                 torch.cuda.empty_cache()
-        return np.concatenate(embeddings, axis=0)
+        return np.concatenate(embeddings, axis=0), kept
 
-    train_emb = torch.tensor(embed(train_clips), dtype=torch.float32)
-    val_emb = torch.tensor(embed(val_clips), dtype=torch.float32)
-    test_emb = torch.tensor(embed(test_clips), dtype=torch.float32)
+    train_emb_np, train_clips = embed(train_clips)
+    val_emb_np, val_clips = embed(val_clips)
+    test_emb_np, test_clips = embed(test_clips)
+    train_emb = torch.tensor(train_emb_np, dtype=torch.float32)
+    val_emb = torch.tensor(val_emb_np, dtype=torch.float32)
+    test_emb = torch.tensor(test_emb_np, dtype=torch.float32)
     train_labels = torch.tensor([c["label"] for c in train_clips], dtype=torch.long)
     val_labels = torch.tensor([c["label"] for c in val_clips], dtype=torch.long)
     test_labels = torch.tensor([c["label"] for c in test_clips], dtype=torch.long)

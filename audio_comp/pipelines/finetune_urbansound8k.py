@@ -19,7 +19,8 @@ from pathlib import Path
 
 import torch
 
-from audio_comp.pipelines.generic_lora_trainer import train_and_eval_frozen, train_and_eval_lora
+from audio_comp.pipelines.generic_lora_trainer import train_and_eval_allora, train_and_eval_frozen, train_and_eval_lora
+from audio_comp.pipelines.allora_model_configs import ALLORA_SUPPORTED_MODELS
 from audio_comp.pipelines.lora_model_configs import LORA_SUPPORTED_MODELS
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -54,6 +55,8 @@ def run_fold(condition: str, model_name: str, test_fold: int, device: str) -> fl
 
     if condition == "lora":
         return train_and_eval_lora(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, NATIVE_SAMPLE_RATE, device)
+    if condition == "allora":
+        return train_and_eval_allora(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, NATIVE_SAMPLE_RATE, device)
     return train_and_eval_frozen(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, device)
 
 
@@ -91,11 +94,13 @@ if __name__ == "__main__":
         active_models = sorted(yaml.safe_load(f)["active_models"])
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--condition", choices=["frozen", "lora"], required=True)
+    parser.add_argument("--condition", choices=["frozen", "lora", "allora"], required=True)
     parser.add_argument("--model", required=True)
     args = parser.parse_args()
     if args.condition == "lora" and args.model not in LORA_SUPPORTED_MODELS:
         raise ValueError(f"'{args.model}' not LoRA-compatible: {LORA_SUPPORTED_MODELS}")
+    if args.condition == "allora" and args.model not in ALLORA_SUPPORTED_MODELS:
+        raise ValueError(f"'{args.model}' not ALLoRA-compatible: {ALLORA_SUPPORTED_MODELS}")
     if args.condition == "frozen" and args.model not in active_models:
         raise ValueError(f"'{args.model}' not an active model: {active_models}")
     main(args.condition, args.model)
