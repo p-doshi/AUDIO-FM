@@ -21,6 +21,7 @@ import torch
 import torch.nn as nn
 
 from audio_comp.models import get_model_class
+from audio_comp.models._util import resample
 from audio_comp.pipelines.lora_model_configs import build_lora_model_and_head, lora_prepare_inputs
 from audio_comp.pipelines.allora_model_configs import build_allora_model_and_head, allora_prepare_inputs
 
@@ -54,25 +55,63 @@ def _read_mp3_via_ffmpeg(path: str) -> np.ndarray:
     return pcm
 
 
-def read_mono(path: str) -> np.ndarray:
+def read_mono(path: str) -> tuple[np.ndarray, int]:
+    """Returns (waveform, TRUE native sample rate of this specific file)
+    -- callers must not assume a fixed dataset-wide rate. Caught as a
+    real bug 2026-08-17: UrbanSound8K's clips are NOT uniformly 44.1kHz
+    as originally assumed (a 200-clip sample showed 44100/48000/96000/
+    24000/16000/8000/192000 all present), so passing a single guessed
+    constant into embed_batch()/prepare_inputs() as if it were every
+    clip's rate would silently resample-or-not incorrectly for the
+    majority of non-44.1kHz clips -- the same class of bug already found
+    and fixed in stage5_lora_finetune_mimii.py, this time per-clip within
+    one dataset rather than across an entire dataset's assumed rate."""
     if path.lower().endswith(".mp3"):
-        return _read_mp3_via_ffmpeg(path)
-    waveform, _ = sf.read(path, dtype="float32")
+        return _read_mp3_via_ffmpeg(path), _mp3_samplerate_via_ffmpeg(path)
+    waveform, sr = sf.read(path, dtype="float32")
     if waveform.ndim > 1:
         waveform = waveform.mean(axis=1)
-    return waveform
+    return waveform, sr
 
 
-def read_batch_skip_bad(clips: list[dict]) -> tuple[list[np.ndarray], list[dict]]:
+def _mp3_samplerate_via_ffmpeg(path: str) -> int:
+    with audioread.ffdec.FFmpegAudioFile(path) as f:
+        return f.samplerate
+
+
+def read_batch_skip_bad(
+    clips: list[dict], target_sample_rate: int, max_duration_s: float | None = None
+) -> tuple[list[np.ndarray], list[dict]]:
     """FMA-small ships a handful of genuinely corrupted mp3s (documented
     upstream, e.g. 099134.mp3 -- audio_comp/data/sources/fma.py's own
     probe-set loader already skips these the same way). Returns waveforms
     alongside the SURVIVING clip dicts (not the original `clips` list) so
-    labels stay aligned with whichever waveforms actually decoded."""
+    labels stay aligned with whichever waveforms actually decoded.
+
+    Every waveform is resampled to `target_sample_rate` here (using each
+    file's own true native rate from read_mono(), not an assumed
+    dataset-wide constant -- see read_mono()'s docstring), so downstream
+    code can treat the returned waveforms as uniformly at one rate, same
+    contract as before this fix, just now actually correct per-clip.
+
+    `max_duration_s`, if given, truncates each waveform (in the now-
+    common target_sample_rate) after resampling -- added after FMA-
+    genre's 30s clips (vs. MIMII/UrbanSound8K/BirdCLEF's 4-10s) OOM'd
+    multiple large wav2vec2-family models on a full 80GB GPU during LoRA/
+    ALLoRA fine-tuning (real backprop activation memory through a ~1500-
+    token sequence at batch=16, not fragmentation alone). X-ARES's own
+    upstream fma_genre_config uses crop_length=10 for the same reason --
+    matched here rather than inventing a different value."""
     waveforms, kept_clips = [], []
     for c in clips:
         try:
-            waveforms.append(read_mono(c["path"]))
+            w, sr = read_mono(c["path"])
+            if sr != target_sample_rate:
+                w = resample(w, sr, target_sample_rate)
+            if max_duration_s is not None:
+                max_samples = int(max_duration_s * target_sample_rate)
+                w = w[:max_samples]
+            waveforms.append(w)
             kept_clips.append(c)
         except Exception as e:
             print(f"  WARNING: skipping undecodable clip {c['path']}: {repr(e)[:150]}", flush=True)
@@ -91,11 +130,19 @@ def _train_and_eval_adapter(
     native_sample_rate: int,
     device: str,
     epochs: int,
+    max_duration_s: float | None = None,
 ) -> float:
     """Shared core for both train_and_eval_lora() and
     train_and_eval_allora() -- identical training loop, only the model
     builder and input-preparation functions differ (LoRA via peft vs.
-    ALLoRA via manual module replacement, see allora_model_configs.py)."""
+    ALLoRA via manual module replacement, see allora_model_configs.py).
+
+    `max_duration_s`: see read_batch_skip_bad()'s docstring -- caps clip
+    length before it reaches the encoder, added after real OOMs on a full
+    80GB GPU with FMA-genre's 30s clips. `torch.cuda.empty_cache()` is
+    also called every few batches now (was missing entirely before,
+    unlike every other fine-tuning script in this project) to bound
+    allocator fragmentation building up across a whole epoch."""
     torch.manual_seed(SEED)
     np.random.seed(SEED)
 
@@ -109,7 +156,7 @@ def _train_and_eval_adapter(
         with torch.no_grad():
             for start in range(0, len(clips), BATCH_SIZE):
                 batch = clips[start : start + BATCH_SIZE]
-                waveforms, batch = read_batch_skip_bad(batch)
+                waveforms, batch = read_batch_skip_bad(batch, native_sample_rate, max_duration_s)
                 if not waveforms:
                     continue
                 labels = torch.tensor([c["label"] for c in batch], device=device)
@@ -118,6 +165,8 @@ def _train_and_eval_adapter(
                 preds = logits.argmax(dim=-1)
                 correct += (preds == labels).sum().item()
                 total += len(batch)
+                if device == "cuda":
+                    torch.cuda.empty_cache()
         return correct / total
 
     rng = np.random.default_rng(SEED)
@@ -128,10 +177,10 @@ def _train_and_eval_adapter(
         trainable.train()
         order = rng.permutation(len(train_clips))
         total_loss = 0.0
-        for start in range(0, len(order), BATCH_SIZE):
+        for batch_num, start in enumerate(range(0, len(order), BATCH_SIZE)):
             batch_idx = order[start : start + BATCH_SIZE]
             batch = [train_clips[i] for i in batch_idx]
-            waveforms, batch = read_batch_skip_bad(batch)
+            waveforms, batch = read_batch_skip_bad(batch, native_sample_rate, max_duration_s)
             if not waveforms:
                 continue
             labels = torch.tensor([c["label"] for c in batch], device=device)
@@ -142,6 +191,10 @@ def _train_and_eval_adapter(
             loss.backward()
             optimizer.step()
             total_loss += loss.item() * len(batch)
+            if device == "cuda" and batch_num % 10 == 0:
+                torch.cuda.empty_cache()
+        if device == "cuda":
+            torch.cuda.empty_cache()
         val_acc = run_epoch_eval(val_clips)
         print(f"  [{method_tag}:{model_name}] epoch {epoch + 1}/{epochs} loss={total_loss / len(train_clips):.4f} val_acc={val_acc:.4f}", flush=True)
 
@@ -170,12 +223,14 @@ def train_and_eval_lora(
     native_sample_rate: int,
     device: str,
     epochs: int = EPOCHS,
+    max_duration_s: float | None = None,
 ) -> float:
     """Each clip dict needs 'path' and 'label' keys. Returns test accuracy
     from the best-val-accuracy epoch (early-stopped)."""
     return _train_and_eval_adapter(
         "lora", build_lora_model_and_head, lora_prepare_inputs,
         model_name, train_clips, val_clips, test_clips, num_classes, native_sample_rate, device, epochs,
+        max_duration_s,
     )
 
 
@@ -188,12 +243,14 @@ def train_and_eval_allora(
     native_sample_rate: int,
     device: str,
     epochs: int = EPOCHS,
+    max_duration_s: float | None = None,
 ) -> float:
     """ALLoRA counterpart to train_and_eval_lora() -- same signature, same
     training loop, only the adapter method differs."""
     return _train_and_eval_adapter(
         "allora", build_allora_model_and_head, allora_prepare_inputs,
         model_name, train_clips, val_clips, test_clips, num_classes, native_sample_rate, device, epochs,
+        max_duration_s,
     )
 
 
@@ -208,23 +265,37 @@ def train_and_eval_frozen(
     epochs: int = 30,
     early_stop_patience: int = 5,
     learning_rate: float = 1e-3,
+    native_sample_rate: int | None = None,
+    max_duration_s: float | None = None,
 ) -> float:
     """Frozen-embedding linear probe, matching frozen_baseline_streaming.py's
-    own approach (no backbone gradients)."""
+    own approach (no backbone gradients).
+
+    **Real bug fixed 2026-08-17**: embed_batch() used to be called with
+    `adapter.info.expected_sample_rate` as if it were the waveform's true
+    native rate -- the same class of bug already caught and fixed in
+    stage5_lora_finetune_mimii.py. Harmless when a dataset's native rate
+    happens to equal the model's expected rate (coincidentally true for
+    most models on 16kHz-native MIMII/UrbanSound8K/BirdCLEF), but a real,
+    silent audio-speed corruption for FMA-genre (44.1kHz native) against
+    any model expecting a different rate. Now takes the dataset's actual
+    native_sample_rate explicitly, same convention as train_and_eval_lora/
+    _allora, rather than assuming it matches the model."""
     torch.manual_seed(SEED)
     np.random.seed(SEED)
 
     adapter = get_model_class(model_name)(device=device)
     adapter.load()
+    embed_sample_rate = native_sample_rate if native_sample_rate is not None else adapter.info.expected_sample_rate
 
     def embed(clips: list[dict]) -> tuple[np.ndarray, list[dict]]:
         embeddings, kept = [], []
         for start in range(0, len(clips), batch_size):
             batch = clips[start : start + batch_size]
-            waveforms, batch = read_batch_skip_bad(batch)
+            waveforms, batch = read_batch_skip_bad(batch, embed_sample_rate, max_duration_s)
             if not waveforms:
                 continue
-            batch_embeds = adapter.embed_batch(waveforms, adapter.info.expected_sample_rate)
+            batch_embeds = adapter.embed_batch(waveforms, embed_sample_rate)
             embeddings.append(batch_embeds)
             kept.extend(batch)
             if device == "cuda":

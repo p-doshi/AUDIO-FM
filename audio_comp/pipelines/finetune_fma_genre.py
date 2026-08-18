@@ -25,7 +25,8 @@ GENRE_CLASSES = sorted(
 )
 LABEL_MAP = {g: i for i, g in enumerate(GENRE_CLASSES)}
 NUM_CLASSES = len(LABEL_MAP)
-NATIVE_SAMPLE_RATE = 44100  # fma_small.py's own loader reads mp3s at their native rate; FMA-small is uniformly 44.1kHz
+NATIVE_SAMPLE_RATE = 44100  # target rate every clip gets resampled to (per-file true rate handled by read_mono(), not assumed) -- FMA-small's own mp3s are uniformly 44.1kHz so this also happens to be the native rate here
+MAX_CLIP_DURATION_S = 10.0  # FMA-small's 30s clips OOM'd multiple large models on a full 80GB GPU during fine-tuning; matches X-ARES's own upstream fma_genre_config crop_length=10
 
 
 def load_clips() -> tuple[list[dict], list[dict], list[dict]]:
@@ -43,11 +44,11 @@ def main(condition: str, model_name: str) -> None:
     print(f"train={len(train_clips)} val={len(val_clips)} test={len(test_clips)}")
 
     if condition == "lora":
-        acc = train_and_eval_lora(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, NATIVE_SAMPLE_RATE, device)
+        acc = train_and_eval_lora(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, NATIVE_SAMPLE_RATE, device, max_duration_s=MAX_CLIP_DURATION_S)
     elif condition == "allora":
-        acc = train_and_eval_allora(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, NATIVE_SAMPLE_RATE, device)
+        acc = train_and_eval_allora(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, NATIVE_SAMPLE_RATE, device, max_duration_s=MAX_CLIP_DURATION_S)
     else:
-        acc = train_and_eval_frozen(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, device)
+        acc = train_and_eval_frozen(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, device, native_sample_rate=NATIVE_SAMPLE_RATE, max_duration_s=MAX_CLIP_DURATION_S)
 
     print(f"[{condition}:{model_name}] test accuracy: {acc:.4f}")
 
