@@ -25,3 +25,7 @@ categories:
     source: urbansound8k
   machine_sounds:
     source: mimii
+  speech_noisy:
+    source: ami_meetings
+  music_noisy:
+    source: singverse_noisy
