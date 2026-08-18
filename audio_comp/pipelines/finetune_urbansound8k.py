@@ -30,7 +30,7 @@ CLASS_LABEL_MAPS = {
     "engine_idling": 5, "gun_shot": 6, "jackhammer": 7, "siren": 8, "street_music": 9,
 }
 NUM_CLASSES = len(CLASS_LABEL_MAPS)
-NATIVE_SAMPLE_RATE = 44100  # UrbanSound8K clips are pre-decoded at their original sample rate by build_manifest.py; verify per-clip if this assumption ever breaks
+NATIVE_SAMPLE_RATE = 44100  # target rate every clip gets resampled to. **Verified 2026-08-17 that this assumption WAS wrong**: a 200-clip sample showed genuinely mixed native rates (44100/48000/96000/24000/16000/8000/192000), not a uniform 44.1kHz -- generic_lora_trainer.py's read_mono()/read_batch_skip_bad() now read each clip's TRUE rate and resample to this target explicitly, so this constant is safe again as a target (arbitrary but matches the modal rate), not a per-clip assumption.
 HELD_OUT_FOLDS = [1, 4, 7, 10]
 VAL_FRACTION_OF_TRAIN = 0.15
 
@@ -57,7 +57,7 @@ def run_fold(condition: str, model_name: str, test_fold: int, device: str) -> fl
         return train_and_eval_lora(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, NATIVE_SAMPLE_RATE, device)
     if condition == "allora":
         return train_and_eval_allora(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, NATIVE_SAMPLE_RATE, device)
-    return train_and_eval_frozen(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, device)
+    return train_and_eval_frozen(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, device, native_sample_rate=NATIVE_SAMPLE_RATE)
 
 
 def main(condition: str, model_name: str) -> None:

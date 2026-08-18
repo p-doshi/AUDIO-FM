@@ -60,7 +60,7 @@ def run_fold(condition: str, model_name: str, test_fold: int, device: str) -> fl
         return train_and_eval_lora(model_name, train_clips, val_clips, test_clips, num_classes, NATIVE_SAMPLE_RATE, device)
     if condition == "allora":
         return train_and_eval_allora(model_name, train_clips, val_clips, test_clips, num_classes, NATIVE_SAMPLE_RATE, device)
-    return train_and_eval_frozen(model_name, train_clips, val_clips, test_clips, num_classes, device)
+    return train_and_eval_frozen(model_name, train_clips, val_clips, test_clips, num_classes, device, native_sample_rate=NATIVE_SAMPLE_RATE)
 
 
 def main(condition: str, model_name: str) -> None:
