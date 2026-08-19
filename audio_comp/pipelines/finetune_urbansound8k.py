@@ -19,7 +19,12 @@ from pathlib import Path
 
 import torch
 
-from audio_comp.pipelines.generic_lora_trainer import train_and_eval_allora, train_and_eval_frozen, train_and_eval_lora
+from audio_comp.pipelines.generic_lora_trainer import (
+    train_and_eval_allora,
+    train_and_eval_frozen,
+    train_and_eval_lora,
+    write_results_idempotent,
+)
 from audio_comp.pipelines.allora_model_configs import ALLORA_SUPPORTED_MODELS
 from audio_comp.pipelines.lora_model_configs import LORA_SUPPORTED_MODELS
 
@@ -75,14 +80,11 @@ def main(condition: str, model_name: str) -> None:
     print(f"[{condition}:{model_name}] mean accuracy across {len(HELD_OUT_FOLDS)} folds: {mean_acc:.4f}")
 
     out_csv = REPO_ROOT / "results" / "finetune_urbansound8k.csv"
-    write_header = not out_csv.exists()
-    with open(out_csv, "a", newline="") as f:
-        writer = csv.writer(f)
-        if write_header:
-            writer.writerow(["model", "condition", "fold", "accuracy"])
-        for fold, acc in zip(HELD_OUT_FOLDS, fold_accs):
-            writer.writerow([model_name, condition, fold, acc])
-        writer.writerow([model_name, condition, "mean", mean_acc])
+    new_rows = [[model_name, condition, fold, acc] for fold, acc in zip(HELD_OUT_FOLDS, fold_accs)]
+    new_rows.append([model_name, condition, "mean", mean_acc])
+    write_results_idempotent(
+        out_csv, ["model", "condition", "fold", "accuracy"], ["model", "condition", "fold"], new_rows
+    )
 
 
 if __name__ == "__main__":
