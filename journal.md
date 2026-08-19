@@ -545,3 +545,30 @@
 - **Item 3**: uniformity (rho=+0.736, p=0.0027) dramatically outperforms every other candidate metric on the identical target -- TwoNN (-0.231, p=0.427), log(n_params) (-0.272, p=0.347), the original Stage 1 silhouette/cohesion proxy (-0.218, p=0.455), and avg RSA to the rest of the roster (-0.301, p=0.296) all show no signal at all.
 - **Item 4**: real data-availability constraint stated up front -- per-clip test predictions from fine-tuning were never saved, so only the uniformity side of the correlation can be clip-bootstrapped, not the gain side. 300 resamples of the shared 16,000-clip pool gave a **bit-identical rho=+0.736 across every resample** (std~1e-16) -- verified this is real, not a bug, by directly checking that per-model uniformity does vary across resamples (`ast`: -2.34 to -2.40 across 5 independent draws, real ~0.06 spread) but this is tiny next to the ~2+ unit between-model gap (AST/CLAP ~-2.45 vs wav2vec2/MMS ~-0.08 to -0.18), so no resample ever reorders the 14 models and Spearman rho (rank-based) never moves. Read precisely as "the rank ordering is extremely robust to clip-sampling," not "zero uncertainty in any absolute sense" -- the gain-side variability remains unmeasured by this check.
 - **All four written into CLAUDE.md's new "Robustness of Finding 5's headline correlation" section**, including an explicit interpretive note (per direct user instruction) that the FDR table's "10/51" ratio should not be read as "only 10 real results out of 51 attempts" -- most of the 41 non-survivors were confound checks, falsification tests, or already-reported nulls whose entire point was to come back non-significant, not independent discovery claims.
+
+## 2026-08-19 (continued, 3)
+
+- **AMI/SingVERSE probe-set embedding re-extraction confirmed complete** (all 19 active models, expanded 16,000-clip probe set). Ran the pre-registered noise-robustness prediction test (journal.md, 2026-08-18): within-category-normalized cross-domain distance (`speech` vs. `speech_noisy`, `music` vs. `music_noisy`) per model, `results/noise_robustness_shift.csv`. **Not confirmed, genuinely mixed**: speech_shift direction matches the prediction (broad mean=1.542 < narrow mean=2.095) but n=3-vs-2 is too underpowered (p=0.400); music_shift is the *opposite* direction (broad mean=1.514 > narrow=1.358, p=0.800). Neither survives FDR correction. A legitimate negative result -- resolves the noise-confound caveat in Known Risks without becoming a sixth finding, reported honestly rather than hidden.
+- **FDR family updated to 55 p-values** (from 51) once item 2 (leave-one-family-out) and the noise-robustness test's 2 new p-values landed -- folded into the same corrected table per explicit instruction, not reported as clean standalone numbers. **11 of 55 now survive** (up from 10/51) -- the data2vec-lineage leave-one-family-out result (p=0.0045) joined the survivors; neither noise-robustness p-value survives. Updated ranked table:
+
+  | rank | raw p | q-value | survives? | test |
+  |---|---|---|---|---|
+  | 1 | 0.0001 | 0.0055 | YES | F1: breadth permutation gap |
+  | 2 | 0.0006 | 0.0138 | YES | F1: domain+paradigm permutation gap |
+  | 3 | 0.0010 | 0.0138 | YES | F5: UrbanSound8K uniformity vs gain |
+  | 4 | 0.0010 | 0.0138 | YES | F5: UrbanSound8K alignment vs gain |
+  | 5 | 0.0020 | 0.0183 | YES | F5-chk3: partial corr uniformity vs gain \| log(n_params) |
+  | 6 | 0.0030 | 0.0183 | YES | F5: Pooled alignment vs gain |
+  | 7 | 0.0030 | 0.0183 | YES | F4: FMA+US8K uniformity-KNN |
+  | 8 | 0.0030 | 0.0183 | YES | F4: BirdCLEF uniformity-KNN |
+  | 9 | 0.0030 | 0.0183 | YES | F5: Pooled uniformity vs gain |
+  | 10 | 0.0045 | 0.0247 | YES | **item2: leave-out-data2vec-lineage pooled uniformity vs gain** |
+  | 11 | 0.0087 | 0.0435 | YES | F5-cat: breadth ANOVA on uniformity (non-singleton) |
+  | 12 | 0.0140 | 0.0642 | no | F4: BirdCLEF uniformity-MLP |
+  | 13 | 0.0490 | 0.2073 | no | F5: FMA-genre uniformity vs gain |
+  | 17 | 0.0940 | 0.3041 | no | item2: leave-out-wav2vec2-lineage pooled uniformity vs gain |
+  | 31 | 0.4000 | 0.7097 | no | **NoiseRobustness: speech_shift broad-vs-narrow** |
+  | 51 | 0.8000 | 0.8627 | no | **NoiseRobustness: music_shift broad-vs-narrow** |
+  | (ranks 14-50 omitted here for brevity -- unchanged from the original 51-value table, see the 2026-08-19 (continued) entry above) |
+
+- **`wav2vec2_conformer` LibriSpeech jobs (lora/allora) failed a third time**, this time even on a full 80GB H100 -- but with a *different* error signature: `CUDA error: out of memory` at model-*loading* time (`.to(device)`), not during training. Loading a 618M-param model shouldn't come close to filling 80GB on its own, and this exact model already succeeded on FMA-genre/UrbanSound8K/BirdCLEF/vessel this session -- read as node-level contention (another process holding most of the GPU on node `fc10512`) rather than a persistent model/dataset-specific bug. Retried once more (jobs 55661736/55661737); 45/47 other LibriSpeech jobs remain complete. LibriSpeech's granularity prediction (does 251-way speaker-ID replicate BirdCLEF's null) stays blocked on this one model until it lands.
