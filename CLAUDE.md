@@ -207,6 +207,34 @@ Do not treat this table as final — confirm checkpoint availability and license
 3. (If Phase 2 proceeds) Trained consensus-distilled model, single-teacher-distilled models, and from-scratch baseline, plus downstream task comparison table.
 4. Short report suitable for a workshop submission (Interspeech/ICASSP/bioacoustics venue) or as a section of a larger thesis chapter — framing depends on which decision-rule outcome was reached.
 
+## Robustness of Finding 5's headline correlation (2026-08-19)
+
+**Interpretive note on the FDR result above, worth stating explicitly wherever "10/51" appears in the write-up**: most of the 41 that didn't survive were never independent discovery claims to begin with — they're confound checks (parameter count, category-membership), falsification tests (A-D, the four follow-up checks), and already-reported nulls (MIMII, vessel) whose entire point was to come back non-significant, or secondary validation of an already-established result. "10 independently-significant claims survive correction, out of a full accounting that includes every confound check and null result ever run" is the accurate reading — reported here explicitly so the raw ratio isn't misread as weaker than it is.
+
+**Item 2 — leave-one-family-out, on the pooled uniformity-vs-gain correlation (FMA-genre/UrbanSound8K/BirdCLEF, 14 models).** Grouped by genuine family relationship only (no forced groupings): wav2vec2-lineage (wav2vec2/hubert/wavlm/mms/unispeech_sat/sew/wav2vec2_conformer, 7 models) and data2vec-lineage (data2vec_audio/music2vec, 2 models).
+- Drop wav2vec2-lineage (remaining n=7): rho=+0.679, p=0.094 — **direction and magnitude both hold** (0.679 vs. the full-roster 0.736), loses conventional significance, but that's attributable to n=7's reduced power, not a changed effect size.
+- Drop data2vec-lineage (remaining n=12): rho=+0.755, p=0.0045 — remains significant, essentially unchanged.
+- **Net: the correlation is not being carried by any single model family** — losing either family leaves the point estimate in the same range; only the larger family's removal costs significance, and that's a power story, not an effect-size story.
+
+**Item 3 — baseline comparison table, uniformity vs. every other candidate metric already computed in this project, same pooled-gain target (14 models):**
+
+| Metric | rho | p |
+|---|---|---|
+| **uniformity (Finding 5's actual metric)** | **+0.736** | **0.0027** |
+| TwoNN intrinsic dimension | -0.231 | 0.4273 |
+| log(n_params) | -0.272 | 0.3472 |
+| silhouette/cohesion (coarse-category proxy, the original Stage 1 metric) | -0.218 | 0.4549 |
+| avg RSA to rest of roster | -0.301 | 0.2955 |
+| naive mean-predictor baseline | rho=0 by construction | MAE=0.0595 (vs. uniformity's real-model LOO MAE=0.048, already established) |
+
+**None of the alternative candidates come close** — uniformity is the only metric among five real candidates (plus the trivial baseline) that shows any signal at all against this target. This is a meaningfully stronger table than "uniformity works" alone; it's "uniformity works and nothing else tried does."
+
+**Item 4 — bootstrap over resampled clips, with an honest scope caveat stated up front.** Per-clip test predictions from the fine-tuning runs were never saved (only aggregate test accuracy per model), so the *gain* side of the correlation cannot be bootstrapped over clips directly — only the *uniformity* side can, since raw embeddings are fully available. This is a partial, not complete, clip-level robustness check, stated as such rather than oversold as a full bootstrap of the headline correlation.
+- 300 bootstrap resamples of the shared 16,000-clip probe-set pool (with replacement), recomputing each model's uniformity per resample, correlated against the fixed real gain values each time.
+- **Result: rho=+0.736 in all 300 resamples, bit-identical (std ~1e-16), 95% CI=[+0.736, +0.736].** Verified this is real, not a bug: per-model uniformity genuinely varies across resamples (e.g. `ast`'s uniformity spans -2.34 to -2.40 across 5 independent resamples, a real ~0.06 spread) — but this within-model resampling noise is tiny relative to the ~2+ unit between-model spread (AST/CLAP near -2.45 vs. wav2vec2/MMS near -0.08 to -0.18), so no resample ever reorders the 14 models' ranks, and Spearman rho (rank-based by construction) is therefore perfectly stable. **Read precisely**: this shows the *rank ordering* of models by uniformity is extremely robust to which specific clips happen to be sampled — a genuine, reassuring robustness result — not that the correlation has literally zero uncertainty in any absolute sense (the ungeasured gain-side variability is real and unaddressed by this check).
+
+**Net effect on how confidently Finding 5 can be stated**: the pooled correlation is not an artifact of any one model family, beats every other candidate metric tried, and its rank-based structure is stable to clip-resampling. Combined with the FDR-survival, parameter-count-confound-clearance, and leave-one-model-out results already established, this is now a genuinely well-stress-tested claim — bounded precisely to "uniformity predicts adaptation headroom on tasks with real signal to learn," not overclaimed beyond that scope.
+
 ## Multiple-comparison correction (Benjamini-Hochberg FDR, run 2026-08-19)
 
 **Every p-value backing the current, final version of each of the 5 findings was compiled into one table (51 total) and corrected with Benjamini-Hochberg at alpha=0.05** — not selectively applied to a convenient subset. Scope note: this uses the *current/final* number for each test (e.g. Finding 1's n=18 permutation p-values, Finding 4's n=17 re-run), not every superseded interim check from earlier roster sizes logged in journal.md's day-by-day history — those were already explicitly superseded and re-run at higher n, and including both would double-count the same claim. brain_rsa is excluded, per its own standing separate-track status.
