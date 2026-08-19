@@ -1,16 +1,30 @@
-# CLAUDE.md — Cross-Model Audio Representation Geometry & JEPA Relational Distillation
+# CLAUDE.md — ECHO: Cross-Model Audio Representation Geometry
 
 This file orients any Claude session (or collaborator) working in this repo. Read this before touching code.
 
+**Project name: ECHO.** ("AudioRepBench" appeared in one external discussion but never in this repo's own files — ECHO is the name to use consistently in code, docs, and any paper draft going forward.)
+
 ## One-line summary
 
-Test whether independently-trained audio foundation models agree on the *relational* geometry of sound (pairwise distances between clips), and if they do, test whether a JEPA-style model trained to reproduce that consensus geometry behaves differently — on a real downstream task — than a model distilled from any single teacher.
+Independently-trained audio foundation models show structured but non-universal, cluster-conditional agreement on the relational geometry of sound (pairwise distances between clips) — and that frozen geometry and downstream function are dissociated axes: what predicts cross-model RSA agreement, what predicts in-domain classification skill, and what predicts out-of-domain adaptation headroom are three different variables, not one.
 
 ## Why this project exists
 
-Standard task loss/accuracy can't tell us whether a representation is well-formed when there's no single correct answer to check against. This project is one concrete, falsifiable test of an alternative: does *cross-model agreement on relational structure* track something real, and can that structure be deliberately reproduced rather than just observed. It's the applied, decision-relevant version of a longer theoretical thread (Platonic Representation Hypothesis, CKA/RSA literature, JEPA-as-representation-shaping) — see "Background reading" below if more context is needed, but this file is self-contained for execution purposes.
+Standard task loss/accuracy can't tell us whether a representation is well-formed when there's no single correct answer to check against. This project is a concrete, falsifiable test of an alternative: does *cross-model agreement on relational structure* track something real, and if so, what actually explains it. Five findings answer this, each having survived a real attempt to falsify or complicate it, not just accumulated (full derivation and every number in journal.md; current-state summary in the Extended Roadmap below):
 
-**Eventual application domain: underwater acoustics** (vessel-contact detection). Do not default to speech/music-only framing when designing the probe set or downstream task — general-audio foundation models are the available *teachers*, not necessarily the target domain.
+1. **Training-distribution breadth explains cross-model RSA agreement better than domain+paradigm at small-to-moderate roster sizes — but this reverses at 18 models.** Reported honestly both ways, not smoothed into one claim (Stage 1(b) below).
+2. **Discriminative training pressure (contrastive or supervised-with-labels), not paradigm label, predicts both raw embedding-space separability and trainable-head exploitability** for in-domain fine-grained classification — established by AST falsifying an earlier, more attractive reading built on PANNs/Bird-MAE alone (Stage 4).
+3. **Domain-relevance is a real, additive effect**, isolated cleanly via the AudioMAE/Bird-MAE/BirdNET triangle (same objective, only domain differs) (Stage 4).
+4. **Embedding-space uniformity (Wang & Isola 2020) predicts in-domain kNN classification more strongly than MLP classification**, resolved at n=17 after an earlier mixed result at smaller n (Stage 6).
+5. **Uniformity predicts out-of-domain LoRA-adaptation *headroom* (how much a model improves), not absolute adaptability or final adapted quality — and only on tasks with real signal to learn.** Null on near-chance domains (MIMII, the confidential vessel dataset); positive on FMA-genre/UrbanSound8K (confound-checked against parameter count, validated out-of-sample via leave-one-out); null on BirdCLEF specifically, investigated and not explained by the obvious domain-relevance hypothesis. This is the result the project's whole Stage 5/6 design was built to produce (Stage 5/6).
+
+It's the applied, decision-relevant version of a longer theoretical thread (Platonic Representation Hypothesis, CKA/RSA literature) — see "Background reading" below if more context is needed, but this file is self-contained for execution purposes.
+
+**Eventual application domain: underwater acoustics** (vessel-contact detection). Do not default to speech/music-only framing when designing the probe set or downstream task — general-audio foundation models are the available *teachers*, not necessarily the target domain. Finding 5's null-on-vessel-data result is itself the direct, load-bearing answer to this domain's OOD question, not a placeholder for one.
+
+## Note on scope: the original consensus-distillation plan was abandoned early, not pursued
+
+The sections immediately below ("Explicit scope," "Decision rule," "Expected results," the JEPA H1/H2 hypotheses) describe this project's **original** plan: build RDMs, find a consensus among agreeing models, and train a JEPA-style predictor via relational distillation to reproduce that consensus (Phase 2). **This was never substantively pursued.** Phase 1 landed on decision-rule outcome 2 (partial/cluster agreement) early (2026-08-09), which technically licensed proceeding to Phase 2 as scoped — but the more informative, decision-relevant direction that actually emerged was characterizing *what explains* the agreement and disagreement (breadth vs. paradigm, objective type, domain-relevance) and *whether it predicts anything functionally real* (in-domain skill, OOD adaptability), not building a distillation pipeline on top of a partial-agreement signal. The five findings above are the actual contribution. This section and the ones below are kept as documented history per this project's standing convention of preserving superseded readings rather than deleting them — not because Phase 2 is still planned. If consensus-distillation is ever revisited, it would be a new, separate direction built on top of Finding 5's diagnostic, not a continuation of the original untested Phase 2 sketch.
 
 ## Explicit scope
 
@@ -192,6 +206,24 @@ Do not treat this table as final — confirm checkpoint availability and license
 2. Written summary of which decision-rule outcome (1/2/3 above) was reached, before any Phase 2 code is written.
 3. (If Phase 2 proceeds) Trained consensus-distilled model, single-teacher-distilled models, and from-scratch baseline, plus downstream task comparison table.
 4. Short report suitable for a workshop submission (Interspeech/ICASSP/bioacoustics venue) or as a section of a larger thesis chapter — framing depends on which decision-rule outcome was reached.
+
+## Multiple-comparison correction (Benjamini-Hochberg FDR, run 2026-08-19)
+
+**Every p-value backing the current, final version of each of the 5 findings was compiled into one table (51 total) and corrected with Benjamini-Hochberg at alpha=0.05** — not selectively applied to a convenient subset. Scope note: this uses the *current/final* number for each test (e.g. Finding 1's n=18 permutation p-values, Finding 4's n=17 re-run), not every superseded interim check from earlier roster sizes logged in journal.md's day-by-day history — those were already explicitly superseded and re-run at higher n, and including both would double-count the same claim. brain_rsa is excluded, per its own standing separate-track status.
+
+**Result: 10 of 51 survive correction.** Full ranked table in `journal.md`, 2026-08-19. Reported exactly as it comes out, including where it weakens a headline number:
+
+**Survives FDR correction (robust):**
+- Finding 1: both the breadth (p=0.0001) and domain+paradigm (p=0.0006) permutation gaps at n=18.
+- Finding 4: uniformity-KNN in both scopes (BirdCLEF p=0.003, FMA+UrbanSound8K p=0.003) — **this actually sharpens Finding 4's own claim**, since uniformity-MLP in both scopes does *not* survive (BirdCLEF p=0.014 fails; FMA+UrbanSound8K p=0.057 was already non-significant) — fully consistent with, not undermining, "uniformity predicts kNN more strongly than MLP."
+- Finding 5: the **pooled** uniformity/alignment-vs-gain correlations (p=0.003 each) and UrbanSound8K's individual per-category correlation (p=0.001 each) survive. The parameter-count confound's partial correlation (p=0.002) survives.
+- The breadth-ANOVA-on-uniformity result (p=0.0087) survives by rank — but the already-documented fragility stays attached regardless (driven by AST/CLAP specifically, evaporates under the more conservative Kruskal-Wallis-all-6 and collapsed-narrow-vs-broad tests) — FDR survival doesn't erase that.
+
+**Does NOT survive FDR correction — a real, honest weakening to state in the write-up:**
+- **Finding 5's FMA-genre individual per-category correlation (raw p=0.049) does not survive** (q=0.208). This means the precise, defensible version of Finding 5 leads with the **pooled** result (robust) and UrbanSound8K (robust individually), and states FMA-genre's *individual* contribution as suggestive/uncorrected, not independently significant — a real downgrade from how it could be read pre-correction, and should be stated as such rather than folded quietly into "2 of 3 categories."
+- Everything already reported as a null (MIMII, confidential vessel data both LoRA/ALLoRA, the C/D categorical checks, follow-up checks 1/2, the scale-convergence test) stays null — FDR correction doesn't change these, since they were never claimed as positive results to begin with.
+
+**Net effect on the write-up**: Findings 1 and 4 are unaffected and robust. Finding 5's core claim survives at the pooled level and for UrbanSound8K specifically, but its FMA-genre component should be downgraded from "confirms the pattern" to "directionally consistent, not independently significant after correction" — the honest, corrected version of "2 of 3 categories" is closer to "1 of 3 categories individually significant, plus a robust pooled effect." Findings 2 and 3 rest on descriptive magnitude comparisons (AST's outright BirdCLEF win, Bird-MAE's >2x/>4x margin over AudioMAE), not inferential p-values, so they aren't part of this correction and are unaffected by it either way.
 
 ## Known risks / limitations to keep stated in any write-up
 
