@@ -17,7 +17,7 @@ without a rewrite.
 
 ---
 
-## Abstract [OPEN — draft after vessel-domain result lands]
+## Abstract [OPEN — ready for a final pass, not a first draft anymore]
 
 Independently-trained audio foundation models show partial, structured
 agreement on the relational geometry of sound. That structure is
@@ -32,13 +32,16 @@ alignment/uniformity result (at n=17) shows uniformity predicts kNN
 classification more strongly than MLP classification, consistently
 across two task scopes. Most directly, the project's central motivating
 question — does a model's frozen representational geometry predict its
-out-of-domain adaptability — resolves into two precise, confound-checked
-answers rather than one: geometry does not predict OOD adaptability on a
-near-chance industrial-sound task (MIMII), but embedding-space uniformity
-specifically predicts adaptation *headroom* (not final adapted quality)
-on tasks with real signal to learn, surviving a parameter-count confound
-check and out-of-sample leave-one-out validation. [OPEN: vessel-domain
-result, pending.]
+out-of-domain adaptability — resolves into a precise, confound-checked
+answer: geometry does not predict OOD adaptability on near-chance tasks
+(an industrial-machine-sound benchmark and, most importantly, the
+project's actual target domain, confidential vessel-acoustic data, both
+null), but embedding-space uniformity specifically predicts adaptation
+*headroom* (not final adapted quality) on tasks with real signal to
+learn, surviving a parameter-count confound check and out-of-sample
+leave-one-out validation. The two negative and positive results together
+scope the claim precisely rather than overclaiming "geometry predicts
+OOD performance" in general.
 
 ## 1. Introduction / Motivation
 
@@ -335,21 +338,34 @@ adaptation headroom — not final adapted quality — in 2 of 3 categories,
 confound-checked and validated out-of-sample. Do not simplify this into
 "geometry predicts OOD performance."**
 
-[OPEN — the one remaining empirical gap]: **the confidential vessel-domain
-version of this correlation.** This is the domain the project is
-actually motivated by; a null on MIMII alone is a weaker result than a
-null (or a positive finding) on both. Blocked on: (a) the vessel-domain
-matched LoRA fine-tuning run finishing (in progress on a separate,
-access-controlled cluster as of this revision — see CLAUDE.md's
-`[[confidential_vessel_data]]`), and (b) a user-flagged data-quality
-concern that has not yet been diagnosed with specifics. The honest
-pre-registered prediction, stated in advance per this project's own
-standing discipline: if vessel-domain adaptation behaves like a "real
-signal to learn" task (closer to FMA/UrbanSound8K), expect the headroom
-effect to reappear; if it behaves like MIMII's near-chance pattern,
-expect another null. Either answer completes the OOD story this write-up
-is built around — this is not a result waiting to be forced in one
-direction.
+**Confidential vessel-domain version of this correlation, run 2026-08-18
+— closes the OOD story.** The vessel-domain LoRA run finished normally
+(all 14 models, no crash — an earlier "results seem off" concern was
+never pinned to a specific number and most likely just reflected viewing
+a barely-started run). Same three metrics correlated against vessel
+LoRA-frozen gain (14 models): uniformity rho=+0.187 (p=0.523), alignment
+rho=-0.152 (p=0.605), TwoNN rho=+0.451 (p=0.106) — **another null**.
+Vessel gain is small and mixed (mean +0.028, 3/14 models negative), with
+frozen/adapted accuracy both in a narrow band (0.16-0.23 / 0.15-0.32) —
+the MIMII shape, not the FMA/UrbanSound8K shape. This matches the
+pre-registered prediction stated in advance: vessel would show the
+headroom effect if it behaved like a real-signal task, or another null if
+it behaved like MIMII's near-chance pattern — it landed on the null side.
+**Net result: the uniformity-predicts-headroom effect is specific to
+tasks with real signal to learn (FMA-genre/UrbanSound8K), and does not
+appear on either near-chance domain tested, MIMII or vessel** — a
+precise, bounded claim. This closes the empirical thread the project's
+OOD story was built around; Finding 5 (§3.5) can now be stated across
+all three domains it was actually tested on.
+
+[OPEN, minor]: vessel-domain ALLoRA numbers — both `rsa_cka_vessel.py`
+(geometry) and `run_all_vessel_experiments.py` (accuracy) predated the
+ALLoRA adoption decision and were missing the condition; both fixed
+2026-08-18 (mirrors the existing LoRA code path exactly) but not yet run.
+Every other domain (MIMII/FMA-genre/UrbanSound8K/BirdCLEF) already has
+LoRA-vs-ALLoRA; this is the one remaining domain without it, low
+priority since LoRA and ALLoRA have tracked each other closely
+everywhere else this comparison has been run.
 
 ## 4. Discussion / Limitations
 
@@ -389,8 +405,10 @@ direction.
   FMA-genre, UrbanSound8K, BirdCLEF — 14-model roster throughout
 - [x] The core geometry-vs-OOD-adaptability correlation (Finding 5),
   confound-checked (parameter-count) and out-of-sample validated (LOO)
-- [ ] Vessel-domain version of Finding 5 — the one open empirical thread,
-  see §3.5
+- [x] Vessel-domain version of Finding 5 — null, matching the pre-registered
+  prediction, see §3.5. **All three domains Finding 5 was tested on are
+  now complete.**
+- [ ] Vessel-domain ALLoRA numbers — code fixed, not yet run (§3.5, minor)
 - [ ] BirdCLEF/DeepShip-successor numbers for `birdnet` via X-ARES (needs
   a subprocess bridge from the PyTorch `xares_eval` venv into the
   isolated TF venv — real but bounded, scoped out so far)
