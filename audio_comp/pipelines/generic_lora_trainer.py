@@ -12,6 +12,8 @@ BirdCLEF/UrbanSound8K and any future dataset.
 """
 from __future__ import annotations
 
+import csv
+from pathlib import Path
 from typing import Callable
 
 import audioread.ffdec
@@ -30,6 +32,52 @@ LEARNING_RATE = 1e-4
 BATCH_SIZE = 16
 EARLY_STOP_PATIENCE = 3
 SEED = 0
+
+
+def write_results_idempotent(
+    out_csv: Path, header: list[str], key_cols: list[str], new_rows: list[list]
+) -> None:
+    """Rewrite-in-place results writer that replaces any existing row
+    matching `key_cols` instead of blindly appending -- every finetune_*.py
+    script previously used `open(out_csv, "a")`, which meant a rerun (after
+    a bugfix, a timeout resubmission, anything) silently left the STALE row
+    sitting in the file alongside the corrected one rather than replacing
+    it. Found 2026-08-19 auditing Finding 5's UrbanSound8K provenance:
+    `results/finetune_urbansound8k.csv` had 223 (model,condition,fold) keys
+    with two different accuracy values each -- one from before the
+    2026-08-17 sample-rate fix, one from after -- present since the very
+    first committed snapshot, not something introduced later. That
+    specific case washed out (the correlation happened to have been
+    computed with a correct last-occurrence dedup already), but nothing
+    guaranteed that, and it silently corrupts any naive `groupby().mean()`
+    read of the file. See journal.md 2026-08-19 (cont'd) for the full
+    audit. Preserves existing row order for untouched keys; a key that
+    already existed gets overwritten in place, a new key is appended."""
+    key_idx = [header.index(c) for c in key_cols]
+    existing: dict[tuple, list[str]] = {}
+    order: list[tuple] = []
+    if out_csv.exists():
+        with open(out_csv, newline="") as f:
+            reader = csv.reader(f)
+            file_header = next(reader, None)
+            if file_header is not None and file_header != header:
+                raise ValueError(f"{out_csv} header mismatch: {file_header} != {header}")
+            for row in reader:
+                key = tuple(row[i] for i in key_idx)
+                if key not in existing:
+                    order.append(key)
+                existing[key] = row
+    for row in new_rows:
+        row = [str(v) for v in row]
+        key = tuple(row[i] for i in key_idx)
+        if key not in existing:
+            order.append(key)
+        existing[key] = row
+    with open(out_csv, "w", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow(header)
+        for key in order:
+            writer.writerow(existing[key])
 
 
 def _read_mp3_via_ffmpeg(path: str) -> np.ndarray:
