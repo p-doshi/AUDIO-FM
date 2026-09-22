@@ -1,6 +1,6 @@
 # ECHO: Embedding Convergence and Hidden Organization in Audio Models
 
-This repository contains the codebase for **ECHO**, a study of representational
+This repository contains the codebase for **ECHO: Embedding Convergence and Hidden Organization in Audio Models**, a study of representational
 geometry across independently pretrained audio foundation models, and whether a
 model's frozen representation geometry predicts how much it stands to gain from
 adaptation before any fine-tuning is run.
