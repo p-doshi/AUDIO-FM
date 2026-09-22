@@ -34,14 +34,9 @@ checkpoint ID below is read directly from this repo's own model adapters
 | [MusicFM](https://github.com/minzwon/musicfm) | `minzwon/MusicFM` | Masked modeling / reconstruction (BEST-RQ) |
 | [Audio-JEPA](https://huggingface.co/ltuncay/Audio-JEPA) | `ltuncay/Audio-JEPA` | Joint-embedding / self-distillation |
 | [data2vec-audio](https://huggingface.co/facebook/data2vec-audio-base) | `facebook/data2vec-audio-base` | Joint-embedding / self-distillation |
-| [music2vec](https://huggingface.co/m-a-p/music2vec-v1) | `m-a-p/music2vec-v1` | Joint-embedding / self-distillation (data2vec-family, **not** JEPA — see correction below) |
+| [music2vec](https://huggingface.co/m-a-p/music2vec-v1) | `m-a-p/music2vec-v1` | Joint-embedding / self-distillation (data2vec-family) |
 
-**Correction, kept visible rather than silently fixed:** `music2vec` was originally
-labeled JEPA-family in early project notes; it is actually data2vec-family (no
-separate predictor network, the architectural line that defines JEPA — see
-`audio_comp/models/music2vec.py`'s docstring). `Audio-JEPA` (`ltuncay/Audio-JEPA`) is
-an explicitly-labeled substitute for the original A-JEPA paper's checkpoint, which was
-never publicly released.
+
 
 Fourteen models receive both LoRA and ALLoRA adaptation; four (PANNs, AudioMAE,
 MusicFM, Audio-JEPA) are adapted only via top-$K$ layer unfreezing, since they either
