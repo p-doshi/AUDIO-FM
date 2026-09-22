@@ -1,5 +1,6 @@
 """
-Streaming access to acoustic buoy data on bigdata6.research.example.org.
+Streaming access to acoustic buoy data on a remote host (set via the
+AUDIO_COMP_REMOTE_HOST / AUDIO_COMP_REMOTE_USER environment variables).
 
 Purpose: give analysis code (spectrograms, DEMON, PNCC/GFCC, energy/PSD,
 EBM training, sanity-check plots, ...) a way to read buoy recordings
@@ -73,8 +74,8 @@ import sys
 
 import paramiko
 
-REMOTE_HOST = "bigdata6.research.example.org"
-REMOTE_USER = "user"
+REMOTE_HOST = os.environ.get("AUDIO_COMP_REMOTE_HOST", "")
+REMOTE_USER = os.environ.get("AUDIO_COMP_REMOTE_USER", "")
 REMOTE_BASE_DIR = os.environ.get("AUDIO_COMP_REMOTE_BASE_DIR")
 
 _KNOWN_HOSTS = os.path.expanduser("~/.ssh/known_hosts")
