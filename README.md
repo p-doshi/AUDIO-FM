@@ -1,178 +1,203 @@
-# audio_comp
+# ECHO: Embedding Convergence and Hidden Organization in Audio Models
 
-Cross-model comparison of audio foundation models: build a representational
-dissimilarity matrix (RDM) per model over a fixed probe set, compare RDMs
-across models via RSA (primary) and CKA (secondary), and use TwoNN intrinsic
-dimension as an independent structural check. See `CLAUDE.md` for the full
-project scope, decision rule, and Phase 2 (JEPA relational distillation)
-plan gated on Phase 1's results.
+This repository contains the code, data manifests, and results for **ECHO**, a study
+of representational geometry across 19 independently pretrained audio foundation
+models, and whether a model's frozen representation geometry predicts how much it
+stands to gain from adaptation before any fine-tuning is run. The full paper draft is
+[`final_iclr.tex`](final_iclr.tex).
 
-This repo is meant to be the reusable framework for that comparison, not a
-one-off script collection — adding a new model or a new dataset/category
-should not require touching the extraction or comparison pipeline.
+## Abstract
 
-## Layout
+> Pretrained models trained once on large-scale datasets are now routinely repurposed
+> for entirely new tasks, but there is no reliable way to predict, in advance, how much
+> a given model will benefit from adaptation without first fine-tuning it. This is a
+> real cost in domains where labeled data is scarce, forcing researchers to spend weeks
+> and compute on trial-and-error. We propose ECHO: a concrete, falsifiable geometric
+> signature of adaptation headroom, together with a precise map of the tasks where that
+> signature holds and where it does not. We show that a single, measurable property of
+> a model's internal representation — independent of its training data, architecture,
+> or task performance — predicts how much a model stands to gain from adapting to a new
+> task, before any adaptation is performed. We study numerous independently trained
+> audio models spanning speech, music, environmental sound, bioacoustics, and machine
+> acoustics. We measure how each model internally arranges sound relative to every
+> other model, and find that agreement between models is real but only partially
+> explained by what they were trained on — no single factor accounts for it fully. On
+> tasks with real learnable signal, models with more clustered representations gain
+> roughly 3.7x more from adaptation than already-spread models. Self-RSA further shows
+> that this relationship is reflected in actual geometric reorganization during
+> fine-tuning across three structurally different adaptation mechanisms. Domain-matched
+> pretraining is therefore not sufficient for model selection: general-purpose models
+> with no domain-specific training outperform domain-specialist models on their own
+> home tasks by up to 7%.
+
+## Models
+
+19 independently pretrained audio models, spanning four training paradigms. Every
+checkpoint ID below is read directly from this repo's own model adapters
+(`audio_comp/models/*.py`), not retyped from memory.
+
+| Model | HF / source ID | Training paradigm |
+|---|---|---|
+| [AST](https://huggingface.co/MIT/ast-finetuned-audioset-10-10-0.4593) | `MIT/ast-finetuned-audioset-10-10-0.4593` | Supervised / discriminative |
+| [PANNs (CNN14)](https://github.com/qiuqiangkong/audioset_tagging_cnn) | `qiuqiangkong/audioset_tagging_cnn` (Zenodo checkpoint) | Supervised / discriminative |
+| [Whisper](https://huggingface.co/openai/whisper-base) | `openai/whisper-base` | Supervised / discriminative |
+| [CLAP](https://huggingface.co/laion/larger_clap_general) | `laion/larger_clap_general` | Cross-modal contrastive |
+| [AudioMAE](https://github.com/facebookresearch/AudioMAE) | `facebookresearch/AudioMAE` (Google Drive checkpoint) | Masked modeling / reconstruction |
+| [Bird-MAE](https://huggingface.co/DBD-research-group/Bird-MAE-Base) | `DBD-research-group/Bird-MAE-Base` | Masked modeling / reconstruction |
+| [EnCodecMAE](https://github.com/habla-liaa/encodecmae) | `lpepino/encodecmae-large-st` (model name `ec-ec-large_st`) | Masked modeling / reconstruction |
+| [HuBERT](https://huggingface.co/facebook/hubert-large-ll60k) | `facebook/hubert-large-ll60k` | Masked modeling / reconstruction |
+| [wav2vec 2.0](https://huggingface.co/facebook/wav2vec2-large-lv60) | `facebook/wav2vec2-large-lv60` | Masked modeling / reconstruction |
+| [wav2vec 2.0 Conformer](https://huggingface.co/facebook/wav2vec2-conformer-rel-pos-large) | `facebook/wav2vec2-conformer-rel-pos-large` | Masked modeling / reconstruction |
+| [WavLM](https://huggingface.co/microsoft/wavlm-base-plus) | `microsoft/wavlm-base-plus` | Masked modeling / reconstruction |
+| [UniSpeech-SAT](https://huggingface.co/microsoft/unispeech-sat-base) | `microsoft/unispeech-sat-base` | Masked modeling / reconstruction |
+| [SEW](https://huggingface.co/asapp/sew-tiny-100k) | `asapp/sew-tiny-100k` | Masked modeling / reconstruction |
+| [MMS](https://huggingface.co/facebook/mms-300m) | `facebook/mms-300m` | Masked modeling / reconstruction |
+| [MERT](https://huggingface.co/m-a-p/MERT-v1-330M) | `m-a-p/MERT-v1-330M` | Masked modeling / reconstruction |
+| [MusicFM](https://github.com/minzwon/musicfm) | `minzwon/MusicFM` | Masked modeling / reconstruction (BEST-RQ) |
+| [Audio-JEPA](https://huggingface.co/ltuncay/Audio-JEPA) | `ltuncay/Audio-JEPA` | Joint-embedding / self-distillation |
+| [data2vec-audio](https://huggingface.co/facebook/data2vec-audio-base) | `facebook/data2vec-audio-base` | Joint-embedding / self-distillation |
+| [music2vec](https://huggingface.co/m-a-p/music2vec-v1) | `m-a-p/music2vec-v1` | Joint-embedding / self-distillation (data2vec-family, **not** JEPA — see correction below) |
+
+**Correction, kept visible rather than silently fixed:** `music2vec` was originally
+labeled JEPA-family in early project notes; it is actually data2vec-family (no
+separate predictor network, the architectural line that defines JEPA — see
+`audio_comp/models/music2vec.py`'s docstring). `Audio-JEPA` (`ltuncay/Audio-JEPA`) is
+an explicitly-labeled substitute for the original A-JEPA paper's checkpoint, which was
+never publicly released.
+
+Fourteen models receive both LoRA and ALLoRA adaptation; four (PANNs, AudioMAE,
+MusicFM, Audio-JEPA) are adapted only via top-$K$ layer unfreezing, since they either
+have no attention layer or embed bespoke, non-differentiable preprocessing that
+precludes standard LoRA module injection; EnCodecMAE participates in frozen-probe
+geometry only. See `final_iclr.tex` §3.2 / Appendix A.2 (Table 2) for the exact
+target-module naming per architecture.
+
+## Datasets
+
+| Domain | Source | Link | Clips |
+|---|---|---|---|
+| Speech | LibriSpeech ASR | [huggingface.co/datasets/openslr/librispeech_asr](https://huggingface.co/datasets/openslr/librispeech_asr) | 10,026 |
+| Music | FMA-small | [github.com/mdeff/fma](https://github.com/mdeff/fma) | 8,000 |
+| City noise | UrbanSound8K | [huggingface.co/datasets/danavery/urbansound8K](https://huggingface.co/datasets/danavery/urbansound8K) (unofficial HF mirror) | 8,732 |
+| Bird sounds | BirdCLEF | [huggingface.co/datasets/mteb/birdclef25-mini](https://huggingface.co/datasets/mteb/birdclef25-mini) | 6,335 |
+| Machine noise | MIMII (6dB tier) | [zenodo.org/records/3384388](https://zenodo.org/records/3384388) | 2,400 (seeded subsample of 18,019 raw files) |
+| Vessel (confidential) | JASCO AMAR hydrophone recordings, Canada's East Coast | not publicly linkable — class labels are restricted under a data-sharing agreement (see Ethics Statement, `final_iclr.tex`) | 2,463 |
+
+Exact per-domain clip counts, sample rates, and class-balance notes are in Table 1 of
+`final_iclr.tex`. `data/probe_set_manifest.csv` is the only probe-set artifact tracked
+in git (an older, superseded 8-category/2,000-clip-per-category pilot manifest — see
+`CLAUDE.md`'s frozen/provisional banner for why it no longer matches the paper's
+current 6-domain setup); raw audio and per-domain fine-tuning clip pools live on
+cluster scratch storage, not in this repo.
+
+## Codebase structure
 
 ```
 audio_comp/
-  models/         model adapters — one file per model, registered by name
-  data/           dataset sources (one file per dataset) + probe-set builder
-  geometry/       RDM / RSA / CKA / TwoNN intrinsic dimension
-  pipelines/      extract_embeddings.py (one model at a time), compare_models.py
+  models/              one file per model adapter, registered by name (audio_comp/models/base.py)
+  data/                dataset source loaders + probe-set builder
+  geometry/            RDM / RSA / CKA / TwoNN intrinsic dimension / uniformity
+  pipelines/           extraction, fine-tuning (LoRA/ALLoRA/top-K), and geometry
+                       computation entry points -- see "What runs what" below
 configs/
-  models.yaml     which registered models are active in the current run
-  categories.yaml which dataset source backs each probe-set category, and how many clips
-scripts/slurm/    sbatch job + submission script (one Slurm job per model, parallel)
+  models.yaml          which registered models are active in a given run
+  categories.yaml      which dataset source backs each probe-set category
+scripts/
+  appendix_reproduction/   scripts + README to regenerate the paper's appendix
+                            (accuracy table, RSA heatmaps, partial-correlation table)
+  finding6a_self_rsa_*.py  per-domain self-RSA computation (frozen vs. adapted RDM)
+  physics/                 separate side-investigation, out of scope for the ECHO paper
+                            itself -- see PHYSICS_INVESTIGATION_README.md
+  slurm/                   cluster job submission scripts
 data/
-  probe_set_manifest.csv   the ONLY probe-set artifact tracked in git — raw
-                           audio lives on $SCRATCH, reproducible from this
-                           manifest + build_probe_set.py + the category configs
-results/          RSA/CKA matrices + heatmaps — the actual Phase 1 deliverable
-tests/
-journal.md        running lab notebook (CLAUDE.md-mandated, append-only)
+  probe_set_manifest.csv, *_manifest.csv   per-domain clip manifests (paths, labels, folds)
+results/               every accuracy/RSA/CKA/self-RSA result reported in the paper
+                        (see "Results and figures" below)
+figures_appendix/      the appendix's combined RSA heatmap figure
+xares_eval/            X-ARES-based downstream evaluation harness (Findings 1-2)
+brain_rsa/             separate side-track (neural-data RSA comparison), not part of
+                        the ECHO paper's own claims
+journal.md             running lab notebook (append-only; the authoritative record of
+                        what was tried, what failed, and why)
+CLAUDE.md              full project scope, standing conventions, and finding-by-finding
+                        history (much more detailed than this README)
 ```
 
-## Adding a new model
+## What runs what
 
-1. Create `audio_comp/models/your_model.py`, subclass `BaseAudioEncoder`
-   (`audio_comp/models/base.py`), set `info = ModelInfo(...)`, implement
-   `load()` and `embed_batch()`. Decorate the class with
-   `@register_model("your_model")`.
-2. Import your module from `audio_comp/models/__init__.py`.
-3. Add `your_model` to `configs/models.yaml`'s `active_models` list.
+The pipeline has four stages, run in this order:
 
-If the checkpoint isn't natively `transformers.from_pretrained`-able (see
-`musicfm.py`, `audio_jepa.py`, `beats.py` for real examples of this), keep
-`load()`/`embed_batch()` raising `NotImplementedError` with a clear message
-until the loader is actually wired up and tested — don't guess at loader
-code that hasn't been run.
+1. **Probe-set construction.** `python -m audio_comp.data.build_probe_set` writes
+   `data/probe_set_manifest.csv` from the dataset sources under
+   `audio_comp/data/sources/`.
 
-## Adding a new dataset / category
+2. **Frozen embedding extraction.** One Slurm job per model
+   (`scripts/slurm/extract_embeddings.sbatch` -> `audio_comp/pipelines/extract_embeddings.py`),
+   writing one `.npz` (embeddings + clip IDs) per model to `$SCRATCH`.
+   `audio_comp/pipelines/finetune_data_geometry.py` does the same for each domain's own
+   fine-tuning clip pool (a different, larger set than the general probe set).
 
-1. Create `audio_comp/data/sources/your_dataset.py`, subclass
-   `BaseDatasetSource` (`audio_comp/data/base.py`), set
-   `info = DatasetInfo(...)`, implement `iter_clips()` (deterministic given
-   a seed). Decorate with `@register_dataset("your_dataset")`.
-2. Import your module from `audio_comp/data/sources/__init__.py`.
-3. Add an entry under `categories:` in `configs/categories.yaml` pointing
-   `source:` at your dataset name.
+3. **Adaptation.** `audio_comp/pipelines/generic_lora_trainer.py` (LoRA/ALLoRA) and
+   `audio_comp/pipelines/*_finetune_*.py` / `topk_unfreeze_configs.py` (top-$K$) fine-tune
+   each eligible model on each domain, writing per-(model, domain, condition, seed)
+   accuracy to `results/finetune_*.csv` / `results/stage5_*_mimii.csv` and a full
+   per-clip adapted representational dissimilarity matrix (RDM) checkpoint (used for
+   self-RSA in step 4) — see the Reproducibility Statement in `final_iclr.tex` for why
+   these RDM checkpoints (~512 GB total) aren't distributed with this repo.
 
-## Running the pilot end to end
+4. **Geometry analysis.** `audio_comp/pipelines/compare_models.py` (pretrained RSA/CKA),
+   `audio_comp/pipelines/rsa_cka_finetuned.py` (adapted RSA/CKA), `audio_comp/geometry/`
+   (uniformity, TwoNN), and `scripts/finding6a_self_rsa_*.py` (self-RSA, frozen-vs-adapted
+   per model) produce every geometry number reported in the paper.
 
-```bash
-# one-time environment setup — see "Environment setup" below
-python -m audio_comp.data.build_probe_set          # writes data/probe_set_manifest.csv
-bash scripts/slurm/submit_all.sh                    # one Slurm job per active model
-# ... wait for all extract_embeddings jobs to finish, then:
-python -m audio_comp.pipelines.compare_models \
-    --embeddings-dir "$SCRATCH/audio_comp/embeddings"
-```
+**To regenerate the paper's appendix specifically** (full accuracy table, pretrained/
+finetuned RSA heatmaps, the 18-cell self-RSA partial-correlation table in Finding 3),
+see [`scripts/appendix_reproduction/README.md`](scripts/appendix_reproduction/README.md) —
+it documents the exact script order, a real checkpoint-precedence bug that was found
+and fixed during this work, and what data is and isn't redistributable.
 
-`results/` will contain `rsa_matrix.csv`, `cka_matrix.csv`,
-`intrinsic_dimension.csv`, and the corresponding heatmap PNGs.
+## Results and figures
 
-## Environment setup (fir cluster / Digital Research Alliance of Canada)
+**Main paper figures** (`final_iclr.tex` §3, §4): the methodology diagram
+(`ICLR_m.png`, Figure 1) and the taxonomy-RSA alignment forest plot (`F1.png`, Figure 2,
+converted from `results/figures/mantel_forest_bh_bootstrap.svg`). Note: `F1.png` color-codes
+domain labels by an earlier "regime" (Structured/Intermediate/Quasi-stationary) framework
+that is not otherwise referenced in the current paper text (the framework was walked back
+earlier in the project's history) — kept as-is per explicit direction, not an oversight.
 
-```bash
-# gcc + arrow must be loaded BEFORE the venv is activated (Compute Canada's
-# pyarrow — a `datasets` dependency — is provided by the system module, not pip;
-# a plain `pip install pyarrow` fails with a clear "load the Arrow module first" error otherwise)
-module load python/3.11 cuda/12.6 gcc arrow/25.0.0
-python -m venv "$SCRATCH/audio-comp-venv"   # $HOME, not just quota-limited but had a real storage
-                                              # incident (2026-08-10 journal entry) — venv lives on $SCRATCH
-source "$SCRATCH/audio-comp-venv/bin/activate"
-pip install --no-index torch torchaudio torchvision   # Compute Canada wheelhouse
-pip install transformers huggingface_hub datasets torchcodec librosa soundfile \
-    scipy scikit-learn scikit-dimension einops pyyaml matplotlib pytest "xares[examples]" \
-    panns_inference torchlibrosa gdown beautifulsoup4 filelock "timm==0.4.9"
-# panns_inference/torchlibrosa: panns_cnn14 adapter. gdown/beautifulsoup4/filelock:
-# audiomae adapter's Google Drive checkpoint download. timm PINNED to 0.4.9, not
-# latest -- audio_comp/models/audiomae.py's docstring has the full reasoning: a real
-# version-skew conflict between the ViT encoder's old qk_scale-era timm API and the
-# (unused, bypassed) decoder's newer Swin API; 0.4.9 is the only version tested that
-# has both symbols at once. None of these touch torch as a declared dependency.
-export PYTHONPATH="$HOME/audio_comp:${PYTHONPATH:-}"   # audio_comp/xares_eval aren't pip-installed,
-                                                          # just importable via PYTHONPATH — see below
-huggingface-cli login                                   # caches your HF token; never paste it into chat
-```
+**Appendix figures** (`figures_appendix/`):
+- `heatmap_combined_2x2.png` — the paper's Appendix Figure (pretrained 19x19,
+  finetuned LoRA/ALLoRA 14x14, finetuned top-$K$ 4x4 RSA matrices, one panel each)
+- `heatmap_pretrained_19x19.png`, `heatmap_finetuned_14x14_lora.png`,
+  `heatmap_finetuned_14x14_allora.png`, `heatmap_finetuned_4x4_topk.png` — the same
+  four panels as standalone images
 
-`pyarrow` (a `datasets` dependency) comes from the `arrow` module at import
-time too, not just at install time — every shell that runs this code (Slurm
-jobs, interactive use, `build_probe_set.py`) needs
-`module load python/3.11 cuda/12.6 gcc arrow/25.0.0` loaded before activating
-the venv. `scripts/slurm/extract_embeddings.sbatch` already does this.
+**Key results files** (`results/`, non-exhaustive — see `CLAUDE.md` and `journal.md`
+for the full history of every intermediate/superseded file):
+- `appendix_big_accuracy_table.csv` — every model x domain x condition accuracy
+  (mean +/- std across seeds/folds), backing Appendix Table 3
+- `appendix_pretrained_rsa_19x19_domain_avg.csv`,
+  `appendix_finetuned_rsa_{14x14_lora,14x14_allora,4x4_topk}_avg.csv` — the matrices
+  behind the appendix heatmaps
+- `finding6_partial_corr_18cell.csv` — the self-RSA-vs-gain bivariate and partial
+  (controlling for uniformity) correlations for all 6 domains x 3 adaptation
+  conditions, backing Finding 3's Table 4
+- `finetune_{fma_genre,urbansound8k,birdclef,librispeech_speaker}.csv`,
+  `stage5_{frozen,lora,allora,topk}_mimii.csv`, `vessel_all_experiments.csv` — raw
+  per-(model, condition, seed[, fold]) accuracy, one file set per domain
+- `finding6a_self_rsa_*.csv` — per-domain self-RSA (frozen-vs-adapted RDM correlation)
+- `rsa_finetuned_matrix_*.csv`, `vessel_rsa_matrix_*.csv`,
+  `cka_finetuned_matrix_*.csv` — per-(domain, condition, seed) cross-model RSA/CKA
+  matrices restricted to the LoRA/ALLoRA/top-$K$-eligible model subsets
+- `model_arch_taxonomy.csv`, `model_roster.csv` — model metadata (paradigm,
+  architecture, breadth-hypothesis grouping) used throughout the analysis scripts
 
-Neither `audio_comp` nor `xares_eval` are `pip install -e .`'d — both are
-plain `PYTHONPATH`-relative packages instead. This was originally just true
-for `xares_eval` (its CLI loader needs paths relative to CWD, incompatible
-with a normal install); `audio_comp` joined it after `$HOME` had a storage
-incident that made `pip install -e .`'s wheel-build step for our own package
-unreliable (repeated `Cannot send after transport endpoint shutdown` errors
-on the same file, eventually traced to one specific corrupted inode — see
-the 2026-08-10 journal entry). `export PYTHONPATH="$HOME/audio_comp"` (from
-the repo root, so `python -m audio_comp.pipelines...` and
-`python -m xares_eval.encoders...` both resolve) replaces the editable
-install everywhere — already wired into both sbatch scripts.
+## Setup
 
-`$SCRATCH/audio_comp/` (not this git repo) holds raw probe-set audio,
-downloaded checkpoints, and extracted embeddings — set `AUDIO_COMP_DATA_ROOT`
-and `AUDIO_COMP_EXTERNAL` env vars to override the defaults
-(`~/audio_comp_data` and `~/audio_comp_external`).
-
-`musicfm`, `audio_jepa`, `panns_cnn14`, and `audiomae` each need one extra one-time step before they'll load:
-```bash
-bash scripts/setup_musicfm.sh
-bash scripts/setup_audio_jepa.sh
-bash scripts/setup_panns.sh
-bash scripts/setup_audiomae.sh
-```
-and `music` category clips need:
-```bash
-bash scripts/download_fma_small.sh
-```
-
-## Current kickoff model set
-
-Every model's `checkpoint_status` (`official_open_weights` /
-`official_public_weights_license_unclear` / `community_conversion` /
-`code_only`) is enforced in code, not just documented here — see
-`audio_comp/models/base.py` and `registry.py`'s `get_model_class()`.
-
-| Model | Paradigm | License | checkpoint_status | Status |
-|---|---|---|---|---|
-| CLAP (`laion/larger_clap_general`) | Contrastive (audio-text) | Apache-2.0 | official_open_weights | active |
-| MERT (`m-a-p/MERT-v1-330M`) | Masked modeling (music) | CC-BY-NC-4.0 | official_open_weights | active |
-| HuBERT (`facebook/hubert-large-ll60k`) | Masked modeling (speech) | Apache-2.0 | official_open_weights | active |
-| wav2vec 2.0 (`facebook/wav2vec2-large-lv60`) | Masked modeling (speech) | Apache-2.0 | official_open_weights | active |
-| music2vec (`m-a-p/music2vec-v1`) | data2vec-family, not JEPA (music) | CC-BY-NC-4.0 | official_open_weights | active |
-| MusicFM (`minzwon/MusicFM`) | Masked modeling (BEST-RQ, music) | MIT | official_open_weights | active, needs `scripts/setup_musicfm.sh` |
-| Audio-JEPA (`ltuncay/Audio-JEPA`) | JEPA-family (general; **not** the original A-JEPA — see module docstring) | MIT | official_open_weights | active, needs `scripts/setup_audio_jepa.sh` |
-| PANNs Cnn14 (`qiuqiangkong/audioset_tagging_cnn`) | Supervised, pure-CNN (AudioSet tagging) | MIT | official_open_weights | active, needs `scripts/setup_panns.sh` |
-| Bird-MAE (`DBD-research-group/Bird-MAE-Base`) | Masked autoencoding, reconstruction-target (bioacoustic) | unstated — no LICENSE file, no HF card license field (checked 2026-08-10) | official_public_weights_license_unclear | active |
-| AST (`MIT/ast-finetuned-audioset-10-10-0.4593`) | Supervised, transformer (AudioSet tagging) | BSD-3-Clause | official_open_weights | active |
-| AudioMAE (`facebookresearch/AudioMAE`) | Masked autoencoding, reconstruction-target (general audio) | CC-BY-4.0 | official_open_weights | active, needs `scripts/setup_audiomae.sh` |
-| BEATs | Masked modeling (general audio) | MIT (repo-wide, no separate per-checkpoint statement — see module docstring) | official_open_weights | deferred, no native HF path (checkpoint availability is not the blocker) |
-
-The original paper's A-JEPA (Fei, Fan, Huang, arXiv 2311.15830) has no
-public checkpoint anywhere — `ltuncay/Audio-JEPA` is used as an
-explicitly-labeled substitute for the JEPA-family paradigm slot.
-
-**Correction (2026-08-09):** music2vec was originally labeled JEPA-family
-here and in CLAUDE.md; it's actually data2vec-family — no separate
-predictor network (the architectural line that actually defines JEPA), just
-a student encoder predicting an EMA teacher's representations directly. See
-the correction note in `CLAUDE.md` and `audio_comp/models/music2vec.py`'s
-docstring for the full detail. Practical effect: there are currently zero
-working JEPA-family models in the active comparison — `audio_jepa` will be
-the first once it's wired up, not a second point to compare against
-music2vec.
-
-## Current probe-set categories (pilot: 20 clips/category)
-
-| Category | Source | License |
-|---|---|---|
-| Music | FMA-small | CC-BY family |
-| Speech | LibriSpeech ASR (English) | CC-BY-4.0 |
-| Bird sounds | ESC-50 (chirping_birds/crow classes) | CC-BY-NC-3.0 |
-| Ship/vessel | DS3500 (ShipsEar-derived) | CC-BY |
-| City/urban noise | UrbanSound8K (HF mirror) | CC-BY-NC-4.0 (verify against original) |
+See `CLAUDE.md` for the full project scope and standing conventions, and
+[`scripts/appendix_reproduction/README.md`](scripts/appendix_reproduction/README.md)
+for environment notes specific to the appendix-reproduction scripts (thread-limiting,
+the `scipy-stack` cluster module for `matplotlib`). Neither `audio_comp` nor
+`xares_eval` are `pip install -e .`'d — both are `PYTHONPATH`-relative packages; export
+`PYTHONPATH="$HOME/audio_comp"` from the repo root before running anything under
+`audio_comp.pipelines.*` or `xares_eval.*`.
