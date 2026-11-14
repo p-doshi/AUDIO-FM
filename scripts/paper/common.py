@@ -43,15 +43,9 @@ def difficulty(mean_frozen_acc, chance):
     return (a - c) / (1 - c) if a >= c else (a - c) / c
 
 
-def excluded_cell(dataset, model, condition):
-    """WavLM on city under LoRA has incomplete adapted checkpoints and is excluded everywhere."""
-    return dataset == "urbansound8k" and model == "wavlm" and condition == "lora"
-
-
 def load_converged_probe(allora=False, exclude_domains=()):
     """Per-(dataset, model, condition, seed) converged-probe accuracy (frozen, adapted) and gain.
-    Uses the whitened Gram-recovered features ("white" columns). Unadapted checkpoints and the
-    excluded city LoRA WavLM cell are removed."""
+    Uses the whitened Gram-recovered features ("white" columns). Unadapted checkpoints are removed."""
     pat = "converged_probe_gain_*_allora_seed*.csv" if allora else "converged_probe_gain_*_seed*.csv"
     files = [f for f in glob.glob(str(RESULTS / "probes" / "converged" / pat)) if allora or "_allora_" not in f]
     d = pd.concat([pd.read_csv(f) for f in files])
@@ -62,7 +56,6 @@ def load_converged_probe(allora=False, exclude_domains=()):
     bad = pd.read_csv(RESULTS / "probes" / "unadapted_checkpoints.csv")
     bad = set(zip(bad.dataset, bad.condition, bad.model, bad.seed.astype(int)))
     d = d[[(a, c, m, s) not in bad for a, c, m, s in zip(d.dataset, d.condition, d.model, d.seed)]]
-    d = d[[not excluded_cell(a, m, c) for a, m, c in zip(d.dataset, d.model, d.condition)]]
     d = d[~d.dataset.isin(exclude_domains)]
     d = d.drop_duplicates(["dataset", "model", "condition", "seed"], keep="last")
     return d.rename(columns={"frozen_white": "frozen_acc", "adapted_white": "adapted_acc", "gain_white": "gain"})

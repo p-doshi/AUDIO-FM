@@ -146,7 +146,7 @@ def main():
     w("## B. Frozen and adapted accuracy (converged probe)\n")
     w("Test accuracy of the converged linear probe on Gram-recovered features of the frozen and the adapted encoder, mean ± SD "
       "over seeds. Primary condition: LoRA for the 14 LoRA-eligible models, top-K for the other 4. Gain = adapted − frozen "
-      "(primary condition). City LoRA excludes WavLM (incomplete adapted checkpoints); speech LoRA misses some seeds.\n")
+      "(primary condition). Speech LoRA misses some seeds.\n")
     w(accuracy_table() + "\n")
 
     w("## C. Frozen usability probes and geometry (Finding 2)\n")

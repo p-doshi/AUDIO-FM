@@ -36,7 +36,6 @@ def table():
     tax = pd.read_csv(RESULTS / "models" / "model_arch_taxonomy.csv")[["model", "type"]]
     au = pd.concat([pd.read_csv(RESULTS / "geometry" / "adaptation" / f"uniformity_{d}.csv")
                     for d in ["birdclef", "fma_genre", "librispeech", "mimii", "urbansound8k"]])
-    au = au[~((au.dataset == "urbansound8k") & (au.condition == "lora") & (au.model == "wavlm"))]
     au = au[au.condition == au.model.map(primary_condition)].groupby(["dataset", "model"], as_index=False).d_uni.mean()
     t = (t.merge(geo, on=["dataset", "model"]).merge(pr, on=["dataset", "model"], how="left").merge(par, on="model")
          .merge(tax, on="model").merge(au, on=["dataset", "model"], how="left"))

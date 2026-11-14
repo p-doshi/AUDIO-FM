@@ -19,9 +19,9 @@ organization by training paradigm reaches p < 0.05. In bird, the source-recordin
 because clips cut from one recording are near-duplicates.
 
 ## self_rsa_model_level/
-Model-level (seeds averaged) self-RSA links, with WavLM excluded from city LoRA.
+Model-level (seeds averaged) self-RSA links.
 
-- `first_link_model_level_13model_city.csv`: uniformity → self-RSA. For the top-K cells (n = 4 models) `p_model` is the
+- `first_link_model_level.csv`: uniformity → self-RSA. For the top-K cells (n = 4 models) `p_model` is the
   **exact** two-sided permutation p over all 24 orderings; the smallest attainable value is 0.083. The scipy asymptotic p is
   not valid at n = 4 (for example, bird top-K: asymptotic 0.0, exact 0.083).
   It includes the vessel cells (aggregate correlations only).

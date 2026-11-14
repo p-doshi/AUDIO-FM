@@ -252,7 +252,7 @@ in `APPENDIX.md`.
 **Regression.**
 
 - **Model:** gain ~ difficulty + uniformity + domain match.
-- **Rows:** every (model, domain, seed) with a converged-probe gain in the primary condition: 423 rows covering
+- **Rows:** every (model, domain, seed) with a converged-probe gain in the primary condition: 428 rows covering
   18 models (all except EnCodecMAE) and five public domains.
 - **Predictors:**
   - *Difficulty* is a domain-level term: the domain's mean frozen probe accuracy over models, chance-normalized
@@ -269,7 +269,7 @@ in `APPENDIX.md`.
 **Within-domain ranking.**
 
 - Gain and uniformity are averaged over seeds per (model, domain), then demeaned within domain.
-- Spearman ρ is computed over the 89 pairs, with a model-bootstrap CI.
+- Spearman ρ is computed over the 90 pairs, with a model-bootstrap CI.
 
 **Sensitivity analyses.**
 
@@ -336,9 +336,8 @@ Output: `results/paper_outputs/finding3_self_rsa_links.csv`; inputs in `results/
 | Item | Treatment |
 |---|---|
 | EnCodecMAE | frozen analyses only (no adaptation) |
-| WavLM, city, LoRA | excluded: adapted checkpoints incomplete |
 | Speech, LoRA | some seeds missing (truncated checkpoints); a sensitivity analysis restricted to complete seeds is reported |
-| Shared offset | 773 valid adaptation runs (LoRA / top-*K* and ALLoRA); runs whose adapted checkpoint equals the frozen encoder, and city LoRA WavLM, are excluded |
+| Shared offset | 778 valid adaptation runs (LoRA / top-*K* and ALLoRA); runs whose adapted checkpoint equals the frozen encoder are excluded |
 | Music | 3 undecodable FMA-small files dropped for all models |
 
 ---

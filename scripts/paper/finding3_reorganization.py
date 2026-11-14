@@ -21,7 +21,7 @@ import numpy as np
 import pandas as pd
 from scipy import stats
 
-from common import DOMAINS, OUT, RESULTS, bh, excluded_cell, load_converged_probe, read_square
+from common import DOMAINS, OUT, RESULTS, bh, load_converged_probe, read_square
 
 G = RESULTS / "geometry"
 
@@ -30,7 +30,6 @@ def shared_offset():
     rows = []
     for f in sorted(glob.glob(str(G / "adaptation" / "spectral_*.csv"))):
         d = pd.read_csv(f)
-        d = d[[not excluded_cell(a, m, c) for a, m, c in zip(d.dataset, d.model, d.condition)]]
         rows.append(d[["dataset", "model", "condition", "seed", "mean_energy_frozen", "mean_energy_adapted"]])
     d = pd.concat(rows)
     d["falls"] = d.mean_energy_adapted < d.mean_energy_frozen
@@ -56,7 +55,7 @@ def delta_rsa():
                 ms = [x for x in A.index if x in F.index and x != "wavlm"]
                 fr, ad = mean_rsa(F, ms), mean_rsa(A, ms)
                 per_d.append(np.mean([ad[x] - fr[x] for x in ms]))
-                ms2 = [x for x in A.index if x in F.index and not excluded_cell(ds, x, cond)]
+                ms2 = [x for x in A.index if x in F.index]
                 per_order.append(mean_rsa(A, ms2))
             models = sorted(set.intersection(*[set(p) for p in per_order]))
             ad = np.array([np.mean([p[x] for p in per_order]) for x in models])

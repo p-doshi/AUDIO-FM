@@ -40,7 +40,7 @@ Pretrained checkpoints used for every model (Hugging Face identifiers unless sta
 
 ## B. Frozen and adapted accuracy (converged probe)
 
-Test accuracy of the converged linear probe on Gram-recovered features of the frozen and the adapted encoder, mean ± SD over seeds. Primary condition: LoRA for the 14 LoRA-eligible models, top-K for the other 4. Gain = adapted − frozen (primary condition). City LoRA excludes WavLM (incomplete adapted checkpoints); speech LoRA misses some seeds.
+Test accuracy of the converged linear probe on Gram-recovered features of the frozen and the adapted encoder, mean ± SD over seeds. Primary condition: LoRA for the 14 LoRA-eligible models, top-K for the other 4. Gain = adapted − frozen (primary condition). Speech LoRA misses some seeds.
 
 | domain   | model                 |   seeds | frozen        | adapted (primary)     |   gain (primary) | adapted (ALLoRA)   |
 |:---------|:----------------------|--------:|:--------------|:----------------------|-----------------:|:-------------------|
@@ -78,7 +78,7 @@ Test accuracy of the converged linear probe on Gram-recovered features of the fr
 | city     | UniSpeech-SAT         |       5 | 0.630 ± 0.000 | 0.682 ± 0.021 (LoRA)  |            0.052 | 0.697 ± 0.037      |
 | city     | wav2vec 2.0           |       5 | 0.644 ± 0.000 | 0.605 ± 0.021 (LoRA)  |           -0.039 | 0.622 ± 0.018      |
 | city     | wav2vec 2.0 Conformer |       5 | 0.615 ± 0.000 | 0.647 ± 0.017 (LoRA)  |            0.032 | 0.645 ± 0.012      |
-| city     | WavLM                 |       5 | 0.643 ± 0.000 | excluded              |                  | 0.632 ± 0.028      |
+| city     | WavLM                 |       5 | 0.643 ± 0.000 | 0.654 ± 0.019 (LoRA)  |            0.011 | 0.632 ± 0.028      |
 | city     | Whisper               |       5 | 0.731 ± 0.000 | 0.749 ± 0.032 (LoRA)  |            0.018 | 0.716 ± 0.012      |
 | bird     | AST                   |       5 | 0.322 ± 0.000 | 0.442 ± 0.014 (LoRA)  |            0.120 | 0.445 ± 0.013      |
 | bird     | Audio-JEPA            |       5 | 0.181 ± 0.000 | 0.103 ± 0.018 (top-K) |           -0.077 |                    |
@@ -347,29 +347,29 @@ Regression gain ~ difficulty + uniformity + domain match (model-clustered SE; R�
 
 | variant                                |   n_rows |   n_models |     R2 |   b_difficulty |   b_uniformity |   b_domain_match |   se_difficulty |   se_uniformity |   se_domain_match |   p_difficulty |   p_uniformity |   p_domain_match |   R2_ci_lo |   R2_ci_hi |   within_rho |   within_rho_ci_lo |   within_rho_ci_hi |   n_pairs |
 |:---------------------------------------|---------:|-----------:|-------:|---------------:|---------------:|-----------------:|----------------:|----------------:|------------------:|---------------:|---------------:|-----------------:|-----------:|-----------:|-------------:|-------------------:|-------------------:|----------:|
-| all public domains                     |      423 |         18 | 0.0784 |         0.0642 |         0.0031 |          -0.0164 |          0.0272 |          0.0107 |            0.0239 |         0.0307 |         0.7792 |           0.5008 |     0.0217 |     0.2187 |      -0.0248 |            -0.3331 |             0.2435 |   89.0000 |
-| without machine                        |      333 |         18 | 0.0187 |         0.0323 |         0.0052 |          -0.0150 |          0.0297 |          0.0121 |            0.0231 |         0.2925 |         0.6713 |           0.5245 |   nan      |   nan      |     nan      |           nan      |           nan      |  nan      |
-| speech complete seeds only             |      390 |         18 | 0.0751 |         0.0637 |         0.0019 |          -0.0124 |          0.0254 |          0.0099 |            0.0209 |         0.0226 |         0.8508 |           0.5617 |   nan      |   nan      |     nan      |           nan      |           nan      |  nan      |
-| (model, domain) pairs with all 5 seeds |      370 |         18 | 0.0918 |         0.0761 |         0.0031 |           0.0025 |          0.0317 |          0.0108 |            0.0265 |         0.0280 |         0.7744 |           0.9250 |   nan      |   nan      |     nan      |           nan      |           nan      |  nan      |
+| all public domains                     |      428 |         18 | 0.0759 |         0.0629 |         0.0034 |          -0.0156 |          0.0270 |          0.0107 |            0.0237 |         0.0322 |         0.7511 |           0.5190 |     0.0212 |     0.2171 |      -0.0112 |            -0.3164 |             0.2542 |   90.0000 |
+| without machine                        |      338 |         18 | 0.0178 |         0.0309 |         0.0057 |          -0.0142 |          0.0293 |          0.0121 |            0.0230 |         0.3065 |         0.6444 |           0.5444 |   nan      |   nan      |     nan      |           nan      |           nan      |  nan      |
+| speech complete seeds only             |      395 |         18 | 0.0716 |         0.0619 |         0.0023 |          -0.0114 |          0.0250 |          0.0098 |            0.0207 |         0.0243 |         0.8204 |           0.5889 |   nan      |   nan      |     nan      |           nan      |           nan      |  nan      |
+| (model, domain) pairs with all 5 seeds |      375 |         18 | 0.0870 |         0.0737 |         0.0036 |           0.0031 |          0.0311 |          0.0108 |            0.0264 |         0.0298 |         0.7449 |           0.9081 |   nan      |   nan      |     nan      |           nan      |           nan      |  nan      |
 
 Predictor search (leave-one-model-out CV R², permutation p over the full search, 2,000 permutations):
 
-| target      | pool                      |   n_pairs |   uniformity_alone_cv_r2 | best                                       |   best_cv_r2 |   perm_p |   p_bonferroni_6 | second                                |   second_cv_r2 | third                                      |   third_cv_r2 |
-|:------------|:--------------------------|----------:|-------------------------:|:-------------------------------------------|-------------:|---------:|-----------------:|:--------------------------------------|---------------:|:-------------------------------------------|--------------:|
-| gain        | frozen, label-free        |        88 |                  -0.0815 | twonn                                      |      -0.0186 |   0.4293 |           1.0000 | twonn + domain_match                  |        -0.0323 | uniformity + alignment + twonn             |       -0.0435 |
-| gain        | frozen, incl. label-using |        88 |                  -0.0815 | discriminative + linear + frozen_acc       |       0.2583 |   0.0030 |           0.0180 | discriminative + frozen_acc           |         0.2561 | domain_match + discriminative + frozen_acc |        0.2425 |
-| gain        | incl. post-hoc d_uni      |        88 |                  -0.0815 | discriminative + linear + frozen_acc       |       0.2583 |   0.0060 |           0.0360 | discriminative + frozen_acc           |         0.2561 | domain_match + discriminative + frozen_acc |        0.2425 |
-| adapted_acc | frozen, label-free        |        88 |                   0.0228 | uniformity + domain_match + discriminative |       0.1998 |   0.0130 |           0.0780 | twonn + domain_match + discriminative |         0.1973 | domain_match + discriminative              |        0.1972 |
-| adapted_acc | frozen, incl. label-using |        88 |                   0.0228 | discriminative + linear + frozen_acc       |       0.4261 |   0.0005 |           0.0030 | discriminative + frozen_acc           |         0.4244 | domain_match + discriminative + frozen_acc |        0.4139 |
-| adapted_acc | incl. post-hoc d_uni      |        88 |                   0.0228 | discriminative + linear + frozen_acc       |       0.4261 |   0.0005 |           0.0030 | discriminative + frozen_acc           |         0.4244 | domain_match + discriminative + frozen_acc |        0.4139 |
+| target      | pool                      |   n_pairs |   uniformity_alone_cv_r2 | best                                  |   best_cv_r2 |   perm_p |   p_bonferroni_6 | second                        |   second_cv_r2 | third                                      |   third_cv_r2 |
+|:------------|:--------------------------|----------:|-------------------------:|:--------------------------------------|-------------:|---------:|-----------------:|:------------------------------|---------------:|:-------------------------------------------|--------------:|
+| gain        | frozen, label-free        |        89 |                  -0.0805 | twonn                                 |      -0.0180 |   0.4193 |           1.0000 | twonn + domain_match          |        -0.0315 | uniformity + twonn                         |       -0.0441 |
+| gain        | frozen, incl. label-using |        89 |                  -0.0805 | discriminative + linear + frozen_acc  |       0.2596 |   0.0030 |           0.0180 | discriminative + frozen_acc   |         0.2555 | domain_match + discriminative + frozen_acc |        0.2421 |
+| gain        | incl. post-hoc d_uni      |        89 |                  -0.0805 | discriminative + linear + frozen_acc  |       0.2596 |   0.0055 |           0.0330 | discriminative + frozen_acc   |         0.2555 | domain_match + discriminative + frozen_acc |        0.2421 |
+| adapted_acc | frozen, label-free        |        89 |                   0.0170 | twonn + domain_match + discriminative |       0.2012 |   0.0120 |           0.0720 | domain_match + discriminative |         0.2011 | uniformity + domain_match + discriminative |        0.1998 |
+| adapted_acc | frozen, incl. label-using |        89 |                   0.0170 | discriminative + linear + frozen_acc  |       0.4285 |   0.0005 |           0.0030 | discriminative + frozen_acc   |         0.4253 | domain_match + discriminative + frozen_acc |        0.4149 |
+| adapted_acc | incl. post-hoc d_uni      |        89 |                   0.0170 | discriminative + linear + frozen_acc  |       0.4285 |   0.0005 |           0.0030 | discriminative + frozen_acc   |         0.4253 | domain_match + discriminative + frozen_acc |        0.4149 |
 
 Transferability estimators vs gain (within-domain Spearman, permutation p, model-bootstrap CI):
 
 | estimator        |   n_pairs |   within_domain_rho |   perm_p |   ci_lo |   ci_hi |
 |:-----------------|----------:|--------------------:|---------:|--------:|--------:|
-| logme            |        89 |             -0.1425 |   0.2533 | -0.3497 |  0.0993 |
-| knn_ref_accuracy |        89 |             -0.0881 |   0.5665 | -0.4111 |  0.3022 |
-| uniformity       |        89 |             -0.0248 |   0.8636 | -0.3309 |  0.2604 |
+| logme            |        90 |             -0.1339 |   0.2789 | -0.3438 |  0.1012 |
+| knn_ref_accuracy |        90 |             -0.0775 |   0.6127 | -0.4104 |  0.3037 |
+| uniformity       |        90 |             -0.0112 |   0.9426 | -0.3120 |  0.2739 |
 
 ## F. How adaptation reshapes geometry (Finding 3)
 
@@ -379,14 +379,14 @@ Transferability estimators vs gain (within-domain Spearman, permutation p, model
 |:-------------|:---------|--------:|-----------------:|----------------:|-----------------:|------------:|----------:|----------:|
 | fma_genre    | lora     |       5 |           0.3033 |          0.0084 |               14 |      0.7451 |    0.0033 |    0.0330 |
 | fma_genre    | allora   |       5 |           0.3077 |          0.0038 |               14 |      0.5033 |    0.0708 |    0.1180 |
-| urbansound8k | lora     |       5 |           0.0893 |          0.0090 |               13 |      0.6484 |    0.0203 |    0.0543 |
-| urbansound8k | allora   |       5 |           0.0470 |          0.0173 |               14 |      0.6615 |    0.0114 |    0.0543 |
-| birdclef     | lora     |       5 |           0.1537 |          0.0119 |               14 |      0.6176 |    0.0217 |    0.0543 |
-| birdclef     | allora   |       5 |           0.1459 |          0.0189 |               14 |      0.5648 |    0.0386 |    0.0772 |
-| librispeech  | lora     |       5 |          -0.1023 |          0.0211 |               14 |     -0.4418 |    0.1162 |    0.1661 |
-| librispeech  | allora   |       3 |          -0.1332 |          0.0166 |               14 |     -0.3538 |    0.2149 |    0.2686 |
-| mimii        | lora     |       5 |           0.1233 |          0.0250 |               14 |      0.2044 |    0.4783 |    0.5315 |
-| mimii        | allora   |       5 |           0.1264 |          0.0437 |               14 |      0.0989 |    0.7386 |    0.7386 |
+| urbansound8k | lora     |       5 |           0.0893 |          0.0090 |               14 |      0.6835 |    0.0085 |    0.0376 |
+| urbansound8k | allora   |       5 |           0.0470 |          0.0173 |               14 |      0.6615 |    0.0113 |    0.0376 |
+| birdclef     | lora     |       5 |           0.1537 |          0.0119 |               14 |      0.6176 |    0.0220 |    0.0549 |
+| birdclef     | allora   |       5 |           0.1459 |          0.0189 |               14 |      0.5648 |    0.0384 |    0.0768 |
+| librispeech  | lora     |       5 |          -0.1023 |          0.0211 |               14 |     -0.4418 |    0.1164 |    0.1663 |
+| librispeech  | allora   |       3 |          -0.1332 |          0.0166 |               14 |     -0.3538 |    0.2157 |    0.2697 |
+| mimii        | lora     |       5 |           0.1233 |          0.0250 |               14 |      0.2044 |    0.4782 |    0.5313 |
+| mimii        | allora   |       5 |           0.1264 |          0.0437 |               14 |      0.0989 |    0.7394 |    0.7394 |
 
 Self-RSA links at model level (seeds averaged; gain = converged-probe gain of that condition):
 
@@ -403,12 +403,12 @@ Self-RSA links at model level (seeds averaged; gain = converged-probe gain of th
 | librispeech  | topk        |          4 |                  -0.8000 |    0.3333 |               4 |                    -0.8729 |     0.3333 |    0.5778 |     0.9583 |
 | mimii        | allora      |         14 |                  -0.3143 |    0.2700 |              14 |                     0.0583 |     0.8446 |    0.5778 |     0.9583 |
 | mimii        | lora        |         14 |                  -0.2484 |    0.3840 |              14 |                     0.2377 |     0.4326 |    0.5778 |     0.9583 |
-| mimii        | topk        |          4 |                   0.2000 |    0.9167 |               4 |                    -0.0891 |     0.9583 |    0.9636 |     0.9583 |
+| mimii        | topk        |          4 |                   0.2000 |    0.9167 |               4 |                    -0.0891 |     0.9583 |    0.9821 |     0.9583 |
 | urbansound8k | allora      |         14 |                  -0.1868 |    0.5219 |              14 |                    -0.0676 |     0.8229 |    0.6523 |     0.9583 |
-| urbansound8k | lora        |         13 |                  -0.0165 |    0.9636 |              13 |                    -0.2656 |     0.3958 |    0.9636 |     0.9583 |
+| urbansound8k | lora        |         14 |                  -0.0022 |    1.0000 |              14 |                    -0.1306 |     0.6621 |    1.0000 |     0.9583 |
 | urbansound8k | topk        |          4 |                  -0.8000 |    0.3333 |               4 |                    -0.1348 |     0.9583 |    0.5778 |     0.9583 |
 
-Shared offset (‖mean of L2-normalized embeddings‖²) falls in 769 of 773 valid adaptation runs; exceptions: music AST allora seed 0, music AST allora seed 2, music AST lora seed 0, music AST lora seed 1.
+Shared offset (‖mean of L2-normalized embeddings‖²) falls in 774 of 778 valid adaptation runs; exceptions: music AST allora seed 0, music AST allora seed 2, music AST lora seed 0, music AST lora seed 1.
 
 ## G. Frozen RSA matrices
 

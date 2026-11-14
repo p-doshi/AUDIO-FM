@@ -1,6 +1,2 @@
 dataset,condition,model,seed,reason
-urbansound8k,lora,wavlm,0,pre-fix WavLM checkpoint: adapted == frozen; no fixed checkpoint exists
-urbansound8k,lora,wavlm,1,pre-fix WavLM checkpoint: adapted == frozen; no fixed checkpoint exists
-urbansound8k,lora,wavlm,2,pre-fix WavLM checkpoint: adapted == frozen; no fixed checkpoint exists
-urbansound8k,lora,wavlm,3,pre-fix WavLM checkpoint: adapted == frozen; no fixed checkpoint exists
 librispeech,lora,wavlm,0,pre-fix WavLM checkpoint: adapted == frozen; no fixed checkpoint exists
