@@ -189,10 +189,17 @@ def robustness_section(w):
     pc = c.pivot_table(index=["domain_a", "domain_b"], columns="metric", values=["rho", "q_bh"])
     pc.columns = [f"{m} {v}".replace("q_bh", "q").replace("rho", "ρ") for v, m in pc.columns]
     w(md(pc[[f"{m} {v}" for m in ["rsa", "cka", "dcka", "mknn"] for v in ["ρ", "q"]]].reset_index(), ".4f") + "\n")
-    w("Cross-domain ρ under debiased and standard linear CKA agree to within 0.004 in every pair, so finite-sample bias "
-      "does not change the comparison at these sample sizes (2,400 to 10,026 clips). Mutual k-NN overlap makes every pair significant, including the speech pairs; "
-      "an additive per-model term (each model's mean similarity to the others) explains 57–91% of the variance of each "
-      "mutual k-NN matrix.\n")
+    diff = (pc["cka ρ"] - pc["dcka ρ"]).abs().max()
+    r2 = []
+    for d in DOMAINS:
+        M = read_square(R / f"sim_mknn_{d}.csv").values.astype(float)
+        iu = np.triu_indices(len(M), 1)
+        r = np.array([np.mean(np.delete(M[i], i)) for i in range(len(M))])
+        r2.append(np.corrcoef((r[:, None] + r[None, :])[iu], M[iu])[0, 1] ** 2)
+    w(f"Cross-domain ρ under debiased and standard linear CKA differ by at most {diff:.3f} in any pair, so finite-sample "
+      "bias does not change the comparison at these sample sizes (2,400 to 10,026 clips). Mutual k-NN overlap makes "
+      "every pair significant, including the speech pairs; an additive per-model term (each model's mean similarity to "
+      f"the others) explains {100 * min(r2):.0f}–{100 * max(r2):.0f}% of the variance of each mutual k-NN matrix.\n")
     d = opt(OUT / "robust_cross_domain_model_effect_removed.csv")
     if d is not None:
         w("### H.6 Exploratory: model main effect removed\n")

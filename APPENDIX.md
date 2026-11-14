@@ -578,18 +578,18 @@ The Finding 1 test (Spearman between two domains' model × model matrices, one-s
 
 | domain_a   | domain_b   |   rsa ρ |   rsa q |   cka ρ |   cka q |   dcka ρ |   dcka q |   mknn ρ |   mknn q |
 |:-----------|:-----------|--------:|--------:|--------:|--------:|---------:|---------:|---------:|---------:|
-| bird       | machine    |  0.6379 |  0.0003 |  0.5737 |  0.0030 |   0.5710 |   0.0034 |   0.8947 |   0.0001 |
+| bird       | machine    |  0.6379 |  0.0003 |  0.5587 |  0.0047 |   0.5571 |   0.0050 |   0.9322 |   0.0001 |
 | bird       | speech     |  0.1056 |  0.2975 |  0.2133 |  0.1368 |   0.2155 |   0.1329 |   0.7347 |   0.0004 |
 | city       | bird       |  0.6141 |  0.0003 |  0.6661 |  0.0003 |   0.6647 |   0.0003 |   0.9704 |   0.0001 |
-| city       | machine    |  0.3993 |  0.0209 |  0.5466 |  0.0050 |   0.5445 |   0.0052 |   0.8462 |   0.0001 |
+| city       | machine    |  0.3993 |  0.0209 |  0.5475 |  0.0047 |   0.5454 |   0.0050 |   0.8861 |   0.0001 |
 | city       | speech     |  0.4161 |  0.0209 |  0.5017 |  0.0060 |   0.5016 |   0.0059 |   0.7676 |   0.0001 |
 | music      | bird       |  0.8148 |  0.0003 |  0.8173 |  0.0003 |   0.8157 |   0.0003 |   0.9102 |   0.0001 |
 | music      | city       |  0.6271 |  0.0005 |  0.7304 |  0.0003 |   0.7274 |   0.0003 |   0.8969 |   0.0001 |
-| music      | machine    |  0.5166 |  0.0030 |  0.6018 |  0.0022 |   0.6007 |   0.0022 |   0.8415 |   0.0001 |
+| music      | machine    |  0.5166 |  0.0030 |  0.5958 |  0.0025 |   0.5946 |   0.0027 |   0.8526 |   0.0001 |
 | music      | speech     |  0.2181 |  0.1575 |  0.2904 |  0.0719 |   0.2903 |   0.0716 |   0.6818 |   0.0004 |
-| speech     | machine    | -0.0997 |  0.6794 | -0.0268 |  0.5433 |  -0.0267 |   0.5424 |   0.6831 |   0.0009 |
+| speech     | machine    | -0.0997 |  0.6794 | -0.0412 |  0.5690 |  -0.0419 |   0.5704 |   0.6799 |   0.0013 |
 
-Cross-domain ρ under debiased and standard linear CKA agree to within 0.004 in every pair, so finite-sample bias does not change the comparison at these sample sizes (2,400 to 10,026 clips). Mutual k-NN overlap makes every pair significant, including the speech pairs; an additive per-model term (each model's mean similarity to the others) explains 57–91% of the variance of each mutual k-NN matrix.
+Cross-domain ρ under debiased and standard linear CKA differ by at most 0.003 in any pair, so finite-sample bias does not change the comparison at these sample sizes (2,400 to 10,026 clips). Mutual k-NN overlap makes every pair significant, including the speech pairs; an additive per-model term (each model's mean similarity to the others) explains 57–90% of the variance of each mutual k-NN matrix.
 
 ### H.6 Exploratory: model main effect removed
 
@@ -597,15 +597,15 @@ Each matrix is double-centred (row and column means removed, diagonal excluded) 
 
 | domain_a   | domain_b   |   rsa ρ |   rsa q |   dcka ρ |   dcka q |   mknn ρ |   mknn q |   dcka centrality ρ |   mknn centrality ρ |   rsa centrality ρ |
 |:-----------|:-----------|--------:|--------:|---------:|---------:|---------:|---------:|--------------------:|--------------------:|-------------------:|
-| bird       | machine    |  0.5358 |  0.0002 |   0.3248 |   0.0003 |   0.7234 |   0.0002 |              0.5930 |              0.8614 |             0.6018 |
-| bird       | speech     |  0.3192 |  0.0004 |   0.2349 |   0.0083 |   0.4039 |   0.0028 |              0.3193 |              0.6912 |             0.1912 |
+| bird       | machine    |  0.5358 |  0.0002 |   0.3812 |   0.0003 |   0.8193 |   0.0002 |              0.5088 |              0.9088 |             0.6018 |
+| bird       | speech     |  0.3192 |  0.0004 |   0.2349 |   0.0072 |   0.4039 |   0.0028 |              0.3193 |              0.6912 |             0.1912 |
 | city       | bird       |  0.5044 |  0.0002 |   0.3756 |   0.0003 |   0.8769 |   0.0002 |            nan      |            nan      |           nan      |
-| city       | machine    |  0.3191 |  0.0006 |   0.2442 |   0.0080 |   0.5688 |   0.0003 |              0.4193 |              0.7825 |             0.2193 |
+| city       | machine    |  0.3191 |  0.0006 |   0.2561 |   0.0039 |   0.6420 |   0.0002 |              0.4351 |              0.8368 |             0.2193 |
 | city       | speech     |  0.3572 |  0.0002 |   0.3813 |   0.0005 |   0.4414 |   0.0026 |              0.6351 |              0.7386 |             0.5737 |
 | music      | bird       |  0.5778 |  0.0002 |   0.5781 |   0.0003 |   0.8030 |   0.0002 |            nan      |            nan      |           nan      |
-| music      | city       |  0.4831 |  0.0002 |   0.3279 |   0.0036 |   0.7663 |   0.0002 |            nan      |            nan      |           nan      |
-| music      | machine    |  0.2792 |  0.0019 |   0.2222 |   0.0093 |   0.6192 |   0.0002 |            nan      |            nan      |           nan      |
+| music      | city       |  0.4831 |  0.0002 |   0.3279 |   0.0030 |   0.7663 |   0.0002 |            nan      |            nan      |           nan      |
+| music      | machine    |  0.2792 |  0.0019 |   0.3022 |   0.0016 |   0.6676 |   0.0002 |            nan      |            nan      |           nan      |
 | music      | speech     |  0.3668 |  0.0004 |   0.2138 |   0.0115 |   0.2661 |   0.0090 |              0.2895 |              0.6386 |             0.3807 |
-| speech     | machine    |  0.2457 |  0.0026 |   0.2276 |   0.0085 |   0.3703 |   0.0021 |            nan      |            nan      |           nan      |
+| speech     | machine    |  0.2457 |  0.0026 |   0.2155 |   0.0101 |   0.3761 |   0.0026 |            nan      |            nan      |           nan      |
 
 With the per-model term removed, all 10 pairs are significant under every measure, including the speech pairs. What differs in speech is which models are central: per-model centrality in speech correlates weakly with the other domains, with data2vec-audio, music2vec and wav2vec 2.0 more central and AudioMAE, EnCodecMAE, CLAP and Bird-MAE less central than elsewhere.

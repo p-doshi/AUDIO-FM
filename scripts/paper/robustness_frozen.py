@@ -157,11 +157,11 @@ def knn_idx(Z, k=10, chunk=2000):
 def sim_domain(dom):
     data = {m: load(dom, m) for m in MODELS}
     data = {m: d for m, d in data.items() if d is not None}
-    common_ids = set.intersection(*[set(stem(c) for c in d[2]) for d in data.values()])
+    common_ids = set.intersection(*[set(str(c) for c in d[2]) for d in data.values()])
     order = sorted(common_ids)
     E = {}
     for m, (X, _, ids) in data.items():
-        pos = {stem(c): i for i, c in enumerate(ids)}
+        pos = {str(c): i for i, c in enumerate(ids)}
         E[m] = X[[pos[c] for c in order]]
     ms = sorted(E)
     n = len(order)
