@@ -126,6 +126,92 @@ def opt(path):
     return pd.read_csv(path) if Path(path).exists() else None
 
 
+def robustness_section(w):
+    R = RESULTS / "robustness"
+    if not (R / "probes_robust.csv").exists():
+        return
+    w("## H. Robustness checks\n")
+    w("All checks use the frozen embeddings of the five public domains (`scripts/paper/robustness_frozen.py`, analysis in "
+      "`scripts/paper/robustness_analysis.py`). Splits are those of §C. The MIMII wav2vec 2.0 Conformer cell, absent from "
+      "the Finding 2 probe table, is present here, so n = 95 (19 models × 5 domains) instead of 94.\n")
+
+    w("### H.1 Uniformity and frozen kNN accuracy across kNN settings\n")
+    w("kNN with k ∈ {1, 5, 10, 20, 50} under two metrics: Euclidean distance on standardized features (the setting of "
+      "Finding 2) and cosine similarity on raw embeddings. Scores: accuracy and balanced (macro-averaged) accuracy. Gap = "
+      "kNN − converged linear probe, both scored the same way. ρ: Spearman after demeaning within domain (uniformity at "
+      "t = 2). p (model perm.): two-sided, model identities permuted jointly in all domains (2,000 draws; the smallest "
+      "attainable value is 0.0005). p (scipy) treats the 95 points as independent and is shown for reference.\n")
+    u = pd.read_csv(OUT / "robust_uniformity_knn.csv")
+    a = u[u.vary == "kNN"].copy()
+    a["setting"] = a.metric + ", k = " + a.k.astype(str)
+    piv = a.pivot_table(index=["metric", "k"], columns=["score", "target"], values=["rho", "p_model_perm"])
+    piv.columns = [f"{v} {sc} {tg}".replace("p_model_perm", "p").replace("rho", "ρ") for v, sc, tg in piv.columns]
+    order = [f"{v} {sc} {tg}" for sc in ["acc", "bal_acc"] for tg in ["knn", "gap"] for v in ["ρ", "p"]]
+    w(md(piv[order].reset_index(), ".4f") + "\n")
+    w("### H.2 Uniformity temperature\n")
+    w("Uniformity log E[exp(−t‖z_i − z_j‖²)] over all clip pairs of L2-normalized embeddings, t ∈ {0.5, 1, 2, 5, 10} "
+      "(the paper uses t = 2). kNN: Euclidean on standardized features, k = 10, accuracy.\n")
+    b = u[u.vary == "t"].pivot_table(index="t", columns="target", values=["rho", "p_model_perm", "p_scipy"])
+    b.columns = [f"{tg} {v}".replace("p_model_perm", "p (model perm.)").replace("p_scipy", "p (scipy)").replace("rho", "ρ") for v, tg in b.columns]
+    w(md(b.reset_index(), ".4f") + "\n")
+
+    w("### H.3 Per-model values\n")
+    w("kNN accuracy (k = 10) under both metrics, balanced accuracy of the Finding 2 kNN and of the converged linear probe, "
+      "uniformity at each temperature, and the two additional transferability estimators (§H.4).\n")
+    pr = pd.read_csv(R / "probes_robust.csv")
+    geo = pd.read_csv(R / "geo_te_robust.csv")
+    k10 = pr[(pr.probe == "knn") & (pr.k == 10)].pivot_table(index=["dataset", "model"], columns="metric", values=["acc", "bal_acc"])
+    k10.columns = [f"kNN {m} {s}".replace("euclidean_std", "eucl.").replace("cosine_raw", "cos.").replace("bal_acc", "bal. acc") for s, m in k10.columns]
+    lin = pr[pr.probe == "linear_conv"].set_index(["dataset", "model"])[["acc", "bal_acc"]].rename(columns={"acc": "linear acc", "bal_acc": "linear bal. acc"})
+    t = k10.join(lin).join(geo.set_index(["dataset", "model"]).drop(columns="n")).reset_index()
+    t.insert(0, "domain", t.dataset.map(DOMAIN_NAME))
+    t["model"] = t.model.map(NAME)
+    w(md(t.drop(columns="dataset"), ".3f") + "\n")
+    w("Accuracy for every k and metric is in `results/robustness/probes_robust.csv`.\n")
+
+    w("### H.4 Additional transferability estimators\n")
+    w("Shrinkage H-score (Ibrahim et al., ECML PKDD 2022): tr(Σ_α⁻¹ (1 − α) Σ_between), with Σ_α the Ledoit–Wolf shrinkage "
+      "estimate of the feature covariance and Σ_between the covariance of the class-mean features. GBC (Pándy et al., CVPR "
+      "2022): −Σ over class pairs of the Bhattacharyya coefficient between per-class diagonal Gaussians fitted on the first "
+      "64 principal components. Both use frozen embeddings and labels of all clips. Tested against seed-averaged "
+      "converged-probe gain exactly as LogME (§E): within-domain Spearman, two-sided model-identity permutation (5,000 "
+      "draws), 95% CI from 2,000 model bootstraps; 90 (model, domain) pairs.\n")
+    e = pd.concat([pd.read_csv(OUT / "finding3_transferability.csv"), pd.read_csv(OUT / "robust_transferability.csv")])
+    w(md(e, ".4f") + "\n")
+
+    w("### H.5 Cross-domain stability under other similarity measures\n")
+    w("The Finding 1 test (Spearman between two domains' model × model matrices, one-sided model-identity permutation, "
+      "10,000 permutations, BH over the 10 public pairs) for linear CKA, debiased linear CKA (unbiased HSIC estimator, "
+      "Song et al., 2012) and mutual k-NN overlap (fraction of shared 10 nearest neighbours per clip, cosine, averaged "
+      "over clips), next to RSA. The vessel domain is not included. MIMII lacks the Conformer RSA row, so the RSA "
+      "comparison uses 18 models.\n")
+    c = pd.read_csv(OUT / "robust_cross_domain.csv")
+    pc = c.pivot_table(index=["domain_a", "domain_b"], columns="metric", values=["rho", "q_bh"])
+    pc.columns = [f"{m} {v}".replace("q_bh", "q").replace("rho", "ρ") for v, m in pc.columns]
+    w(md(pc[[f"{m} {v}" for m in ["rsa", "cka", "dcka", "mknn"] for v in ["ρ", "q"]]].reset_index(), ".4f") + "\n")
+    w("Cross-domain ρ under debiased and standard linear CKA agree to within 0.004 in every pair, so finite-sample bias "
+      "does not change the comparison at these sample sizes (2,400 to 10,026 clips). Mutual k-NN overlap makes every pair significant, including the speech pairs; "
+      "an additive per-model term (each model's mean similarity to the others) explains 57–91% of the variance of each "
+      "mutual k-NN matrix.\n")
+    d = opt(OUT / "robust_cross_domain_model_effect_removed.csv")
+    if d is not None:
+        w("### H.6 Exploratory: model main effect removed\n")
+        w("Each matrix is double-centred (row and column means removed, diagonal excluded) before the same test, so only "
+          "pair-specific affinity beyond each model's overall level of agreement remains. Centrality: Spearman across "
+          "models between two domains' per-model mean similarity to the other models.\n")
+        pd2 = d.pivot_table(index=["domain_a", "domain_b"], columns="metric", values=["rho", "q_bh"])
+        pd2.columns = [f"{m} {v}".replace("q_bh", "q").replace("rho", "ρ") for v, m in pd2.columns]
+        ce = pd.read_csv(OUT / "robust_centrality.csv").pivot_table(index=["domain_a", "domain_b"], columns="metric", values="rho_centrality")
+        ce.columns = [f"{m} centrality ρ" for m in ce.columns]
+        cols = [f"{m} {v}" for m in ["rsa", "dcka", "mknn"] for v in ["ρ", "q"]]
+        w(md(pd2[cols].join(ce, how="left").reset_index(), ".4f") + "\n")
+        w("With the per-model term removed, all 10 pairs are significant under every measure, including the speech pairs. "
+          "What differs in speech is which models are central: per-model centrality in speech correlates weakly with the "
+          "other domains, with data2vec-audio, music2vec and wav2vec 2.0 more central and AudioMAE, EnCodecMAE, CLAP and "
+          "Bird-MAE less central than elsewhere.\n")
+
+
+
 def main():
     S = []
     w = S.append
@@ -136,7 +222,8 @@ def main():
       "Vessel results are aggregate statistics only; no vessel audio, labels or per-model vessel values are released.\n")
     w("## Contents\n\nA. Model roster and checkpoints  \nB. Frozen and adapted accuracy (converged probe)  \n"
       "C. Frozen usability probes and geometry (Finding 2)  \nD. Cross-domain stability and taxonomy tests (Finding 1)  \n"
-      "E. Adaptation gain analyses (Finding 3)  \nF. How adaptation reshapes geometry (Finding 3)  \nG. Frozen RSA matrices\n")
+      "E. Adaptation gain analyses (Finding 3)  \nF. How adaptation reshapes geometry (Finding 3)  \nG. Frozen RSA matrices  \n"
+      "H. Robustness checks\n")
 
     w("## A. Model roster and checkpoints\n")
     w("Pretrained checkpoints used for every model (Hugging Face identifiers unless stated). No adapted weights are "
@@ -203,6 +290,8 @@ def main():
     w("## G. Frozen RSA matrices\n")
     for f in rsa_heatmaps():
         w(f"![{f.stem}](figures/appendix/{f.name})\n")
+
+    robustness_section(w)
     (REPO / "APPENDIX.md").write_text("\n".join(S))
     print("wrote", REPO / "APPENDIX.md")
 

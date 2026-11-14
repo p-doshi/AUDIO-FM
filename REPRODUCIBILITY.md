@@ -331,6 +331,27 @@ Output: `results/paper_outputs/finding3_self_rsa_links.csv`; inputs in `results/
 
 ---
 
+### Robustness checks
+
+Code: `scripts/paper/robustness_frozen.py` (frozen embeddings) and `scripts/paper/robustness_analysis.py`; results in
+APPENDIX.md §H. Five public domains; splits as in §5.
+
+- **kNN settings.** k ∈ {1, 5, 10, 20, 50}; Euclidean distance on standardized features (Finding 2 setting) or cosine
+  similarity on raw embeddings (Euclidean on L2-normalized vectors). Scored by accuracy and balanced (macro) accuracy;
+  the gap uses the converged linear probe scored the same way.
+- **Uniformity temperature.** t ∈ {0.5, 1, 2, 5, 10}, all clip pairs, L2-normalized embeddings.
+- **Statistic.** Spearman after demeaning within domain; two-sided model-identity permutation p (same permutation in
+  every domain, 2,000 draws).
+- **Additional transferability estimators.** Shrinkage H-score (Ibrahim et al., 2022): tr(Σ_α⁻¹ (1 − α) Σ_between) with
+  Ledoit–Wolf shrinkage (scikit-learn `LedoitWolf`, centred features). GBC (Pándy et al., 2022): −Σ over class pairs of
+  the Bhattacharyya coefficient between per-class diagonal Gaussians (variance + 1e-6) on the first 64 principal
+  components. All clips, frozen features and labels. Tested against gain exactly as LogME (§7, Finding 3).
+- **Similarity measures.** Per domain, 19 × 19 matrices of linear CKA, debiased linear CKA (unbiased HSIC estimator of
+  Song et al., 2012, computed in feature space) and mutual k-NN overlap (k = 10, cosine, self excluded; mean over clips
+  of the fraction of shared neighbours). Cross-domain stability with the Finding 1 test, BH over the 10 public pairs.
+- **Exploratory model-effect removal.** Each matrix double-centred (diagonal excluded) before the same test; centrality =
+  Spearman across models of per-model mean similarity between two domains.
+
 ## 8. Exclusions and missing cells
 
 | Item | Treatment |
