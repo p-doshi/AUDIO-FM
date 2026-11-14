@@ -12,7 +12,8 @@ Reports:
 - pooled Spearman, after demeaning every variable within domain, of uniformity with kNN accuracy and
   with the kNN - linear gap (linear = the same logistic regression run to convergence, max_iter 10,000,
   tol 1e-6; results/probes/frozen_linear_iterations.csv, column lin_conv), and the partial correlation
-  controlling for log10 parameter count (rank residualization), with the VIF of the two predictors
+  controlling for log parameter count (ranks of uniformity and kNN residualized on the rank of log parameter
+  count, Spearman of the residuals; parameter count is not demeaned), with the VIF of the two predictors
 The sign test is reported for two definitions of "discriminative": AST and CLAP (the two models with a
 direct classification or contrastive objective on general audio), and all supervised or contrastive
 models (AST, CLAP, PANNs, Whisper).
@@ -26,13 +27,11 @@ from common import DOMAIN_NAME, OUT, RESULTS, frozen_geometry
 
 
 def partial(x, y, z):
+    """Rank x, y and z, residualize the ranks of x and y on the rank of z (OLS), Spearman of the residuals."""
     rx, ry, rz = (stats.rankdata(v) for v in (x, y, z))
     ex = rx - np.polyval(np.polyfit(rz, rx, 1), rz)
     ey = ry - np.polyval(np.polyfit(rz, ry, 1), rz)
-    r = np.corrcoef(ex, ey)[0, 1]
-    n = len(x)
-    t = r * np.sqrt((n - 3) / (1 - r ** 2))
-    return r, 2 * stats.t.sf(abs(t), n - 3)
+    return stats.spearmanr(ex, ey)
 
 
 def main():
@@ -74,12 +73,12 @@ def main():
         s[f"{DOMAIN_NAME[ds]}_birdmae_minus_audiomae_knn"] = b.knn - a.knn
     s["n_rows"] = len(d)
     w = d.copy()
-    for c in ["uniformity", "knn", "gap", "log_params"]:
+    for c in ["uniformity", "knn", "gap"]:  # log parameter count is a model property and is not demeaned
         w[c] = w[c] - w.groupby("dataset")[c].transform("mean")
     s["rho_uniformity_knn"], s["p_uniformity_knn"] = stats.spearmanr(w.uniformity, w.knn)
     s["rho_uniformity_gap"], s["p_uniformity_gap"] = stats.spearmanr(w.uniformity, w.gap)
     s["partial_rho_uniformity_knn_given_logparams"], s["partial_p"] = partial(w.uniformity, w.knn, w.log_params)
-    r = stats.spearmanr(w.uniformity, w.log_params)[0]
+    r = np.corrcoef(w.uniformity, w.log_params)[0, 1]  # VIF from the linear R^2 of the two predictors
     s["vif_uniformity_logparams"] = 1 / (1 - r ** 2)
     out = pd.Series(s)
     out.to_csv(OUT / "finding2_summary.csv", header=["value"])

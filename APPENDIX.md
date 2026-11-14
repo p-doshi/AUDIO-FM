@@ -261,9 +261,9 @@ Summary statistics (`finding2.py`):
 | p_uniformity_knn                                       | 0.00039584130534752463 |
 | rho_uniformity_gap                                     | -0.37486544088429724   |
 | p_uniformity_gap                                       | 0.00019723588711395023 |
-| partial_rho_uniformity_knn_given_logparams             | -0.3558805785257333    |
-| partial_p                                              | 0.0004636496518947385  |
-| vif_uniformity_logparams                               | 1.0237429664438082     |
+| partial_rho_uniformity_knn_given_logparams             | -0.34099627930498866   |
+| partial_p                                              | 0.0007703186076812216  |
+| vif_uniformity_logparams                               | 1.0170405222408834     |
 
 kNN/linear accuracy ratio by domain:
 

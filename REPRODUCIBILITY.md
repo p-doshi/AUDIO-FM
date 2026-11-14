@@ -177,7 +177,9 @@ standardization.
   count is 4/5 (*p* = 0.375); both are in `results/paper_outputs/finding2_per_domain.csv`.
 - **Uniformity vs. kNN accuracy and vs. the kNN − linear gap:** Spearman ρ pooled over the 94 (model, domain)
   rows after demeaning every variable within domain. Also reported as a partial correlation controlling for
-  log₁₀ parameter count (rank residualization), with the variance inflation factor of the two predictors.
+  log parameter count: the ranks of demeaned uniformity and kNN accuracy are residualized on the rank of log
+  parameter count (not demeaned, since it is a model property), and the Spearman correlation of the residuals is
+  reported, with the variance inflation factor of the two predictors.
 - **Code:** `scripts/paper/finding2_frozen_probes.py` (probes, needs embeddings) and `scripts/paper/finding2.py`
   (statistics, runs from `results/`).
 - **Label grain:** five coarse-to-fine label hierarchies:
@@ -290,8 +292,11 @@ in `APPENDIX.md`.
 
 **Transferability baselines.** Within domain, Spearman ρ between gain and:
 
-- LogME on frozen embeddings.
-- kNN accuracy with 100 labelled reference clips per class.
+- LogME on frozen embeddings (mean over classes of the per-sample log evidence of a one-vs-rest Bayesian
+  linear model).
+- kNN accuracy (k = 5, cosine similarity) with up to 100 labelled reference clips per class (at most half of
+  each class, seed 0), evaluated on the rest of the domain's pool.
+- Estimators are computed by `scripts/paper/transferability_estimators.py`.
 
 Both use two-sided model-identity permutation *p*-values (5,000 draws) and 2,000-model-bootstrap CIs
 (`scripts/paper/finding3_transferability.py`; estimator values in `results/probes/transferability_estimators.csv`).
