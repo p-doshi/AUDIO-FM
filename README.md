@@ -1,0 +1,127 @@
+# ECHO: Embedding Convergence and Hidden Organization in Audio Models
+
+This repository contains the codebase for **ECHO: Embedding Convergence and Hidden Organization in Audio Models**, a study of representational
+geometry across independently pretrained audio foundation models, and whether a
+model's frozen representation geometry predicts how much it stands to gain from
+adaptation before any fine-tuning is run.
+
+| Document | Contents |
+|---|---|
+| [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) | datasets, splits, probe-set composition, model configuration, adaptation hyper-parameters, the accuracy probe, metric definitions, every statistical test |
+| [`APPENDIX.md`](APPENDIX.md) | model roster and checkpoints, full frozen/adapted accuracy table, frozen probes and geometry, Finding 1–3 result tables, RSA matrices |
+| [`scripts/paper/README.md`](scripts/paper/README.md) | the analysis script behind every number in the paper, and how to rerun it |
+| [`additional_results/README.md`](additional_results/README.md) | analyses outside the paper (cross-lingual RSA, multi-grain probe, model-level self-RSA) |
+
+`results/` holds the aggregate inputs to every paper analysis (per-seed converged-probe accuracies, RSA/CKA matrices,
+geometry, frozen probes). Raw audio, embeddings and per-clip RDM/Gram matrices are not included.
+
+## Models
+
+19 independently pretrained audio models, spanning four training paradigms. Every
+checkpoint ID below is read directly from this repo's own model adapters
+(`audio_comp/models/*.py`), not retyped from memory.
+
+| Model | HF / source ID | Training paradigm |
+|---|---|---|
+| [AST](https://huggingface.co/MIT/ast-finetuned-audioset-10-10-0.4593) | `MIT/ast-finetuned-audioset-10-10-0.4593` | Supervised / discriminative |
+| [PANNs (CNN14)](https://github.com/qiuqiangkong/audioset_tagging_cnn) | `qiuqiangkong/audioset_tagging_cnn` (Zenodo checkpoint) | Supervised / discriminative |
+| [Whisper](https://huggingface.co/openai/whisper-base) | `openai/whisper-base` | Supervised / discriminative |
+| [CLAP](https://huggingface.co/laion/larger_clap_general) | `laion/larger_clap_general` | Cross-modal contrastive |
+| [AudioMAE](https://github.com/facebookresearch/AudioMAE) | `facebookresearch/AudioMAE` (Google Drive checkpoint) | Masked modeling / reconstruction |
+| [Bird-MAE](https://huggingface.co/DBD-research-group/Bird-MAE-Base) | `DBD-research-group/Bird-MAE-Base` | Masked modeling / reconstruction |
+| [EnCodecMAE](https://github.com/habla-liaa/encodecmae) | `lpepino/encodecmae-large-st` (model name `ec-ec-large_st`) | Masked modeling / reconstruction |
+| [HuBERT](https://huggingface.co/facebook/hubert-large-ll60k) | `facebook/hubert-large-ll60k` | Masked modeling / reconstruction |
+| [wav2vec 2.0](https://huggingface.co/facebook/wav2vec2-large-lv60) | `facebook/wav2vec2-large-lv60` | Masked modeling / reconstruction |
+| [wav2vec 2.0 Conformer](https://huggingface.co/facebook/wav2vec2-conformer-rel-pos-large) | `facebook/wav2vec2-conformer-rel-pos-large` | Masked modeling / reconstruction |
+| [WavLM](https://huggingface.co/microsoft/wavlm-base-plus) | `microsoft/wavlm-base-plus` | Masked modeling / reconstruction |
+| [UniSpeech-SAT](https://huggingface.co/microsoft/unispeech-sat-base) | `microsoft/unispeech-sat-base` | Masked modeling / reconstruction |
+| [SEW](https://huggingface.co/asapp/sew-tiny-100k) | `asapp/sew-tiny-100k` | Masked modeling / reconstruction |
+| [MMS](https://huggingface.co/facebook/mms-300m) | `facebook/mms-300m` | Masked modeling / reconstruction |
+| [MERT](https://huggingface.co/m-a-p/MERT-v1-330M) | `m-a-p/MERT-v1-330M` | Masked modeling / reconstruction |
+| [MusicFM](https://github.com/minzwon/musicfm) | `minzwon/MusicFM` | Masked modeling / reconstruction (BEST-RQ) |
+| [Audio-JEPA](https://huggingface.co/ltuncay/Audio-JEPA) | `ltuncay/Audio-JEPA` | Joint-embedding / self-distillation |
+| [data2vec-audio](https://huggingface.co/facebook/data2vec-audio-base) | `facebook/data2vec-audio-base` | Joint-embedding / self-distillation |
+| [music2vec](https://huggingface.co/m-a-p/music2vec-v1) | `m-a-p/music2vec-v1` | Joint-embedding / self-distillation (data2vec-family) |
+
+
+
+Fourteen models receive both LoRA and ALLoRA adaptation; four (PANNs, AudioMAE,
+MusicFM, Audio-JEPA) are adapted only via top-$K$ layer unfreezing, since they either
+have no attention layer or embed bespoke, non-differentiable preprocessing that
+precludes standard LoRA module injection; EnCodecMAE participates in frozen-probe
+geometry only. See `audio_comp/pipelines/allora_model_configs.py` and
+`audio_comp/pipelines/topk_unfreeze_configs.py` for the exact target-module naming
+per architecture.
+
+## Datasets
+
+| Domain | Source | Link |
+|---|---|---|
+| Speech | LibriSpeech ASR | [huggingface.co/datasets/openslr/librispeech_asr](https://huggingface.co/datasets/openslr/librispeech_asr) |
+| Music | FMA-small | [github.com/mdeff/fma](https://github.com/mdeff/fma) |
+| City noise | UrbanSound8K | [huggingface.co/datasets/danavery/urbansound8K](https://huggingface.co/datasets/danavery/urbansound8K) (unofficial HF mirror) |
+| Bird sounds | BirdCLEF | [huggingface.co/datasets/mteb/birdclef25-mini](https://huggingface.co/datasets/mteb/birdclef25-mini) |
+| Machine noise | MIMII (6dB tier) | [zenodo.org/records/3384388](https://zenodo.org/records/3384388) |
+| Vessel | confidential hydrophone recordings | not publicly available; used under a restrictive data-sharing agreement |
+
+Per-domain clip manifests (file, label, split or fold) are in `data/`: `fma_genre_manifest.csv`,
+`librispeech_speaker_manifest.csv`, `urbansound8k_manifest.csv`, `birdclef_manifest.csv`, `mimii_manifest.csv`.
+Pool sizes, splits and class balance are in `REPRODUCIBILITY.md` §1. `data/probe_set_manifest.csv` is a shared
+multi-domain probe set used only for exploratory analyses. Raw audio is not redistributed.
+
+## Codebase structure
+
+```
+audio_comp/
+  models/              one file per model adapter, registered by name (audio_comp/models/base.py)
+  data/                dataset source loaders + probe-set builder
+  geometry/            RDM / RSA / CKA / TwoNN intrinsic dimension / uniformity
+  pipelines/           extraction, fine-tuning (LoRA/ALLoRA/top-K), and geometry
+                       computation entry points -- see "What runs what" below
+configs/
+  models.yaml          which registered models are active in a given run
+  categories.yaml      which dataset source backs each probe-set category
+scripts/
+  paper/                   every analysis in the paper + the appendix generator (see its README)
+  self_rsa_and_heatmaps/   self-RSA (frozen vs. adapted RDM) and RSA heatmap builders
+  additional_analyses/     code for the tables in additional_results/
+  physics/                 separate side-investigation, code only
+  slurm/                   cluster job submission scripts
+data/
+  *_manifest.csv       per-domain clip manifests (paths, labels, splits / folds)
+results/               aggregate inputs and outputs of the paper analyses
+figures/               paper and appendix figures
+xares_eval/            X-ARES-based downstream evaluation harness
+brain_rsa/              separate side-track (neural-data RSA comparison)
+```
+
+## What runs what
+
+The pipeline has four stages, run in this order:
+
+1. **Probe-set construction.** `python -m audio_comp.data.build_probe_set` writes
+   `data/probe_set_manifest.csv` from the dataset sources under
+   `audio_comp/data/sources/`.
+
+2. **Frozen embedding extraction.** One Slurm job per model
+   (`scripts/slurm/extract_embeddings.sbatch` -> `audio_comp/pipelines/extract_embeddings.py`),
+   writing one `.npz` (embeddings + clip IDs) per model. `audio_comp/pipelines/finetune_data_geometry.py`
+   does the same for each domain's own fine-tuning clip pool (a different, larger set
+   than the general probe set).
+
+3. **Adaptation.** `audio_comp/pipelines/rsa_cka_finetuned.py --category <domain> --condition {lora,allora,topk} --seed <s>`
+   fine-tunes every eligible model on one domain (LoRA/ALLoRA configs in `lora_model_configs.py` /
+   `allora_model_configs.py`, top-$K$ in `topk_unfreeze_configs.py`), embeds the domain's full pool with the
+   adapted encoder, and stores the clip × clip RDM and Gram matrix per (domain, condition, model, seed) plus
+   the adapted model × model RSA/CKA matrices.
+
+4. **Probe and geometry analysis.** `scripts/paper/converged_probe_gain.py` (frozen and adapted accuracy and gain),
+   `scripts/paper/adaptation_geometry.py` (shared offset, change in uniformity), `scripts/paper/finding2_frozen_probes.py`
+   (frozen kNN / linear), `scripts/self_rsa_and_heatmaps/compute_self_rsa.py` (self-RSA), then the `finding*.py`
+   statistics scripts and `make_appendix.py`, which run from the aggregate files in `results/`.
+
+## Setup
+
+Neither `audio_comp` nor `xares_eval` are `pip install -e .`'d — both are
+`PYTHONPATH`-relative packages; export `PYTHONPATH="$HOME/audio_comp"` from the repo
+root before running anything under `audio_comp.pipelines.*` or `xares_eval.*`.

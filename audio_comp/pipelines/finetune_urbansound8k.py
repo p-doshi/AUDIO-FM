@@ -1,0 +1,120 @@
+"""Matched LoRA-vs-frozen fine-tuning comparison for UrbanSound8K (city
+noise, 10-class), using `xares_eval/urbansound8k/build_manifest.py`'s
+manifest and the dataset's own native 10-fold CV (Salamon et al. 2014's
+standard protocol).
+
+**Subsampled to 4 held-out folds (1/4/7/10), not all 10** -- same
+cost-bounding reasoning as MIMII's 4-of-16-fold choice: 10 folds x 14
+LoRA models x several epochs each is not a bounded compute budget on top
+of everything else already running. Read results as this 4-fold subset,
+not full leave-one-fold-out CV.
+
+Usage:
+    python -m audio_comp.pipelines.finetune_urbansound8k --condition lora --model wav2vec2
+"""
+from __future__ import annotations
+
+import csv
+from pathlib import Path
+
+import torch
+
+from audio_comp.pipelines.generic_lora_trainer import (
+    train_and_eval_allora,
+    train_and_eval_frozen,
+    train_and_eval_lora,
+    train_and_eval_topk,
+    write_results_idempotent,
+)
+from audio_comp.pipelines.allora_model_configs import ALLORA_SUPPORTED_MODELS
+from audio_comp.pipelines.lora_model_configs import LORA_SUPPORTED_MODELS
+from audio_comp.pipelines.topk_unfreeze_configs import TOPK_SUPPORTED_MODELS
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
+MANIFEST_CSV = REPO_ROOT / "data" / "urbansound8k_manifest.csv"
+CLASS_LABEL_MAPS = {
+    "air_conditioner": 0, "car_horn": 1, "children_playing": 2, "dog_bark": 3, "drilling": 4,
+    "engine_idling": 5, "gun_shot": 6, "jackhammer": 7, "siren": 8, "street_music": 9,
+}
+NUM_CLASSES = len(CLASS_LABEL_MAPS)
+NATIVE_SAMPLE_RATE = 44100  # target rate every clip gets resampled to. **Verified 2026-08-17 that this assumption WAS wrong**: a 200-clip sample showed genuinely mixed native rates (44100/48000/96000/24000/16000/8000/192000), not a uniform 44.1kHz -- generic_lora_trainer.py's read_mono()/read_batch_skip_bad() now read each clip's TRUE rate and resample to this target explicitly, so this constant is safe again as a target (arbitrary but matches the modal rate), not a per-clip assumption.
+HELD_OUT_FOLDS = [1, 4, 7, 10]
+VAL_FRACTION_OF_TRAIN = 0.15
+
+
+def load_clips() -> list[dict]:
+    with open(MANIFEST_CSV) as f:
+        rows = list(csv.DictReader(f))
+    return [dict(path=r["file"], label=CLASS_LABEL_MAPS[r["soundevent"]], fold=int(r["fold"])) for r in rows]
+
+
+def run_fold(condition: str, model_name: str, test_fold: int, device: str, seed: int = 0) -> float:
+    clips = load_clips()
+    train_pool = [c for c in clips if c["fold"] != test_fold]
+    test_clips = [c for c in clips if c["fold"] == test_fold]
+
+    import numpy as np
+
+    # `seed` (added 2026-08-20 for multi-seed variance runs) now also
+    # drives the train/val split, not just model init -- a different seed
+    # gives a genuinely different val-split-and-training run, not just a
+    # different random init on an identical split.
+    rng = np.random.default_rng(seed)
+    val_idx = set(rng.choice(len(train_pool), size=int(VAL_FRACTION_OF_TRAIN * len(train_pool)), replace=False))
+    train_clips = [c for i, c in enumerate(train_pool) if i not in val_idx]
+    val_clips = [c for i, c in enumerate(train_pool) if i in val_idx]
+
+    predictions_out_csv = REPO_ROOT / "results" / "per_clip_predictions" / f"urbansound8k_{model_name}_{condition}_fold{test_fold}_seed{seed}.csv"
+    if condition == "lora":
+        return train_and_eval_lora(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, NATIVE_SAMPLE_RATE, device, predictions_out_csv=predictions_out_csv, seed=seed)
+    if condition == "allora":
+        return train_and_eval_allora(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, NATIVE_SAMPLE_RATE, device, predictions_out_csv=predictions_out_csv, seed=seed)
+    if condition == "topk":
+        return train_and_eval_topk(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, device, predictions_out_csv=predictions_out_csv, seed=seed)
+    return train_and_eval_frozen(model_name, train_clips, val_clips, test_clips, NUM_CLASSES, device, native_sample_rate=NATIVE_SAMPLE_RATE, predictions_out_csv=predictions_out_csv, seed=seed)
+
+
+def main(condition: str, model_name: str, seed: int = 0) -> None:
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    fold_accs = []
+    for test_fold in HELD_OUT_FOLDS:
+        acc = run_fold(condition, model_name, test_fold, device, seed)
+        print(f"[{condition}:{model_name}:seed{seed}] held-out fold={test_fold} test accuracy: {acc:.4f}")
+        fold_accs.append(acc)
+
+    import numpy as np
+
+    mean_acc = float(np.mean(fold_accs))
+    print(f"[{condition}:{model_name}:seed{seed}] mean accuracy across {len(HELD_OUT_FOLDS)} folds: {mean_acc:.4f}")
+
+    out_csv = REPO_ROOT / "results" / "finetune_urbansound8k.csv"
+    new_rows = [[model_name, condition, seed, fold, acc] for fold, acc in zip(HELD_OUT_FOLDS, fold_accs)]
+    new_rows.append([model_name, condition, seed, "mean", mean_acc])
+    write_results_idempotent(
+        out_csv, ["model", "condition", "seed", "fold", "accuracy"], ["model", "condition", "seed", "fold"], new_rows
+    )
+
+
+if __name__ == "__main__":
+    import argparse
+
+    import yaml
+
+    with open(REPO_ROOT / "configs" / "models.yaml") as f:
+        active_models = sorted(yaml.safe_load(f)["active_models"])
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--condition", choices=["frozen", "lora", "allora", "topk"], required=True)
+    parser.add_argument("--model", required=True)
+    parser.add_argument("--seed", type=int, default=0, help="Random seed for train/val split + model init/training-order shuffling -- added 2026-08-20 for multi-seed variance runs. Seed 0 matches every prior result already on record.")
+    args = parser.parse_args()
+    if args.condition == "lora" and args.model not in LORA_SUPPORTED_MODELS:
+        raise ValueError(f"'{args.model}' not LoRA-compatible: {LORA_SUPPORTED_MODELS}")
+    if args.condition == "allora" and args.model not in ALLORA_SUPPORTED_MODELS:
+        raise ValueError(f"'{args.model}' not ALLoRA-compatible: {ALLORA_SUPPORTED_MODELS}")
+    if args.condition == "topk" and args.model not in TOPK_SUPPORTED_MODELS:
+        raise ValueError(f"'{args.model}' not top-K-unfreeze-compatible: {TOPK_SUPPORTED_MODELS}")
+    if args.condition == "frozen" and args.model not in active_models:
+        raise ValueError(f"'{args.model}' not an active model: {active_models}")
+    main(args.condition, args.model, args.seed)

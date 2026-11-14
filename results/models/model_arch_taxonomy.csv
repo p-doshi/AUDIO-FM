@@ -1,0 +1,20 @@
+model,type,note
+ast,Supervised/discriminative,Gong et al. 2021 -- trained directly on classification targets (AudioSet supervised).
+panns_cnn14,Supervised/discriminative,"Kong et al. 2020 (PANNs CNN14) -- trained directly on classification targets (AudioSet supervised, no attention layers)."
+whisper,Supervised/discriminative,Radford et al. 2023 -- trained directly on a sequence-to-sequence (ASR transcript) target.
+clap,Cross-modal contrastive,Elizalde et al. 2023 -- aligns audio and text embeddings via a multimodal contrastive loss.
+audiomae,Masked modeling and reconstruction,Huang et al. 2022a.
+bird_mae,Masked modeling and reconstruction,Rauch et al. 2025.
+encodecmae,Masked modeling and reconstruction,"Pellegrini et al. 2023 -- excluded from every adaptation condition (non-differentiable feature extraction as released); participates in the frozen-probe geometry evaluation only, no gain/adaptation data exists for this model."
+hubert,Masked modeling and reconstruction,Hsu et al. 2021.
+wav2vec2,Masked modeling and reconstruction,Baevski et al. 2020 (wav2vec 2.0).
+wav2vec2_conformer,Masked modeling and reconstruction,Chen et al. 2022c (wav2vec 2.0 Conformer) -- Conformer relative-position attention variant of wav2vec2.
+wavlm,Masked modeling and reconstruction,Chen et al. 2022a.
+unispeech_sat,Masked modeling and reconstruction,Chen et al. 2022b (UniSpeech-SAT).
+sew,Masked modeling and reconstruction,Wu et al. 2021 (SEW).
+mms,Masked modeling and reconstruction,Pratap et al. 2023 (MMS).
+mert,Masked modeling and reconstruction,Li et al. 2024 (MERT).
+musicfm,Masked modeling and reconstruction,"Won et al. 2023 (MusicFM, BEST-RQ) -- masked-token-prediction/reconstruction-style objective, grouped here not under joint-embedding/self-distillation."
+audio_jepa,Joint-embedding and self-distillation,Tuncay et al. 2024 (Audio-JEPA) -- predicts latent representations without tokenisation or reconstruction (EMA teacher + separate predictor network).
+data2vec_audio,Joint-embedding and self-distillation,Baevski et al. 2022 (data2vec-audio) -- predicts latent representations without tokenisation or reconstruction.
+music2vec,Joint-embedding and self-distillation,"Li et al. 2022 (music2vec) -- predicts latent representations without tokenisation or reconstruction, data2vec-lineage."

@@ -1,0 +1,5 @@
+,audio_jepa,audiomae,musicfm,panns_cnn14
+audio_jepa,1.0000,0.5071,0.5696,0.4244
+audiomae,0.5071,1.0000,0.3445,0.5134
+musicfm,0.5696,0.3445,1.0000,0.2298
+panns_cnn14,0.4244,0.5134,0.2298,1.0000

@@ -1,0 +1,6 @@
+language,test,n_models,n_clips,stat,p
+polish,agreement_with_english_rsa,19,355,0.5356877144982841,0.0027997200279972004
+polish,mantel_domain+paradigm,19,355,0.18068841379849224,0.1056447177641118
+polish,mantel_breadth,19,355,0.12075666476230741,0.1144942752862357
+polish,uniformity_rank_vs_english,19,355,0.9789473684210527,3.600641884713053e-13
+polish,mean_offdiag_rsa,19,355,0.31628098972107915,

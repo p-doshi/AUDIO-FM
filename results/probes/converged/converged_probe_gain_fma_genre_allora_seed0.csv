@@ -1,0 +1,15 @@
+dataset,model,condition,seed,n_tr,n_va,n_te,frozen_white,adapted_white,gain_white,C_f_white,C_a_white
+fma_genre,sew,allora,0,6397,800,800,0.375,0.385,0.01,0.01,0.01
+fma_genre,unispeech_sat,allora,0,6397,800,800,0.37,0.415,0.0449999999999999,0.01,0.01
+fma_genre,wavlm,allora,0,6397,800,800,0.39,0.42375,0.03375,0.01,0.01
+fma_genre,wav2vec2_conformer,allora,0,6397,800,800,0.38375,0.405,0.02125,0.01,0.01
+fma_genre,wav2vec2,allora,0,6397,800,800,0.395,0.4,0.005,1000.0,0.1
+fma_genre,clap,allora,0,6397,800,800,0.55625,0.56125,0.005,0.01,0.01
+fma_genre,data2vec_audio,allora,0,6397,800,800,0.3375,0.40875,0.0712499999999999,0.01,0.01
+fma_genre,bird_mae,allora,0,6397,800,800,0.4275,0.43875,0.0112499999999999,0.01,0.01
+fma_genre,hubert,allora,0,6397,800,800,0.3925,0.36875,-0.0237499999999999,0.01,0.01
+fma_genre,mms,allora,0,6397,800,800,0.43625,0.4175,-0.01875,0.01,0.01
+fma_genre,mert,allora,0,6397,800,800,0.43875,0.44875,0.01,0.01,0.01
+fma_genre,whisper,allora,0,6397,800,800,0.46625,0.46875,0.0025,0.01,0.01
+fma_genre,ast,allora,0,6397,800,800,0.52625,0.54125,0.015,0.01,0.01
+fma_genre,music2vec,allora,0,6397,800,800,0.45875,0.53625,0.0775,0.01,0.01

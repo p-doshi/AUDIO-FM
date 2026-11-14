@@ -1,0 +1,49 @@
+# Kickoff model set for Phase 1. Names must match a @register_model(...)
+# name in audio_comp/models/. See each adapter module's docstring for the
+# HF id, paradigm, and license behind each entry.
+#
+# `beats` is registered (so the framework already models it) but left out
+# of the active run below — needs custom loader integration beyond a
+# config entry; see its adapter module's docstring for the remaining work.
+# `audio_jepa` was in the same boat until 2026-08-09, when its loader got
+# wired up against the model's own author-provided inference_example.py.
+#
+# `panns_cnn14` and `bird_mae` added 2026-08-10 (Stage 2 Tier 1 roster
+# expansion — pure-CNN architecture and reconstruction-target/domain-
+# specific bioacoustic axes respectively, see CLAUDE.md). Both smoke-
+# tested on CPU with dummy + short (60ms) clips before being added here,
+# per the same discipline every prior model went through.
+#
+# `ast` and `audiomae` added 2026-08-10 (Stage 2 Tier 1, continued) —
+# supervised-transformer and reconstruction-target/general-domain axes
+# respectively. `audiomae` needed several narrow version-skew shims
+# (torch._six, a pinned timm==0.4.9, a bypassed-but-verified-safe
+# decoder path, np.float) — see audio_comp/models/audiomae.py's
+# docstring for the full, checked reasoning behind each one. Both
+# smoke-tested standalone on the shortest edge-case clip (60ms) per the
+# process fix logged 2026-08-10 (CLAUDE.md's Stage 2 gate), not just
+# inside a padded batch.
+
+active_models:
+  - clap
+  - mert
+  - hubert
+  - wav2vec2
+  - music2vec
+  - musicfm
+  - audio_jepa
+  - panns_cnn14
+  - bird_mae
+  - ast
+  - audiomae
+  - wavlm
+  - whisper
+  - data2vec_audio
+  - mms
+  - unispeech_sat
+  - sew
+  - wav2vec2_conformer
+  - encodecmae
+
+deferred_models:
+  - beats
