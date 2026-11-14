@@ -15,6 +15,8 @@ Every number in the paper comes from one of these scripts. They read aggregate i
 | `finding3_predictor_search.py` | same + frozen probes, geometry, parameter counts | exhaustive 1–3-predictor search with permutation null | Finding 3 |
 | `finding3_transferability.py` | `results/probes/transferability_estimators.csv` | LogME and kNN-reference vs gain | Finding 3 |
 | `finding3_reorganization.py` | `results/geometry/` | shared offset, ΔRSA, preserved ordering, self-RSA links | Finding 3 |
+| `robustness_frozen.py` | frozen embeddings | `results/robustness/*.csv` | kNN k / metric, balanced accuracy, uniformity t, H-score, GBC, debiased CKA, mutual k-NN |
+| `robustness_analysis.py` | `results/robustness/`, `results/probes/converged/` | `robust_*.csv` | robustness of Findings 1-3 |
 | `make_appendix.py` | all of the above | `APPENDIX.md`, `figures/appendix/` | appendix |
 
 Everything after the first four rows runs on a laptop from the files in `results/`:
