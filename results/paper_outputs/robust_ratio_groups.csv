@@ -1,0 +1,3 @@
+discriminative,n_disc,n_reconstruction,n_points,mean_diff_demeaned_ratio,p_model_perm
+AST and CLAP,2,12,73,0.09267989031702994,0.029397060293970604
+all supervised or contrastive,4,12,84,0.04357467567468442,0.1857814218578142

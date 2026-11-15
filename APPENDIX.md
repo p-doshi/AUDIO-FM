@@ -660,3 +660,58 @@ Transferability estimators vs MLP gain (scaled features), as in §E and §H.4:
 | gbc              |        90 |             -0.1198 |   0.3557 | -0.3883 |  0.2337 |
 
 With the MLP head the regression explains R² = 0.045 of the variance in gain (whitened features); domain ease is the only term with p < 0.05 (p = 0.032; uniformity p = 0.91), and no estimator predicts gain within domain (|ρ| ≤ 0.17, smallest p = 0.15).
+
+### H.8 Transferability estimators: adapted accuracy versus gain
+
+Eight frozen estimators against four seed-averaged targets per (model, domain): gain (adapted − frozen accuracy, the target of Finding 3), normalized gain (adapted − frozen) / (1 − frozen), adapted accuracy, and frozen accuracy. Besides LogME, kNN with labelled reference clips, shrinkage H-score and GBC (§E, §H.4): SFDA (Shao et al., ECCV 2022) and NCTI (Wang et al., ICCV 2023), both with the authors' released code, and TransRate (Huang et al., ICML 2022; ε = 1e-4, centred L2-normalized embeddings) (`scripts/paper/transferability_more.py`; values in `results/robustness/transferability_more.csv`). NCTI's three terms are min–max normalized across the models of each domain, as in the released evaluation script. Statistic: within-domain Spearman over 90 (model, domain) pairs; p: two-sided model-identity permutation (5,000 draws); CI: 2,000 model bootstraps (`scripts/paper/robustness_targets.py`, part A).
+
+| estimator        |   gain ρ |   gain p |   gain_norm ρ |   gain_norm p |   adapted_acc ρ |   adapted_acc p |   frozen_acc ρ |   frozen_acc p |
+|:-----------------|---------:|---------:|--------------:|--------------:|----------------:|----------------:|---------------:|---------------:|
+| uniformity       |   -0.011 |    0.944 |        -0.115 |         0.419 |          -0.247 |           0.148 |         -0.224 |          0.158 |
+| logme            |   -0.134 |    0.282 |         0.014 |         0.905 |           0.188 |           0.141 |          0.242 |          0.044 |
+| knn_ref_accuracy |   -0.077 |    0.610 |         0.220 |         0.156 |           0.654 |           0.000 |          0.620 |          0.000 |
+| h_alpha          |   -0.046 |    0.766 |         0.214 |         0.163 |           0.615 |           0.000 |          0.559 |          0.000 |
+| gbc              |   -0.156 |    0.276 |         0.188 |         0.207 |           0.430 |           0.001 |          0.506 |          0.000 |
+| sfda             |   -0.151 |    0.292 |         0.075 |         0.601 |           0.485 |           0.001 |          0.468 |          0.000 |
+| ncti             |   -0.218 |    0.145 |        -0.051 |         0.740 |           0.523 |           0.000 |          0.608 |          0.000 |
+| transrate        |    0.174 |    0.260 |         0.269 |         0.084 |           0.305 |           0.062 |          0.185 |          0.239 |
+
+5 of 8 estimators rank adapted accuracy within domain (p < 0.05; ρ = 0.43–0.65), so they behave as designed on this benchmark, yet none predicts gain (largest |ρ| = 0.22, smallest p = 0.15) or normalized gain (largest |ρ| = 0.27, smallest p = 0.08). The estimators track the level a model reaches, which is mostly the level it starts from (frozen accuracy column), not the change produced by adaptation. Full table with CIs: `results/paper_outputs/robust_gain_targets.csv`.
+
+### H.9 Regression variants
+
+gain ~ difficulty + uniformity + domain match as in §E (model-clustered SE, t reference with G − 1 = 17 df), with difficulty computed leaving each row's own model out, and with normalized gain (adapted − frozen) / (1 − frozen) as the target.
+
+| variant                                           |   n_rows |     R2 |   b_difficulty |   b_uniformity |   b_domain_match |   se_difficulty |   se_uniformity |   se_domain_match |   p_difficulty |   p_uniformity |   p_domain_match |
+|:--------------------------------------------------|---------:|-------:|---------------:|---------------:|-----------------:|----------------:|----------------:|------------------:|---------------:|---------------:|-----------------:|
+| paper (difficulty from all models)                |      428 | 0.0759 |         0.0629 |         0.0034 |          -0.0156 |          0.0270 |          0.0107 |            0.0237 |         0.0322 |         0.7511 |           0.5190 |
+| difficulty leaving own model out                  |      428 | 0.0793 |         0.0639 |         0.0033 |          -0.0160 |          0.0270 |          0.0106 |            0.0237 |         0.0301 |         0.7606 |           0.5088 |
+| normalized gain (adapted - frozen) / (1 - frozen) |      428 | 0.0738 |         0.3610 |        -0.0445 |          -0.0240 |          0.1601 |          0.0552 |            0.2001 |         0.0376 |         0.4315 |           0.9058 |
+
+### H.10 Cross-domain stability within pretraining cohorts
+
+The Finding 1 test restricted to the 10 encoders not pretrained on speech and to the 9 speech-pretrained encoders (HuBERT, wav2vec 2.0, WavLM, UniSpeech-SAT, SEW, wav2vec 2.0 Conformer, MMS, data2vec-audio, Whisper), for RSA and linear CKA; BH over the 10 public pairs within each subset and measure.
+
+| domain_a   | domain_b   |   rsa not speech-pretrained ρ |   rsa not speech-pretrained q |   rsa speech-pretrained ρ |   rsa speech-pretrained q |   cka not speech-pretrained ρ |   cka not speech-pretrained q |   cka speech-pretrained ρ |   cka speech-pretrained q |
+|:-----------|:-----------|------------------------------:|------------------------------:|--------------------------:|--------------------------:|------------------------------:|------------------------------:|--------------------------:|--------------------------:|
+| music      | city       |                         0.576 |                         0.000 |                     0.858 |                     0.001 |                         0.797 |                         0.001 |                     0.736 |                     0.016 |
+| music      | bird       |                         0.900 |                         0.000 |                     0.850 |                     0.001 |                         0.908 |                         0.001 |                     0.902 |                     0.002 |
+| music      | speech     |                         0.383 |                         0.121 |                     0.427 |                     0.127 |                         0.412 |                         0.102 |                     0.776 |                     0.007 |
+| music      | machine    |                         0.396 |                         0.121 |                     0.598 |                     0.058 |                         0.236 |                         0.223 |                     0.736 |                     0.017 |
+| city       | bird       |                         0.492 |                         0.006 |                     0.789 |                     0.002 |                         0.746 |                         0.003 |                     0.560 |                     0.050 |
+| city       | speech     |                         0.303 |                         0.110 |                     0.551 |                     0.078 |                         0.616 |                         0.003 |                     0.731 |                     0.009 |
+| city       | machine    |                         0.321 |                         0.090 |                     0.735 |                     0.021 |                         0.227 |                         0.223 |                     0.891 |                     0.003 |
+| bird       | speech     |                         0.202 |                         0.245 |                     0.219 |                     0.251 |                         0.235 |                         0.220 |                     0.628 |                     0.022 |
+| bird       | machine    |                         0.564 |                         0.038 |                     0.613 |                     0.055 |                         0.358 |                         0.168 |                     0.611 |                     0.040 |
+| speech     | machine    |                        -0.248 |                         0.841 |                     0.540 |                     0.078 |                        -0.213 |                         0.810 |                     0.658 |                     0.022 |
+
+Under RSA no speech pair survives correction in either cohort (q ≥ 0.08), so the RSA speech reorganization is not produced by the speech-pretrained models alone. With 9 or 10 models the test has less power: 4 of the 12 non-speech RSA cells (two cohorts × six pairs) also miss q < 0.05. Under linear CKA the speech-pretrained cohort agrees with speech in 4 of 4 speech pairs, so for these models the CKA view of speech is closer to the other domains than the RSA view.
+
+### H.11 kNN/linear ratio, discriminative versus reconstruction, at model level
+
+Replaces the five-domain sign test of `finding2.py` with a model-level test: kNN/linear accuracy ratio demeaned within domain, difference between the group means over all (model, domain) points, two-sided permutation of the group labels across models (same in every domain, 10,000 draws). Reconstruction = the 12 masked-modelling encoders.
+
+| discriminative                |   n_disc |   n_reconstruction |   n_points |   mean_diff_demeaned_ratio |   p_model_perm |
+|:------------------------------|---------:|-------------------:|-----------:|---------------------------:|---------------:|
+| AST and CLAP                  |        2 |                 12 |         73 |                     0.0927 |         0.0294 |
+| all supervised or contrastive |        4 |                 12 |         84 |                     0.0436 |         0.1858 |

@@ -241,7 +241,71 @@ def robustness_section(w):
           f"domain ease is the only term with p < 0.05 (p = {reg.p_difficulty:.3f}; uniformity p = {reg.p_uniformity:.2f}), "
           f"and no estimator predicts gain within domain (|ρ| ≤ {tr.within_domain_rho.abs().max():.2f}, "
           f"smallest p = {tr.perm_p.min():.2f}).\n")
+    targets_section(w)
     layerwise_section(w)
+
+
+def targets_section(w):
+    t = opt(OUT / "robust_gain_targets.csv")
+    if t is not None:
+        w("### H.8 Transferability estimators: adapted accuracy versus gain\n")
+        w("Eight frozen estimators against four seed-averaged targets per (model, domain): gain (adapted − frozen accuracy, "
+          "the target of Finding 3), normalized gain (adapted − frozen) / (1 − frozen), adapted accuracy, and frozen "
+          "accuracy. Besides LogME, kNN with labelled reference clips, shrinkage H-score and GBC (§E, §H.4): SFDA (Shao et "
+          "al., ECCV 2022) and NCTI (Wang et al., ICCV 2023), both with the authors' released code, and TransRate (Huang et "
+          "al., ICML 2022; ε = 1e-4, centred L2-normalized embeddings) (`scripts/paper/transferability_more.py`; values in "
+          "`results/robustness/transferability_more.csv`). NCTI's three terms are min–max normalized across the models of "
+          "each domain, as in the released evaluation script. Statistic: within-domain Spearman over 90 (model, domain) "
+          "pairs; p: two-sided model-identity permutation (5,000 draws); CI: 2,000 model bootstraps "
+          "(`scripts/paper/robustness_targets.py`, part A).\n")
+        piv = t.pivot_table(index="estimator", columns="target", values=["within_domain_rho", "perm_p"], sort=False)
+        piv.columns = [f"{tg} {'ρ' if v == 'within_domain_rho' else 'p'}" for v, tg in piv.columns]
+        cols = [f"{tg} {v}" for tg in ["gain", "gain_norm", "adapted_acc", "frozen_acc"] for v in ["ρ", "p"]]
+        w(md(piv[cols].reset_index(), ".3f") + "\n")
+        a, g, n = (t[t.target == x] for x in ["adapted_acc", "gain", "gain_norm"])
+        sig = a[a.perm_p < 0.05].sort_values("within_domain_rho", ascending=False)
+        w(f"{len(sig)} of {len(a)} estimators rank adapted accuracy within domain (p < 0.05; ρ = "
+          f"{sig.within_domain_rho.min():.2f}–{sig.within_domain_rho.max():.2f}), so they behave as designed on this "
+          f"benchmark, yet none predicts gain (largest |ρ| = {g.within_domain_rho.abs().max():.2f}, smallest p = "
+          f"{g.perm_p.min():.2f}) or normalized gain (largest |ρ| = {n.within_domain_rho.abs().max():.2f}, smallest p = "
+          f"{n.perm_p.min():.2f}). The estimators track the level a model reaches, which is mostly the level it starts "
+          "from (frozen accuracy column), not the change produced by adaptation. Full table with CIs: "
+          "`results/paper_outputs/robust_gain_targets.csv`.\n")
+    r = opt(OUT / "robust_regression_variants.csv")
+    if r is not None:
+        w("### H.9 Regression variants\n")
+        w("gain ~ difficulty + uniformity + domain match as in §E (model-clustered SE, t reference with G − 1 = 17 df), with "
+          "difficulty computed leaving each row's own model out, and with normalized gain (adapted − frozen) / (1 − frozen) "
+          "as the target.\n")
+        w(md(r, ".4f") + "\n")
+    s = opt(OUT / "robust_cross_domain_subsets.csv")
+    if s is not None:
+        w("### H.10 Cross-domain stability within pretraining cohorts\n")
+        w("The Finding 1 test restricted to the 10 encoders not pretrained on speech and to the 9 speech-pretrained "
+          "encoders (HuBERT, wav2vec 2.0, WavLM, UniSpeech-SAT, SEW, wav2vec 2.0 Conformer, MMS, data2vec-audio, Whisper), "
+          "for RSA and linear CKA; BH over the 10 public pairs within each subset and measure.\n")
+        p = s.pivot_table(index=["domain_a", "domain_b"], columns=["metric", "subset"], values=["rho", "q_bh"], sort=False)
+        p.columns = [f"{m} {sub} {'ρ' if v == 'rho' else 'q'}" for v, m, sub in p.columns]
+        cols = [f"{m} {sub} {v}" for m in ["rsa", "cka"] for sub in ["not speech-pretrained", "speech-pretrained"] for v in ["ρ", "q"]]
+        w(md(p[cols].reset_index(), ".3f") + "\n")
+        rs = s[(s.metric == "rsa")]
+        sp = rs[(rs.domain_a == "speech") | (rs.domain_b == "speech")]
+        ns = rs[(rs.domain_a != "speech") & (rs.domain_b != "speech")]
+        ck = s[(s.metric == "cka") & (s.subset == "speech-pretrained") & ((s.domain_a == "speech") | (s.domain_b == "speech"))]
+        w(f"Under RSA no speech pair survives correction in either cohort (q ≥ {sp.q_bh.min():.2f}), so the RSA speech "
+          "reorganization is not produced by the speech-pretrained models alone. With 9 or 10 models the test has less "
+          f"power: {int((ns.q_bh >= 0.05).sum())} of the {len(ns)} non-speech RSA cells (two cohorts × six pairs) also miss "
+          f"q < 0.05. Under linear CKA the speech-pretrained cohort agrees with speech in {int((ck.q_bh < 0.05).sum())} of "
+          f"{len(ck)} speech pairs, so for these models the CKA view of speech is closer to the other domains than the RSA "
+          "view.\n")
+    d = opt(OUT / "robust_ratio_groups.csv")
+    if d is not None:
+        w("### H.11 kNN/linear ratio, discriminative versus reconstruction, at model level\n")
+        w("Replaces the five-domain sign test of `finding2.py` with a model-level test: kNN/linear accuracy ratio demeaned "
+          "within domain, difference between the group means over all (model, domain) points, two-sided permutation of the "
+          "group labels across models (same in every domain, 10,000 draws). Reconstruction = the 12 masked-modelling "
+          "encoders.\n")
+        w(md(d, ".4f") + "\n")
 
 
 def layerwise_section(w):

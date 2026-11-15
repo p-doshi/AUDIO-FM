@@ -357,6 +357,14 @@ APPENDIX.md §H. Five public domains; splits as in §5.
   alpha ∈ {1e-4, 1e-2, 1} chosen on validation. Same features (whitened, divided by √d; and a non-whitened variant),
   splits, conditions and checkpoint filter. `scripts/paper/mlp_head_analysis.py` reruns the Finding 3 regression and
   the transferability tests on the MLP gain. Results in APPENDIX.md §H.7.
+- **Further transferability estimators and targets.** `scripts/paper/transferability_more.py`: SFDA (Shao et al., 2022)
+  and NCTI (Wang et al., 2023) with the authors' released code, TransRate (Huang et al., 2022; ε = 1e-4, centred
+  L2-normalized embeddings), all clips and labels of each public domain. `scripts/paper/robustness_targets.py` part A
+  tests all eight estimators against gain, normalized gain (adapted − frozen) / (1 − frozen), adapted accuracy and
+  frozen accuracy (within-domain Spearman, 5,000 model-identity permutations, 2,000 model bootstraps). Part B refits
+  the Finding 3 regression with leave-own-model-out difficulty and with normalized gain. Part C repeats the Finding 1
+  test within the speech-pretrained and the other encoders. Part D tests the discriminative vs. reconstruction
+  kNN/linear ratio at model level (10,000 label permutations). Results in APPENDIX.md §H.8–H.11.
 
 ## 8. Exclusions and missing cells
 

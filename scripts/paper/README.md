@@ -19,6 +19,8 @@ Every number in the paper comes from one of these scripts. They read aggregate i
 | `robustness_analysis.py` | `results/robustness/`, `results/probes/converged/` | `robust_*.csv` | robustness of Findings 1-3 |
 | `mlp_converged_gain.py` | adapted Gram matrices, frozen embeddings | `results/robustness/mlp_gain.csv` | gain with an MLP probe head |
 | `mlp_head_analysis.py` | `results/robustness/mlp_gain.csv` | `results/robustness/mlp_head/*.csv` | Finding 3 rerun on MLP gain |
+| `transferability_more.py` | frozen embeddings | `results/robustness/transferability_more.csv` | SFDA, NCTI, TransRate |
+| `robustness_targets.py` | `results/` | `robust_gain_targets.csv`, `robust_regression_variants.csv`, `robust_cross_domain_subsets.csv`, `robust_ratio_groups.csv` | estimators vs gain / adapted accuracy, regression variants, pretraining cohorts, model-level ratio test |
 | `make_appendix.py` | all of the above | `APPENDIX.md`, `figures/appendix/` | appendix |
 
 Everything after the first four rows runs on a laptop from the files in `results/`:
