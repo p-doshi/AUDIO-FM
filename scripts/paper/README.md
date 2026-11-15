@@ -17,6 +17,8 @@ Every number in the paper comes from one of these scripts. They read aggregate i
 | `finding3_reorganization.py` | `results/geometry/` | shared offset, ΔRSA, preserved ordering, self-RSA links | Finding 3 |
 | `robustness_frozen.py` | frozen embeddings | `results/robustness/*.csv` | kNN k / metric, balanced accuracy, uniformity t, H-score, GBC, debiased CKA, mutual k-NN |
 | `robustness_analysis.py` | `results/robustness/`, `results/probes/converged/` | `robust_*.csv` | robustness of Findings 1-3 |
+| `mlp_converged_gain.py` | adapted Gram matrices, frozen embeddings | `results/robustness/mlp_gain.csv` | gain with an MLP probe head |
+| `mlp_head_analysis.py` | `results/robustness/mlp_gain.csv` | `results/robustness/mlp_head/*.csv` | Finding 3 rerun on MLP gain |
 | `make_appendix.py` | all of the above | `APPENDIX.md`, `figures/appendix/` | appendix |
 
 Everything after the first four rows runs on a laptop from the files in `results/`:

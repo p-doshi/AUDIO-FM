@@ -217,6 +217,37 @@ def robustness_section(w):
           "other domains, with data2vec-audio, music2vec and wav2vec 2.0 more central and AudioMAE, EnCodecMAE, CLAP and "
           "Bird-MAE less central than elsewhere.\n")
 
+    M = R / "mlp_head"
+    if (M / "agreement.csv").exists():
+        w("### H.7 Non-linear probe head (MLP)\n")
+        w("Adaptation gain recomputed with a one-hidden-layer MLP (512 ReLU units, Adam, early stopping, L2 penalty chosen "
+          "on validation from {1e-4, 1e-2, 1}) in place of the linear probe, on the same Gram-recovered features, splits, "
+          "conditions and checkpoints (`scripts/paper/mlp_converged_gain.py`; analysis `scripts/paper/mlp_head_analysis.py`). "
+          "\"white\": the whitened features of the paper; \"scaled\": the embeddings up to rotation with one global scale. "
+          "Per-cell values: `results/robustness/mlp_gain.csv`.\n")
+        w("Agreement with the linear probe (Spearman; pair = seed-averaged (model, domain) gain; within domain = mean over "
+          "the five domains):\n")
+        w(md(pd.read_csv(M / "agreement.csv"), ".3f") + "\n")
+        for tag in ["white", "scaled"]:
+            reg = pd.read_csv(M / f"{tag}_finding3_regression.csv")
+            w(f"Finding 3 regression with MLP gain ({tag} features), as in §E:\n")
+            w(md(reg, ".4f") + "\n")
+            tr = pd.concat([pd.read_csv(M / f"{tag}_finding3_transferability.csv"), pd.read_csv(M / f"{tag}_robust_transferability.csv")])
+            w(f"Transferability estimators vs MLP gain ({tag} features), as in §E and §H.4:\n")
+            w(md(tr, ".4f") + "\n")
+        reg = pd.read_csv(M / "white_finding3_regression.csv").set_index("variant").iloc[0]
+        tr = pd.concat([pd.read_csv(M / "white_finding3_transferability.csv"), pd.read_csv(M / "white_robust_transferability.csv")])
+        w(f"With the MLP head the regression explains R² = {reg.R2:.3f} of the variance in gain (whitened features); "
+          f"domain ease is the only term with p < 0.05 (p = {reg.p_difficulty:.3f}; uniformity p = {reg.p_uniformity:.2f}), "
+          f"and no estimator predicts gain within domain (|ρ| ≤ {tr.within_domain_rho.abs().max():.2f}, "
+          f"smallest p = {tr.perm_p.min():.2f}).\n")
+    layerwise_section(w)
+
+
+def layerwise_section(w):
+    R = RESULTS / "robustness"
+    if not (R / "layerwise_probes.csv").exists():
+        return
 
 
 def main():

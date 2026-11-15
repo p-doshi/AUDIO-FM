@@ -609,3 +609,54 @@ Each matrix is double-centred (row and column means removed, diagonal excluded) 
 | speech     | machine    |  0.2457 |  0.0026 |   0.2155 |   0.0101 |   0.3761 |   0.0026 |            nan      |            nan      |           nan      |
 
 With the per-model term removed, all 10 pairs are significant under every measure, including the speech pairs. What differs in speech is which models are central: per-model centrality in speech correlates weakly with the other domains, with data2vec-audio, music2vec and wav2vec 2.0 more central and AudioMAE, EnCodecMAE, CLAP and Bird-MAE less central than elsewhere.
+
+### H.7 Non-linear probe head (MLP)
+
+Adaptation gain recomputed with a one-hidden-layer MLP (512 ReLU units, Adam, early stopping, L2 penalty chosen on validation from {1e-4, 1e-2, 1}) in place of the linear probe, on the same Gram-recovered features, splits, conditions and checkpoints (`scripts/paper/mlp_converged_gain.py`; analysis `scripts/paper/mlp_head_analysis.py`). "white": the whitened features of the paper; "scaled": the embeddings up to rotation with one global scale. Per-cell values: `results/robustness/mlp_gain.csv`.
+
+Agreement with the linear probe (Spearman; pair = seed-averaged (model, domain) gain; within domain = mean over the five domains):
+
+| features   |   n_cells |   rho_frozen |   rho_gain_seed |   rho_gain_pair |   rho_gain_pair_within_domain |   frac_positive_linear |   frac_positive_mlp |
+|:-----------|----------:|-------------:|----------------:|----------------:|------------------------------:|-----------------------:|--------------------:|
+| white      |       428 |        0.977 |           0.652 |           0.708 |                         0.693 |                  0.689 |               0.708 |
+| scaled     |       428 |        0.963 |           0.697 |           0.724 |                         0.661 |                  0.689 |               0.600 |
+
+Finding 3 regression with MLP gain (white features), as in §E:
+
+| variant                                |   n_rows |   n_models |     R2 |   b_difficulty |   b_uniformity |   b_domain_match |   se_difficulty |   se_uniformity |   se_domain_match |   p_difficulty |   p_uniformity |   p_domain_match |   R2_ci_lo |   R2_ci_hi |   within_rho |   within_rho_ci_lo |   within_rho_ci_hi |   n_pairs |
+|:---------------------------------------|---------:|-----------:|-------:|---------------:|---------------:|-----------------:|----------------:|----------------:|------------------:|---------------:|---------------:|-----------------:|-----------:|-----------:|-------------:|-------------------:|-------------------:|----------:|
+| all public domains                     |      428 |         18 | 0.0455 |         0.0475 |        -0.0011 |          -0.0214 |          0.0203 |          0.0094 |            0.0188 |         0.0322 |         0.9065 |           0.2704 |     0.0156 |     0.1655 |      -0.0898 |            -0.3773 |             0.1766 |   90.0000 |
+| without machine                        |      338 |         18 | 0.0445 |         0.0559 |        -0.0058 |          -0.0212 |          0.0273 |          0.0104 |            0.0185 |         0.0561 |         0.5840 |           0.2671 |   nan      |   nan      |     nan      |           nan      |           nan      |  nan      |
+| speech complete seeds only             |      395 |         18 | 0.0520 |         0.0517 |        -0.0012 |          -0.0206 |          0.0190 |          0.0090 |            0.0135 |         0.0147 |         0.8987 |           0.1456 |   nan      |   nan      |     nan      |           nan      |           nan      |  nan      |
+| (model, domain) pairs with all 5 seeds |      375 |         18 | 0.0476 |         0.0497 |        -0.0020 |          -0.0168 |          0.0322 |          0.0093 |            0.0170 |         0.1414 |         0.8282 |           0.3369 |   nan      |   nan      |     nan      |           nan      |           nan      |  nan      |
+
+Transferability estimators vs MLP gain (white features), as in §E and §H.4:
+
+| estimator        |   n_pairs |   within_domain_rho |   perm_p |   ci_lo |   ci_hi |
+|:-----------------|----------:|--------------------:|---------:|--------:|--------:|
+| logme            |        90 |             -0.1703 |   0.1512 | -0.4225 |  0.1367 |
+| knn_ref_accuracy |        90 |             -0.1473 |   0.2773 | -0.4541 |  0.2348 |
+| uniformity       |        90 |             -0.0898 |   0.5167 | -0.3587 |  0.1888 |
+| h_alpha          |        90 |             -0.1046 |   0.4369 | -0.4046 |  0.2633 |
+| gbc              |        90 |             -0.1692 |   0.1714 | -0.3941 |  0.1337 |
+
+Finding 3 regression with MLP gain (scaled features), as in §E:
+
+| variant                                |   n_rows |   n_models |     R2 |   b_difficulty |   b_uniformity |   b_domain_match |   se_difficulty |   se_uniformity |   se_domain_match |   p_difficulty |   p_uniformity |   p_domain_match |   R2_ci_lo |   R2_ci_hi |   within_rho |   within_rho_ci_lo |   within_rho_ci_hi |   n_pairs |
+|:---------------------------------------|---------:|-----------:|-------:|---------------:|---------------:|-----------------:|----------------:|----------------:|------------------:|---------------:|---------------:|-----------------:|-----------:|-----------:|-------------:|-------------------:|-------------------:|----------:|
+| all public domains                     |      428 |         18 | 0.0326 |         0.0397 |         0.0001 |          -0.0023 |          0.0243 |          0.0086 |            0.0216 |         0.1211 |         0.9896 |           0.9148 |     0.0087 |     0.1652 |      -0.0601 |            -0.3053 |             0.2001 |   90.0000 |
+| without machine                        |      338 |         18 | 0.0000 |        -0.0008 |         0.0004 |           0.0001 |          0.0258 |          0.0103 |            0.0209 |         0.9769 |         0.9729 |           0.9969 |   nan      |   nan      |     nan      |           nan      |           nan      |  nan      |
+| speech complete seeds only             |      395 |         18 | 0.0448 |         0.0434 |         0.0005 |           0.0031 |          0.0225 |          0.0076 |            0.0157 |         0.0699 |         0.9512 |           0.8475 |   nan      |   nan      |     nan      |           nan      |           nan      |  nan      |
+| (model, domain) pairs with all 5 seeds |      375 |         18 | 0.0523 |         0.0500 |         0.0006 |           0.0106 |          0.0242 |          0.0082 |            0.0170 |         0.0544 |         0.9378 |           0.5409 |   nan      |   nan      |     nan      |           nan      |           nan      |  nan      |
+
+Transferability estimators vs MLP gain (scaled features), as in §E and §H.4:
+
+| estimator        |   n_pairs |   within_domain_rho |   perm_p |   ci_lo |   ci_hi |
+|:-----------------|----------:|--------------------:|---------:|--------:|--------:|
+| logme            |        90 |             -0.1346 |   0.2444 | -0.3079 |  0.0543 |
+| knn_ref_accuracy |        90 |              0.0245 |   0.8638 | -0.3253 |  0.3511 |
+| uniformity       |        90 |             -0.0601 |   0.6687 | -0.2829 |  0.2052 |
+| h_alpha          |        90 |              0.0230 |   0.8592 | -0.3176 |  0.3500 |
+| gbc              |        90 |             -0.1198 |   0.3557 | -0.3883 |  0.2337 |
+
+With the MLP head the regression explains R² = 0.045 of the variance in gain (whitened features); domain ease is the only term with p < 0.05 (p = 0.032; uniformity p = 0.91), and no estimator predicts gain within domain (|ρ| ≤ 0.17, smallest p = 0.15).

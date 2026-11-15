@@ -351,6 +351,12 @@ APPENDIX.md §H. Five public domains; splits as in §5.
   of the fraction of shared neighbours). Cross-domain stability with the Finding 1 test, BH over the 10 public pairs.
 - **Exploratory model-effect removal.** Each matrix double-centred (diagonal excluded) before the same test; centrality =
   Spearman across models of per-model mean similarity between two domains.
+- **Non-linear probe head.** `scripts/paper/mlp_converged_gain.py`: the converged-probe gain of §7 with the logistic
+  regression replaced by a one-hidden-layer MLP (scikit-learn `MLPClassifier`, 512 ReLU units, Adam, batch 256,
+  learning rate 1e-3, ≤ 300 epochs, early stopping on 10% of train with patience 15, `random_state=0`), L2 penalty
+  alpha ∈ {1e-4, 1e-2, 1} chosen on validation. Same features (whitened, divided by √d; and a non-whitened variant),
+  splits, conditions and checkpoint filter. `scripts/paper/mlp_head_analysis.py` reruns the Finding 3 regression and
+  the transferability tests on the MLP gain. Results in APPENDIX.md §H.7.
 
 ## 8. Exclusions and missing cells
 
