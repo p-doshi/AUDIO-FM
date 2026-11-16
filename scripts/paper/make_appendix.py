@@ -312,6 +312,67 @@ def layerwise_section(w):
     R = RESULTS / "robustness"
     if not (R / "layerwise_probes.csv").exists():
         return
+    w("### H.12 Layer-wise analyses\n")
+    w("Every encoder block's output was captured with forward hooks during the adapter's own forward pass (same clips, "
+      "preprocessing and checkpoints as the final embeddings) and mean-pooled over time (and frequency for CNN feature "
+      "maps), giving one embedding per clip and block for 18 models (EnCodecMAE's wrapper does not expose its blocks) "
+      "in the five public domains (`scripts/paper/layerwise_extract.py`). Blocks are the transformer or conformer layers "
+      "(CLAP: the blocks of its last Swin stage; PANNs: its top-level modules, of which those with fewer than 16 "
+      "dimensions are skipped). Checks per (model, domain): the adapter output reproduces the cached embeddings "
+      "(Spearman between correlation-distance RDMs on 500 clips, 0.997–1.000) and the mean-pooled last block agrees with "
+      "the adapter output (0.61–1.00; lowest for AST, CLAP and MusicFM, whose clip embedding is not a plain mean of "
+      "the last block). Per block: uniformity (t = 2), kNN accuracy (k = 10, Euclidean, standardized features) and "
+      "linear accuracy (logistic regression, C = 1, at most 500 iterations) on the splits of §C "
+      "(`scripts/paper/layerwise_frozen.py`; analysis `scripts/paper/layerwise_analysis.py`). Relative depth = block "
+      "index / (number of blocks − 1). Per-block values: `results/robustness/layerwise_probes.csv`.\n")
+    u = opt(OUT / "layerwise_uniformity_knn.csv")
+    if u is not None:
+        w("Uniformity → kNN accuracy and → kNN − linear gap at five relative depths (for each model the block nearest the "
+          "depth). Statistic as in Finding 2: within-domain Spearman; p: two-sided model-identity permutation, 5,000 draws.\n")
+        p = u.pivot_table(index="depth", columns="target", values=["rho", "p_model_perm"])
+        p.columns = [f"{t} {'ρ' if v == 'rho' else 'p'}" for v, t in p.columns]
+        p = p[["knn ρ", "knn p", "gap ρ", "gap p"]].join(u.groupby("depth")[["mean_knn", "mean_linear"]].first())
+        w(md(p.reset_index(), ".3f") + "\n")
+    b = opt(OUT / "layerwise_best_depth.csv")
+    if b is not None:
+        w("Relative depth of each model's best block for kNN and for linear accuracy, and the accuracy gained by reading "
+          "the best block instead of the last one, averaged over models per domain:\n")
+        s = b.groupby("dataset")[["best_knn_depth", "best_linear_depth", "knn_best_minus_last", "linear_best_minus_last"]].mean().reset_index()
+        s.insert(0, "domain", s.dataset.map(DOMAIN_NAME))
+        w(md(s.drop(columns="dataset"), ".3f") + "\n")
+    c = opt(OUT / "layerwise_cross_domain.csv")
+    if c is not None:
+        w("Cross-domain stability (Finding 1 test, BH over the 10 public pairs) of the model × model matrices computed at "
+          "relative depth 0.5 (RSA and debiased linear CKA), next to the final-embedding RSA, on one common model set:\n")
+        q = c.pivot_table(index=["domain_a", "domain_b"], columns="metric", values=["rho", "q_bh"], sort=False)
+        q.columns = [f"{m} {'ρ' if v == 'rho' else 'q'}" for v, m in q.columns]
+        w(md(q[[f"{m} {v}" for m in ["final rsa", "mid rsa", "mid dcka"] for v in ["ρ", "q"]]].reset_index(), ".3f") + "\n")
+    n = opt(OUT / "layerwise_native_vs_lastblock.csv")
+    if n is not None:
+        w("#### Native clip embeddings versus mean-pooled last blocks\n")
+        w("Four models produce their clip embedding with something other than a plain mean of the last block: AST (its "
+          "classification and distillation tokens), CLAP (its projection head), PANNs (its pooling and embedding layer) and "
+          "MusicFM (read at block 7 of 12). The Finding 2 statistic on the native embeddings (used in the paper), without "
+          "AST, without these four models, and on every model's mean-pooled last block. Gap = kNN − converged linear "
+          "probe for native embeddings and kNN − the per-block linear probe (C = 1, at most 500 iterations) for last "
+          "blocks. p: two-sided model-identity permutation, 5,000 draws (`layerwise_analysis.py`, part C).\n")
+        w(md(n, ".3f") + "\n")
+        lo = opt(OUT / "finding2_leave_one_model_out.csv")
+        g = lambda e, t: n[(n.embedding == e) & (n.target == t)].iloc[0]
+        w(f"The association of uniformity with kNN accuracy is carried by these four models: removing AST alone leaves "
+          f"ρ = {g('native, without AST', 'knn').rho:.2f} (p = {g('native, without AST', 'knn').p_model_perm:.2f}), "
+          f"removing all four leaves ρ = {g('native, without AST, CLAP, MusicFM, PANNs', 'knn').rho:.2f}, and on mean-pooled "
+          f"last blocks it is ρ = {g('mean-pooled last block, all models', 'knn').rho:.2f}. Their native embeddings are far "
+          "more uniform than the mean of their last block, while their kNN accuracy changes little. The association with "
+          "the kNN − linear gap is more robust: it holds without AST "
+          f"(ρ = {g('native, without AST', 'gap').rho:.2f}, p = {g('native, without AST', 'gap').p_model_perm:.3f}) and "
+          "among the 14 models whose clip embedding is the mean-pooled last block "
+          f"(ρ = {g('mean-pooled last block, without AST, CLAP, MusicFM, PANNs', 'gap').rho:.2f}, "
+          f"p = {g('mean-pooled last block, without AST, CLAP, MusicFM, PANNs', 'gap').p_model_perm:.3f}).")
+        if lo is not None:
+            w(f" Leave-one-model-out ρ for uniformity → kNN on the native embeddings ranges from "
+              f"{lo.iloc[:, 1].min():.2f} to {lo.iloc[:, 1].max():.2f} (`results/paper_outputs/finding2_leave_one_model_out.csv`).")
+        w("\n")
 
 
 def main():

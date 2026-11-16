@@ -21,6 +21,9 @@ Every number in the paper comes from one of these scripts. They read aggregate i
 | `mlp_head_analysis.py` | `results/robustness/mlp_gain.csv` | `results/robustness/mlp_head/*.csv` | Finding 3 rerun on MLP gain |
 | `transferability_more.py` | frozen embeddings | `results/robustness/transferability_more.csv` | SFDA, NCTI, TransRate |
 | `robustness_targets.py` | `results/` | `robust_gain_targets.csv`, `robust_regression_variants.csv`, `robust_cross_domain_subsets.csv`, `robust_ratio_groups.csv` | estimators vs gain / adapted accuracy, regression variants, pretraining cohorts, model-level ratio test |
+| `layerwise_extract.py` | audio, pretrained checkpoints | per-block embeddings (not released) | every block of 18 encoders |
+| `layerwise_frozen.py` | per-block embeddings | `results/robustness/layerwise_probes.csv`, `layer_mid_*.csv` | per-block uniformity, kNN, linear; mid-depth RSA and debiased CKA |
+| `layerwise_analysis.py` | `results/robustness/` | `layerwise_*.csv`, `finding2_leave_one_model_out.csv` | layer-wise Findings 1-2, native vs last block |
 | `make_appendix.py` | all of the above | `APPENDIX.md`, `figures/appendix/` | appendix |
 
 Everything after the first four rows runs on a laptop from the files in `results/`:

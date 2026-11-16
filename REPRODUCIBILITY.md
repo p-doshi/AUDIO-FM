@@ -365,6 +365,16 @@ APPENDIX.md §H. Five public domains; splits as in §5.
   the Finding 3 regression with leave-own-model-out difficulty and with normalized gain. Part C repeats the Finding 1
   test within the speech-pretrained and the other encoders. Part D tests the discriminative vs. reconstruction
   kNN/linear ratio at model level (10,000 label permutations). Results in APPENDIX.md §H.8–H.11.
+- **Layer-wise analyses.** `scripts/paper/layerwise_extract.py` runs each adapter's own forward pass on the cached
+  clips and captures every block with forward hooks (transformer/conformer layers; CLAP: last Swin stage; PANNs:
+  top-level modules; convolutional waveform front-ends are not blocks), mean-pooled over time (and frequency), float16;
+  18 models (EnCodecMAE's wrapper exposes no blocks), five public domains. Checks: adapter output vs cached embeddings
+  and last block vs adapter output (Spearman between correlation-distance RDMs on 500 clips).
+  `scripts/paper/layerwise_frozen.py`: per block uniformity (t = 2), kNN (k = 10, Euclidean, standardized) and
+  logistic regression (C = 1, max_iter 500, tol 1e-3) on the §5 splits, blocks narrower than 16 dimensions skipped; RSA
+  and debiased CKA at relative depth 0.5. `scripts/paper/layerwise_analysis.py`: Finding 2 statistic at relative depths
+  0–1, best depth per model, Finding 1 test at mid depth, and the Finding 2 statistic on native clip embeddings versus
+  mean-pooled last blocks (with and without AST, CLAP, MusicFM, PANNs). Results in APPENDIX.md §H.12.
 
 ## 8. Exclusions and missing cells
 

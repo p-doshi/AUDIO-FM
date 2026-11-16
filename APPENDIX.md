@@ -715,3 +715,63 @@ Replaces the five-domain sign test of `finding2.py` with a model-level test: kNN
 |:------------------------------|---------:|-------------------:|-----------:|---------------------------:|---------------:|
 | AST and CLAP                  |        2 |                 12 |         73 |                     0.0927 |         0.0294 |
 | all supervised or contrastive |        4 |                 12 |         84 |                     0.0436 |         0.1858 |
+
+### H.12 Layer-wise analyses
+
+Every encoder block's output was captured with forward hooks during the adapter's own forward pass (same clips, preprocessing and checkpoints as the final embeddings) and mean-pooled over time (and frequency for CNN feature maps), giving one embedding per clip and block for 18 models (EnCodecMAE's wrapper does not expose its blocks) in the five public domains (`scripts/paper/layerwise_extract.py`). Blocks are the transformer or conformer layers (CLAP: the blocks of its last Swin stage; PANNs: its top-level modules, of which those with fewer than 16 dimensions are skipped). Checks per (model, domain): the adapter output reproduces the cached embeddings (Spearman between correlation-distance RDMs on 500 clips, 0.997–1.000) and the mean-pooled last block agrees with the adapter output (0.61–1.00; lowest for AST, CLAP and MusicFM, whose clip embedding is not a plain mean of the last block). Per block: uniformity (t = 2), kNN accuracy (k = 10, Euclidean, standardized features) and linear accuracy (logistic regression, C = 1, at most 500 iterations) on the splits of §C (`scripts/paper/layerwise_frozen.py`; analysis `scripts/paper/layerwise_analysis.py`). Relative depth = block index / (number of blocks − 1). Per-block values: `results/robustness/layerwise_probes.csv`.
+
+Uniformity → kNN accuracy and → kNN − linear gap at five relative depths (for each model the block nearest the depth). Statistic as in Finding 2: within-domain Spearman; p: two-sided model-identity permutation, 5,000 draws.
+
+|   depth |   knn ρ |   knn p |   gap ρ |   gap p |   mean_knn |   mean_linear |
+|--------:|--------:|--------:|--------:|--------:|-----------:|--------------:|
+|   0.000 |  -0.399 |   0.008 |  -0.158 |   0.040 |      0.552 |         0.632 |
+|   0.250 |  -0.239 |   0.091 |  -0.342 |   0.005 |      0.593 |         0.658 |
+|   0.500 |  -0.066 |   0.698 |  -0.196 |   0.065 |      0.591 |         0.658 |
+|   0.750 |  -0.114 |   0.511 |  -0.154 |   0.139 |      0.572 |         0.645 |
+|   1.000 |  -0.001 |   0.998 |  -0.180 |   0.089 |      0.554 |         0.634 |
+
+Relative depth of each model's best block for kNN and for linear accuracy, and the accuracy gained by reading the best block instead of the last one, averaged over models per domain:
+
+| domain   |   best_knn_depth |   best_linear_depth |   knn_best_minus_last |   linear_best_minus_last |
+|:---------|-----------------:|--------------------:|----------------------:|-------------------------:|
+| bird     |            0.424 |               0.412 |                 0.048 |                    0.054 |
+| music    |            0.414 |               0.331 |                 0.053 |                    0.033 |
+| speech   |            0.247 |               0.309 |                 0.186 |                    0.077 |
+| machine  |            0.346 |               0.282 |                 0.059 |                    0.066 |
+| city     |            0.554 |               0.441 |                 0.052 |                    0.059 |
+
+Cross-domain stability (Finding 1 test, BH over the 10 public pairs) of the model × model matrices computed at relative depth 0.5 (RSA and debiased linear CKA), next to the final-embedding RSA, on one common model set:
+
+| domain_a   | domain_b   |   final rsa ρ |   final rsa q |   mid rsa ρ |   mid rsa q |   mid dcka ρ |   mid dcka q |
+|:-----------|:-----------|--------------:|--------------:|------------:|------------:|-------------:|-------------:|
+| music      | city       |         0.620 |         0.001 |       0.667 |       0.000 |        0.522 |        0.013 |
+| music      | bird       |         0.790 |         0.000 |       0.772 |       0.000 |        0.868 |        0.001 |
+| music      | speech     |         0.317 |         0.073 |       0.494 |       0.005 |        0.218 |        0.158 |
+| music      | machine    |         0.487 |         0.008 |       0.286 |       0.054 |        0.272 |        0.144 |
+| city       | bird       |         0.615 |         0.000 |       0.683 |       0.001 |        0.565 |        0.010 |
+| city       | speech     |         0.456 |         0.017 |       0.533 |       0.010 |        0.708 |        0.002 |
+| city       | machine    |         0.410 |         0.020 |       0.240 |       0.105 |        0.211 |        0.158 |
+| bird       | speech     |         0.220 |         0.146 |       0.459 |       0.014 |        0.236 |        0.158 |
+| bird       | machine    |         0.618 |         0.000 |       0.455 |       0.009 |        0.264 |        0.144 |
+| speech     | machine    |        -0.020 |         0.518 |      -0.018 |       0.500 |       -0.001 |        0.491 |
+
+#### Native clip embeddings versus mean-pooled last blocks
+
+Four models produce their clip embedding with something other than a plain mean of the last block: AST (its classification and distillation tokens), CLAP (its projection head), PANNs (its pooling and embedding layer) and MusicFM (read at block 7 of 12). The Finding 2 statistic on the native embeddings (used in the paper), without AST, without these four models, and on every model's mean-pooled last block. Gap = kNN − converged linear probe for native embeddings and kNN − the per-block linear probe (C = 1, at most 500 iterations) for last blocks. p: two-sided model-identity permutation, 5,000 draws (`layerwise_analysis.py`, part C).
+
+| embedding                                                 | target   |   n_pairs |   n_models |    rho |   p_model_perm |
+|:----------------------------------------------------------|:---------|----------:|-----------:|-------:|---------------:|
+| native clip embedding, all models                         | knn      |        94 |         19 | -0.358 |          0.029 |
+| native clip embedding, all models                         | gap      |        94 |         19 | -0.375 |          0.000 |
+| native, without AST                                       | knn      |        89 |         18 | -0.268 |          0.109 |
+| native, without AST                                       | gap      |        89 |         18 | -0.322 |          0.002 |
+| native, without AST, CLAP, MusicFM, PANNs                 | knn      |        74 |         15 | -0.029 |          0.873 |
+| native, without AST, CLAP, MusicFM, PANNs                 | gap      |        74 |         15 | -0.199 |          0.073 |
+| mean-pooled last block, all models                        | knn      |        90 |         18 | -0.001 |          0.994 |
+| mean-pooled last block, all models                        | gap      |        90 |         18 | -0.180 |          0.087 |
+| mean-pooled last block, without AST, CLAP, MusicFM, PANNs | knn      |        70 |         14 |  0.110 |          0.529 |
+| mean-pooled last block, without AST, CLAP, MusicFM, PANNs | gap      |        70 |         14 | -0.268 |          0.014 |
+
+The association of uniformity with kNN accuracy is carried by these four models: removing AST alone leaves ρ = -0.27 (p = 0.11), removing all four leaves ρ = -0.03, and on mean-pooled last blocks it is ρ = -0.00. Their native embeddings are far more uniform than the mean of their last block, while their kNN accuracy changes little. The association with the kNN − linear gap is more robust: it holds without AST (ρ = -0.32, p = 0.002) and among the 14 models whose clip embedding is the mean-pooled last block (ρ = -0.27, p = 0.014).
+ Leave-one-model-out ρ for uniformity → kNN on the native embeddings ranges from -0.45 to -0.27 (`results/paper_outputs/finding2_leave_one_model_out.csv`).
+

@@ -1,0 +1,11 @@
+embedding,target,n_pairs,n_models,rho,p_model_perm
+"native clip embedding, all models",knn,94,19,-0.3580155043613905,0.028594281143771244
+"native clip embedding, all models",gap,94,19,-0.37486544088429724,0.0003999200159968006
+"native, without AST",knn,89,18,-0.26763308878731606,0.10937812437512498
+"native, without AST",gap,89,18,-0.3224719101123596,0.0015996800639872025
+"native, without AST, CLAP, MusicFM, PANNs",knn,74,15,-0.028730950947839954,0.8730253949210158
+"native, without AST, CLAP, MusicFM, PANNs",gap,74,15,-0.1992299148463532,0.07278544291141771
+"mean-pooled last block, all models",knn,90,18,-0.0008149389004999821,0.9944011197760448
+"mean-pooled last block, all models",gap,90,18,-0.18036342686921691,0.08738252349530094
+"mean-pooled last block, without AST, CLAP, MusicFM, PANNs",knn,70,14,0.10979301180764042,0.5286942611477704
+"mean-pooled last block, without AST, CLAP, MusicFM, PANNs",gap,70,14,-0.26763249539596295,0.013997200559888023
