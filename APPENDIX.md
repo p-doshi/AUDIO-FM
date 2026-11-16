@@ -775,3 +775,90 @@ Four models produce their clip embedding with something other than a plain mean 
 The association of uniformity with kNN accuracy is carried by these four models: removing AST alone leaves ρ = -0.27 (p = 0.11), removing all four leaves ρ = -0.03, and on mean-pooled last blocks it is ρ = -0.00. Their native embeddings are far more uniform than the mean of their last block, while their kNN accuracy changes little. The association with the kNN − linear gap is more robust: it holds without AST (ρ = -0.32, p = 0.002) and among the 14 models whose clip embedding is the mean-pooled last block (ρ = -0.27, p = 0.014).
  Leave-one-model-out ρ for uniformity → kNN on the native embeddings ranges from -0.45 to -0.27 (`results/paper_outputs/finding2_leave_one_model_out.csv`).
 
+
+#### Finding 2 diagnostics on the native embeddings
+
+Per-model contribution to the within-domain Spearman ρ (product of standardized within-domain-demeaned ranks, summed over the model's five points; contributions add up to ρ). Negative = the model's points lie along the reported direction.
+
+| model              |    knn |    gap |
+|:-------------------|-------:|-------:|
+| clap               | -0.101 | -0.078 |
+| ast                | -0.096 | -0.059 |
+| wav2vec2           | -0.066 | -0.062 |
+| audio_jepa         | -0.047 | -0.031 |
+| panns_cnn14        | -0.037 | -0.031 |
+| encodecmae         | -0.036 | -0.020 |
+| hubert             | -0.026 | -0.029 |
+| sew                | -0.025 | -0.008 |
+| data2vec_audio     | -0.022 | -0.012 |
+| musicfm            | -0.017 |  0.000 |
+| audiomae           | -0.013 | -0.036 |
+| whisper            |  0.004 | -0.023 |
+| wavlm              |  0.006 |  0.005 |
+| wav2vec2_conformer |  0.007 | -0.001 |
+| music2vec          |  0.007 | -0.003 |
+| mert               |  0.010 |  0.008 |
+| mms                |  0.015 | -0.002 |
+| unispeech_sat      |  0.027 | -0.012 |
+| bird_mae           |  0.053 |  0.019 |
+
+Outside AST and CLAP, 9 of 17 models contribute negatively to the kNN association (sum -0.161) and 13 of 17 to the gap association (sum -0.238).
+
+Per-domain Spearman with all models and without the four models whose clip embedding is not a mean-pooled last block (AST, CLAP, PANNs, MusicFM):
+
+| domain   |   knn_all |   gap_all |   knn_without_head_models |   gap_without_head_models |
+|:---------|----------:|----------:|--------------------------:|--------------------------:|
+| bird     |     -0.37 |     -0.21 |                     -0.27 |                     -0.43 |
+| music    |     -0.36 |     -0.34 |                      0.31 |                      0.34 |
+| speech   |     -0.34 |     -0.42 |                     -0.22 |                     -0.33 |
+| machine  |     -0.33 |     -0.46 |                      0.01 |                     -0.30 |
+| city     |     -0.41 |     -0.57 |                      0.06 |                     -0.46 |
+
+Training-paradigm control and subgroups (model-identity permutation, 5,000 draws), and every single-model removal (2,000 draws):
+
+| analysis                                                        | target   |   n_models |    rho |   p_model_perm |
+|:----------------------------------------------------------------|:---------|-----------:|-------:|---------------:|
+| all models, discriminative flag as covariate                    | knn      |         19 | -0.336 |          0.034 |
+| all models, discriminative flag as covariate                    | gap      |         19 | -0.363 |          0.000 |
+| non-discriminative encoders only (no AST, CLAP, PANNs, Whisper) | knn      |         15 | -0.145 |          0.434 |
+| non-discriminative encoders only (no AST, CLAP, PANNs, Whisper) | gap      |         15 | -0.206 |          0.071 |
+| masked-modelling encoders only                                  | knn      |         12 | -0.097 |          0.637 |
+| masked-modelling encoders only                                  | gap      |         12 | -0.185 |          0.119 |
+| without ast                                                     | knn      |         18 | -0.268 |          0.099 |
+| without ast                                                     | gap      |         18 | -0.322 |          0.004 |
+| without audio_jepa                                              | knn      |         18 | -0.344 |          0.042 |
+| without audio_jepa                                              | gap      |         18 | -0.361 |          0.001 |
+| without audiomae                                                | knn      |         18 | -0.388 |          0.025 |
+| without audiomae                                                | gap      |         18 | -0.359 |          0.001 |
+| without bird_mae                                                | knn      |         18 | -0.448 |          0.003 |
+| without bird_mae                                                | gap      |         18 | -0.419 |          0.001 |
+| without clap                                                    | knn      |         18 | -0.268 |          0.115 |
+| without clap                                                    | gap      |         18 | -0.321 |          0.001 |
+| without data2vec_audio                                          | knn      |         18 | -0.366 |          0.027 |
+| without data2vec_audio                                          | gap      |         18 | -0.368 |          0.001 |
+| without encodecmae                                              | knn      |         18 | -0.318 |          0.062 |
+| without encodecmae                                              | gap      |         18 | -0.369 |          0.001 |
+| without hubert                                                  | knn      |         18 | -0.356 |          0.040 |
+| without hubert                                                  | gap      |         18 | -0.378 |          0.000 |
+| without mert                                                    | knn      |         18 | -0.369 |          0.029 |
+| without mert                                                    | gap      |         18 | -0.392 |          0.000 |
+| without mms                                                     | knn      |         18 | -0.403 |          0.018 |
+| without mms                                                     | gap      |         18 | -0.408 |          0.001 |
+| without music2vec                                               | knn      |         18 | -0.375 |          0.031 |
+| without music2vec                                               | gap      |         18 | -0.371 |          0.000 |
+| without musicfm                                                 | knn      |         18 | -0.330 |          0.053 |
+| without musicfm                                                 | gap      |         18 | -0.388 |          0.001 |
+| without panns_cnn14                                             | knn      |         18 | -0.319 |          0.071 |
+| without panns_cnn14                                             | gap      |         18 | -0.341 |          0.003 |
+| without sew                                                     | knn      |         18 | -0.366 |          0.029 |
+| without sew                                                     | gap      |         18 | -0.392 |          0.000 |
+| without unispeech_sat                                           | knn      |         18 | -0.390 |          0.021 |
+| without unispeech_sat                                           | gap      |         18 | -0.382 |          0.001 |
+| without wav2vec2                                                | knn      |         18 | -0.323 |          0.050 |
+| without wav2vec2                                                | gap      |         18 | -0.340 |          0.001 |
+| without wav2vec2_conformer                                      | knn      |         18 | -0.372 |          0.026 |
+| without wav2vec2_conformer                                      | gap      |         18 | -0.383 |          0.001 |
+| without wavlm                                                   | knn      |         18 | -0.362 |          0.033 |
+| without wavlm                                                   | gap      |         18 | -0.394 |          0.001 |
+| without whisper                                                 | knn      |         18 | -0.393 |          0.027 |
+| without whisper                                                 | gap      |         18 | -0.381 |          0.000 |

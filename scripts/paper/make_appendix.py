@@ -373,6 +373,28 @@ def layerwise_section(w):
             w(f" Leave-one-model-out ρ for uniformity → kNN on the native embeddings ranges from "
               f"{lo.iloc[:, 1].min():.2f} to {lo.iloc[:, 1].max():.2f} (`results/paper_outputs/finding2_leave_one_model_out.csv`).")
         w("\n")
+    cb = opt(OUT / "finding2_model_contributions.csv")
+    if cb is not None:
+        w("#### Finding 2 diagnostics on the native embeddings\n")
+        w("Per-model contribution to the within-domain Spearman ρ (product of standardized within-domain-demeaned ranks, "
+          "summed over the model's five points; contributions add up to ρ). Negative = the model's points lie along the "
+          "reported direction.\n")
+        cb = cb.set_index("model")
+        w(md(cb.sort_values("knn").reset_index(), ".3f") + "\n")
+        rest = cb.drop(["ast", "clap"])
+        w(f"Outside AST and CLAP, {int((rest.knn < 0).sum())} of {len(rest)} models contribute negatively to the kNN "
+          f"association (sum {rest.knn.sum():.3f}) and {int((rest.gap < 0).sum())} of {len(rest)} to the gap association "
+          f"(sum {rest.gap.sum():.3f}).\n")
+        pdr = opt(OUT / "finding2_per_domain_rho.csv")
+        if pdr is not None:
+            w("Per-domain Spearman with all models and without the four models whose clip embedding is not a mean-pooled "
+              "last block (AST, CLAP, PANNs, MusicFM):\n")
+            w(md(pdr, ".2f") + "\n")
+        pl = opt(OUT / "finding2_paradigm_and_loo.csv")
+        if pl is not None:
+            w("Training-paradigm control and subgroups (model-identity permutation, 5,000 draws), and every single-model "
+              "removal (2,000 draws):\n")
+            w(md(pl, ".3f") + "\n")
 
 
 def main():

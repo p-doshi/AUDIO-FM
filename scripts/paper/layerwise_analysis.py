@@ -132,7 +132,73 @@ def part_c():
     pd.Series(loo, name="rho_uniformity_knn_without_model").rename_axis("model").to_csv(OUT / "finding2_leave_one_model_out.csv")
 
 
+def _native():
+    from common import frozen_geometry
+    d = (pd.read_csv(RESULTS / "probes" / "frozen_knn_linear.csv")
+         .merge(pd.read_csv(RESULTS / "probes" / "frozen_linear_iterations.csv")[["dataset", "model", "lin_conv"]], on=["dataset", "model"])
+         .merge(frozen_geometry()[["dataset", "model", "uniformity"]], on=["dataset", "model"])
+         .merge(pd.read_csv(RESULTS / "models" / "model_arch_taxonomy.csv")[["model", "type"]], on="model"))
+    d["gap"] = d.knn - d.lin_conv
+    d["disc"] = d.type.isin(["Supervised/discriminative", "Cross-modal contrastive"]).astype(float)
+    return d
+
+
+def _dm(d, c):
+    return d[c] - d.groupby("dataset")[c].transform("mean")
+
+
+def _partial(d, y, cov):
+    ru, ry = stats.rankdata(_dm(d, "uniformity")), stats.rankdata(_dm(d, y))
+    Z = np.column_stack([np.ones(len(d))] + [stats.rankdata(_dm(d, c)) for c in cov])
+    res = lambda v: v - Z @ np.linalg.lstsq(Z, v, rcond=None)[0]
+    return stats.spearmanr(res(ru), res(ry))[0]
+
+
+def _perm_partial(d, y, cov, rng, n=5000):
+    obs = _partial(d, y, cov)
+    ms = d.model.unique()
+    lut = {(a, b): v for a, b, v in zip(d.dataset, d.model, d.uniformity)}
+    c = 0
+    for _ in range(n):
+        mp = dict(zip(ms, rng.permutation(ms)))
+        q = d.assign(uniformity=[lut.get((a, mp[b]), np.nan) for a, b in zip(d.dataset, d.model)]).dropna(subset=["uniformity"])
+        c += abs(_partial(q, y, cov)) >= abs(obs)
+    return obs, (c + 1) / (n + 1)
+
+
+def part_d():
+    """Finding 2 on native embeddings: per-model contributions to the within-domain Spearman, per-domain correlations,
+    training-paradigm control and subgroups, and every single-model removal with its permutation p."""
+    d = _native()
+    rng = np.random.default_rng(0)
+    contrib = {}
+    for y in ["knn", "gap"]:
+        ru, rk = stats.rankdata(_dm(d, "uniformity")), stats.rankdata(_dm(d, y))
+        z = (ru - ru.mean()) / ru.std() * (rk - rk.mean()) / rk.std() / len(d)
+        contrib[y] = pd.Series(z, index=d.model.values).groupby(level=0).sum()
+    pd.DataFrame(contrib).rename_axis("model").to_csv(OUT / "finding2_model_contributions.csv")
+    rows = []
+    for name, sub, cov in [("all models, discriminative flag as covariate", d, ["disc"]),
+                           ("non-discriminative encoders only (no AST, CLAP, PANNs, Whisper)", d[d.disc == 0], []),
+                           ("masked-modelling encoders only", d[d.type.str.startswith("Masked")], [])]:
+        for y in ["knn", "gap"]:
+            r, p = _perm_partial(sub, y, cov, rng)
+            rows.append(dict(analysis=name, target=y, n_models=sub.model.nunique(), rho=r, p_model_perm=p))
+    for m in sorted(d.model.unique()):
+        for y in ["knn", "gap"]:
+            r, p = _perm_partial(d[d.model != m], y, [], rng, n=2000)
+            rows.append(dict(analysis=f"without {m}", target=y, n_models=d.model.nunique() - 1, rho=r, p_model_perm=p))
+    pd.DataFrame(rows).to_csv(OUT / "finding2_paradigm_and_loo.csv", index=False)
+    per = []
+    for ds, g in d.groupby("dataset"):
+        h = g[~g.model.isin(NATIVE_HEAD)]
+        per.append(dict(domain=DOMAIN_NAME[ds], knn_all=stats.spearmanr(g.uniformity, g.knn)[0], gap_all=stats.spearmanr(g.uniformity, g.gap)[0],
+                        knn_without_head_models=stats.spearmanr(h.uniformity, h.knn)[0], gap_without_head_models=stats.spearmanr(h.uniformity, h.gap)[0]))
+    pd.DataFrame(per).to_csv(OUT / "finding2_per_domain_rho.csv", index=False)
+    print(pd.DataFrame(rows).head(6).to_string(index=False))
+
+
 if __name__ == "__main__":
     import sys
-    for part in (sys.argv[1:] or ["a", "b", "c"]):
-        {"a": part_a, "b": part_b, "c": part_c}[part]()
+    for part in (sys.argv[1:] or ["a", "b", "c", "d"]):
+        {"a": part_a, "b": part_b, "c": part_c, "d": part_d}[part]()
